@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+
+
+    <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Upload&nbsp;directly&nbsp;to&nbsp;the&nbsp;Backload&nbsp;server&nbsp;side&nbsp;file&nbsp;upload&nbsp;handler.&nbsp;This&nbsp;is&nbsp;the&nbsp;default&nbsp;upload&nbsp;controller&nbsp;of&nbsp;the&nbsp;Backload.&nbsp;handler</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;fileUploadUrl&nbsp;=&nbsp;<span style="color:#a31515;">&quot;/Backload/UploadHandler&quot;</span>;
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Initialize&nbsp;the&nbsp;jQuery&nbsp;File&nbsp;Upload&nbsp;widget:</span>
+&nbsp;&nbsp;&nbsp;&nbsp;$(<span style="color:#a31515;">&#39;#fileupload&#39;</span>).fileupload({
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url:&nbsp;fileUploadUrl,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acceptFileTypes:&nbsp;<span style="color:maroon;">/(jpg)|(jpeg)|(png)|(gif)$/i</span>&nbsp;<span style="color:green;">//&nbsp;Allowed&nbsp;file&nbsp;types</span>
+&nbsp;&nbsp;&nbsp;&nbsp;});
+</pre>
+
+
+</body>
+</html>
