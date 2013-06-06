@@ -68,6 +68,9 @@ ul.nav li {
 
 
 /* Example page JQuery file upload plugin styles */
+#demo-fup-table {
+    border-collapse:collapse;
+}
 tbody.files td.delete {
   white-space: nowrap;
 }
@@ -77,14 +80,30 @@ tbody.files td.name {
     padding-right: 10px;
 }
 tbody.files td.size {
+    min-width: 80px;
     text-align:right;
     padding-left:10px; 
     padding-right:10px;
 }
 tbody.files td.action {
-    min-width:100px; 
+    min-width:120px; 
     padding-left:10px; 
     padding-right:10px;
+}
+tbody.files .progress {
+  width: 155px;
+}
+.files .ui-progressbar-value, 
+.fileupload-buttonbar .ui-progressbar-value {
+  background: url(FileUpload/img/progressblue.gif);
+}
+.fileupload-progress {
+  margin-left:75px;
+}
+.progress-extended {
+    margin-top:2px;
+    font-size:10px;
+  color:#b0b0b0
 }
 footer, #footer  {
     background:none;
@@ -107,17 +126,36 @@ h5 {
     margin:0px;
     line-height:10px;
 }
+.theme-switcher-info {
+    position: absolute;
+    font-size: 10px;
+    top: 10px;
+    right: 20px;
+    color: #a0a0a0;
+}
+.theme-switcher {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    font-size: 12px;
+}
+.ex-head {
+    background-color: #404040;
+    padding: 20px;
+    padding-bottom: 5px;
+    position: relative;
+}
 .ex-fup {
     background-color:#505050; padding:20px; padding-top:30px;
 }
 .ex-desc {
-    color:black; margin-bottom:15px; font-weight:bold;
+    color:#c0c0c0; margin-bottom:15px; font-weight:normal;
 }
 .ex-desc > a, .ex-desc > a:visited{
-    color:#000000;
+    color:#c0c0c0;
 }
 .ex-desc > a:hover:hover {
-    color:#404040;
+    color:#f0f0f0;
 }
 .ex-inf {
     background-color: #404040;
@@ -132,6 +170,10 @@ p.licenses > a, p.licenses > a:visited{
 }
 p.licenses > a:hover {
     color:#a0a0a0;
+}
+.ex-imp {
+    color: red;
+    font-size: larger;
 }
 
 

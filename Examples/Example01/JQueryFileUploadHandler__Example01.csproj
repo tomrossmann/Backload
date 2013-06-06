@@ -238,6 +238,7 @@
     <Content Include="Content\FileUpload\css\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\FileUpload\css\jquery.fileupload-ui.css" />
     <Content Include="Content\FileUpload\css\jquery.image-gallery.debug.css" />
+    <Content Include="Content\FileUpload\img\progressblue.gif" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\FileUpload\img\glyphicons-halflings-white.png" />
     <Content Include="Content\FileUpload\img\loading.gif" />
@@ -308,6 +309,7 @@
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.0.1.intellisense.js" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="HtmlPage2.html" />
     <Content Include="Scripts\ColorBox\jquery.colorbox-min.js" />
     <Content Include="Scripts\ColorBox\jquery.colorbox.js" />
     <Content Include="Scripts\jquery-2.0.1.js" />
