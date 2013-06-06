@@ -23,4 +23,5 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Unique file names: Files can be stored with a unique name and also remapped to their original name.
 * Cropping and resizing: This can be setup in the web.config file or in a request from the client.
 * Image type convertion: Images can be converted to a different target type.
+* Security: Access control with authentication and authorization (roles based).
 
