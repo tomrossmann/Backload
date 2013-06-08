@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 1";
+    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 2";
 }
 
 @section styles {   
@@ -56,11 +56,10 @@
     </div>
 </div>
 <div class="ex-inf">
-<h2>Example 1: Zero configuration</h2>
+<h2>Example 2: Using the web.config</h2>
     <p><span class="bl">Backload.</span> has a very rich set of configuration options. It can be entirely configured within the web.config file or alternatively  a config file linked to the web.config. But, 
-        you do not have to set any option if you are happy with the defaults (For convenience we only use <span class="bl">Backloads.</span> bundling feature in order to link the scripts and styles of the 
-        jQuery file upload plugin to the page, see: global.asax and _layout.cshtml). Note: It is strongly recommend taking a look on how the
-        client side jQuery File Upload plugin uses templating (see html source code). You can easily style the plugin by adding or removing styles in the template or even add new functionality to the plugin.
+        you do not have to set any option if you are happy with the defaults. In this example we show you how to prepare the web.config file, so <span class="bl">Backload.</span> can be configured.
+        In this example we want to change the root upload files path to "~/Uploads". Take a look how we utilize Visual Studio Intelligence and schema validation.
     </p>
 </div>
 
@@ -112,7 +111,7 @@
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade ui-state-hover" data-type="{%=file.main_type%}">
+    <tr class="template-upload fade ui-state-hover" data-type="{%=file.type%}">
         <td class="preview"><span class="fade"></span></td>
         <td class="name"><span>{%=file.name%}</span></td>
         <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
@@ -143,7 +142,7 @@
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade ui-state-default" data-type="{%=file.main_type%}" >
+    <tr class="template-download fade ui-state-default" data-type="{%=file.extra_info.main_type%}" >
         {% if (file.error) { %}
             <td></td>
             <td class="name"><span>{%=file.name%}</span></td>
@@ -154,7 +153,7 @@
                 <a href="{%=file.url%}" target="_blank" title="{%=file.name%}" data-gallery="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
             {% } %}</td>
             <td class="name">
-                <a href="{%=file.url%}" target="_blank" title="{%=file.name%}" data-gallery="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+                <a href="{%=file.url%}" target="_blank" title="{%=file.extra_info.original_name%}" data-gallery="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
             </td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
             <td colspan="2"></td>
@@ -174,50 +173,44 @@
 
 
 <div class="ex-inf">
-    <h4>Basic setup information</h4>
+    <h4>Prepare the web.config in two simple steps:</h4>
     <ol>
-        <li>Make sure, you have write access to the default upload folder "~/files".</li>
-        <li>Reference the <span class="bl">Backload.</span> assembly (Backload.dll).</li>
-        <li>Include the client side jQuery File Upload Plugin files. You can use <span class="bl">Backloads.</span> bundeling feature (see global.asax and _Layout.cshtml).</li>
-        <li>Initialize the client side plugin with the url of the default upload handler:</li>
+        <li>Declare a new section group with a config section</li>
+        <li>Add the section group and a config section to the configuration element</li>
     </ol>
-    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Upload&nbsp;directly&nbsp;to&nbsp;the&nbsp;built-in&nbsp;server&nbsp;side&nbsp;upload&nbsp;controller.&nbsp;This&nbsp;is&nbsp;the&nbsp;default&nbsp;upload&nbsp;controller&nbsp;of&nbsp;Backload.</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;fileUploadUrl&nbsp;=&nbsp;<span style="color:#a31515;">&quot;/Backload/UploadHandler&quot;</span>;
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Initialize&nbsp;the&nbsp;jQuery&nbsp;File&nbsp;Upload&nbsp;widget:</span>
-&nbsp;&nbsp;&nbsp;&nbsp;$(<span style="color:#a31515;">&#39;#fileupload&#39;</span>).fileupload({
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url:&nbsp;fileUploadUrl,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acceptFileTypes:&nbsp;<span style="color:maroon;">/(jpg)|(jpeg)|(png)|(gif)$/i</span>&nbsp;<span style="color:green;">//&nbsp;Allowed&nbsp;file&nbsp;types</span>
-&nbsp;&nbsp;&nbsp;&nbsp;});
-</pre>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">&lt;</span><span style="color:#a31515;">configuration</span><span style="color:blue;">&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">configSections</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;...
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--</span><span style="color:green;">&nbsp;Declare&nbsp;a&nbsp;new&nbsp;section&nbsp;group&nbsp;(&quot;fileUploadGroup&quot;)&nbsp;with&nbsp;a&nbsp;config&nbsp;section&nbsp;(&quot;fileUpload&quot;)&nbsp;within&nbsp;&lt;configSections&gt;&nbsp;</span><span style="color:blue;">--&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">sectionGroup</span><span style="color:blue;">&nbsp;</span><span style="color:red;">name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">fileUploadGroup</span>&quot;<span style="color:blue;">&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">section</span><span style="color:blue;">&nbsp;</span><span style="color:red;">name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">fileUpload</span>&quot;<span style="color:blue;"></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">type</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Backload.Configuration.FileUploadSection,&nbsp;Backload,&nbsp;Version=1.7,&nbsp;Culture=neutral,&nbsp;PublicKeyToken=02eaf42ab375d363</span>&quot;<span style="color:blue;"></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">requirePermission</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">false</span>&quot;
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span style="color:blue;">/</span></span><span style="color:#a31515;">section</span>&quot;<span style="color:blue;">&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">sectionGroup</span><span style="color:blue;">&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">configSections</span><span style="color:blue;">&gt;</span>
+ 
+<span style="color:blue;">&nbsp;&nbsp;&lt;!--</span><span style="color:green;">&nbsp;Add&nbsp;the&nbsp;new&nbsp;declared&nbsp;section&nbsp;group&nbsp;(&quot;fileUploadGroup&quot;)&nbsp;with&nbsp;the&nbsp;config&nbsp;section&nbsp;(&quot;fileUpload&quot;)&nbsp;to&nbsp;the&nbsp;&lt;configuration&gt;&nbsp;element&nbsp;</span><span style="color:blue;">--&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&lt;!--</span><span style="color:green;">&nbsp;Note:&nbsp;The&nbsp;xmlns:*&nbsp;and&nbsp;xsi:*&nbsp;attributes&nbsp;enable&nbsp;schema&nbsp;validation&nbsp;and&nbsp;Visual&nbsp;Studio&nbsp;Intelligence&nbsp;in&nbsp;the&nbsp;config&nbsp;file</span><span style="color:blue;"> --&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">fileUploadGroup</span><span style="color:blue;">&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">fileUpload</span><span style="color:blue;">&nbsp;</span><span style="color:red;">storageContext</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Filesystem</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xsi</span><span style="color:blue;">=</span>&quot;<a href="http://www.w3.org/2001/XMLSchema-instance"><span style="color:blue;">http://www.w3.org/2001/XMLSchema-instance</span></a>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">urn:fileupload-schema</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsi:noNamespaceSchemaLocation</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Web.FileUpload.xsd</span>&quot;<span style="color:blue;">&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">fileSystem</span><span style="color:blue;">&nbsp;</span><span style="color:red;">filesRoot</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">~/Uploads</span>&quot;<span style="color:blue;">&nbsp;/&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">fileUpload</span><span style="color:blue;">&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">fileUploadGroup</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;...
+<span style="color:blue;">&lt;</span><span style="color:#a31515;">/configuration</span><span style="color:blue;">&gt;</span>
+    </pre>
     <br />
-    To use the bundeling feature of Backload add the following lines to global.asax and the view (resp. _layout.cshtml).
-        <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;global.asax:</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Use&nbsp;bundeling&nbsp;for&nbsp;client&nbsp;files&nbsp;(scripts&nbsp;(js)&nbsp;and&nbsp;styles&nbsp;(css)).&nbsp;You&nbsp;can&nbsp;include/exclude&nbsp;the&nbsp;image&nbsp;gallery&nbsp;provided&nbsp;by&nbsp;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;the&nbsp;default&nbsp;jQuery&nbsp;file&nbsp;upload&nbsp;ui&nbsp;demo&nbsp;implementaion</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Comment&nbsp;this&nbsp;out,&nbsp;if&nbsp;you&nbsp;manually&nbsp;include&nbsp;the&nbsp;files&nbsp;in&nbsp;your&nbsp;page</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Overload:&nbsp;RegisterBundles(BundleTable.Bundles,&nbsp;inclImageGallery,&nbsp;pathToScripts,&nbsp;pathToStyles)&nbsp;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Example:&nbsp;Backload...RegisterBundles(BundleTable.Bundles,&nbsp;false,&nbsp;&quot;~/Scripts/FileUpload/&quot;,&nbsp;&quot;~/Content/FileUpload/css/&quot;);</span>
-&nbsp;&nbsp;&nbsp;&nbsp;Backload.Configuration.<span style="color:#2b91af;">FileUploadBundles</span>.RegisterBundles(<span style="color:#2b91af;">BundleTable</span>.Bundles,&nbsp;<span style="color:blue;">false</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;"></span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;_layout.cshtml (or a view):</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">head</span><span style="color:blue;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background: yellow;">@Html.Raw("@")</span><span style="color:#2b91af;">Styles</span>.Render(<span style="color:#a31515;">&quot;~/bundles/fileupload/jqueryui/css&quot;</span>)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;/</span><span style="color:maroon;">head</span><span style="color:blue;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">body</span><span style="color:blue;">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background: yellow;">@Html.Raw("@")</span><span style="color:#2b91af;">Scripts</span>.Render(<span style="color:#a31515;">&quot;~/bundles/fileupload/jqueryui/js&quot;</span>)
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;/</span><span style="color:maroon;">body</span><span style="color:blue;">&gt;</span>
-</pre>
-        <br />
     <h4>Description</h4>
     <p>
-        This basic example demonstrates the minimum setup required to upload files to the default upload files folder (~/files). When you add a reference to the <span class="bl">Backload.</span> assembly, the default 
-        upload handler (url: "/Backload/UploadHandler") will handle incoming uploads. In a later example, we will show you, how to use your own controllers or use <span class="bl">Backloads.</span> eventing, in order to execute your business logic with incoming uploads.
-    </p><br />
+        This basic example shows how to prepare the web.config file for the Backload component. In this sample we set the root upload folder to "~/Uploads" (default: "~/files") and 
+        use the file system as storage context (default). Note: Don't forget to include the schema file (Web.FileUpload.xsd) into your root folder, otherwise schema validation and Visual Studio Intelligence 
+        won't work. Make sure you have the appropriate write permissions. In the next example we show you how to use a separate config file in order to keep the web.config configuration clean.
+    </p>
+    <br />
     <h5>License information</h5>
     <p class="licenses">
         <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload Plugin:</a> Copyright 2013, Sebastian Tschan, <a href="https://blueimp.net" target="_blank">https://blueimp.net</a>, License: <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a><br />

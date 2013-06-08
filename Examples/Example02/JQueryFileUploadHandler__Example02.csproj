@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F093A3AA-766E-44ED-8C76-5993C93E6F6F}</ProjectGuid>
+    <ProjectGuid>{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileUploadHandler.Example01</RootNamespace>
-    <AssemblyName>FileUploadHandler.Example01</AssemblyName>
+    <RootNamespace>FileUploadHandler.Example02</RootNamespace>
+    <AssemblyName>FileUploadHandler.Example02</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -27,14 +27,14 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,6 +159,18 @@
   <ItemGroup>
     <Content Include="Backload\Backload.dll" />
     <Content Include="Backload\de\Backload.resources.dll" />
+    <Content Include="bin\de\Backload.resources.dll" />
+    <Content Include="bin\de\System.Net.Http.Formatting.resources.dll" />
+    <Content Include="bin\de\System.Web.Helpers.resources.dll" />
+    <Content Include="bin\de\System.Web.Http.resources.dll" />
+    <Content Include="bin\de\System.Web.Http.WebHost.resources.dll" />
+    <Content Include="bin\de\System.Web.Mvc.resources.dll" />
+    <Content Include="bin\de\System.Web.Razor.resources.dll" />
+    <Content Include="bin\de\System.Web.WebPages.Deployment.resources.dll" />
+    <Content Include="bin\de\System.Web.WebPages.Razor.resources.dll" />
+    <Content Include="bin\de\System.Web.WebPages.resources.dll" />
+    <Content Include="bin\de\WebMatrix.Data.resources.dll" />
+    <Content Include="bin\de\WebMatrix.WebData.resources.dll" />
     <Content Include="Content\ColorBox\colorbox.css" />
     <Content Include="Content\ColorBox\images\border.png" />
     <Content Include="Content\ColorBox\images\controls.png" />
@@ -236,7 +249,6 @@
     <Content Include="Content\FileUpload\css\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\FileUpload\css\jquery.fileupload-ui.css" />
     <Content Include="Content\FileUpload\css\jquery.image-gallery.debug.css" />
-    <Content Include="Content\FileUpload\img\progressblue.gif" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\FileUpload\img\glyphicons-halflings-white.png" />
     <Content Include="Content\FileUpload\img\loading.gif" />
@@ -359,11 +371,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <None Include="Web.FileUpload.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="bin\" />
-    <Folder Include="Files\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -379,7 +392,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Pro|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -388,7 +401,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Pro|AnyCPU'">
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
