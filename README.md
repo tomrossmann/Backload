@@ -26,8 +26,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Security: Access control with authentication and authorization (roles based).
 
 ### Examples
-[Example 01: Zero configuration](wiki/Example-01)<br />
-[Example 02: Configuration Basics: Using web.config](wiki/Example-02)
+[Example 01: Zero configuration](https://github.com/blackcity/Backload/wiki/Example-01)<br />
+[Example 02: Configuration Basics: Using web.config](https://github.com/blackcity/Backload/wiki/Example-02)
 
 ### Demos
 You can find all demos in the repositories.
