@@ -25,3 +25,14 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Image type convertion: Images can be converted to a different target type.
 * Security: Access control with authentication and authorization (roles based).
 
+### Examples
+[Example 01: Zero configuration](wiki/Example-01)<br />
+[Example 02: Configuration Basics: Using web.config](wiki/Example-02)
+
+### Demos
+You can find all demos in the repositories.
+
+# License
+[jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload): Copyright 2013, Sebastian Tschan, [https://blueimp.net](https://blueimp.net), License: MIT license<br />
+[Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license, (Professional version is only available under a commercial license. 
+
