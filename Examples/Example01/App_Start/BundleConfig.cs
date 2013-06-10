@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace JQueryFileUpload.Example01{
+namespace Backload.Examples.Example01{
     public class BundleConfig
     {
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace JQueryFileUpload.Example02
+namespace Backload.Examples.Example02
 {
     public class FilterConfig
     {

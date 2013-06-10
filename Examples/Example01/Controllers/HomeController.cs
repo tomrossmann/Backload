@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace JQueryFileUpload.Example01.Controllers
+namespace Backload.Examples.Example01.Controllers
 {
     using System.IO;
 

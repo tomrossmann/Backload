@@ -5,18 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backload__Example01", "Exam
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug_Pro|Any CPU = Debug_Pro|Any CPU
 		Debug|Any CPU = Debug|Any CPU
-		Release_Pro|Any CPU = Release_Pro|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Debug_Pro|Any CPU.ActiveCfg = Debug_Pro|Any CPU
-		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Debug_Pro|Any CPU.Build.0 = Debug_Pro|Any CPU
 		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Release_Pro|Any CPU.ActiveCfg = Release_Pro|Any CPU
-		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Release_Pro|Any CPU.Build.0 = Release_Pro|Any CPU
 		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F093A3AA-766E-44ED-8C76-5993C93E6F6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

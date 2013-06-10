@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace JQueryFileUpload.Example02
+namespace Backload.Examples.Example02
 {
     public class RouteConfig
     {
