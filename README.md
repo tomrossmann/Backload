@@ -25,6 +25,9 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Image type convertion: Images can be converted to a different target type.
 * Security: Access control with authentication and authorization (roles based).
 
+### Setup
+[Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)
+
 ### Configuration
 [Options, settings and enumerations](https://github.com/blackcity/Backload/wiki/Configuration)
 
