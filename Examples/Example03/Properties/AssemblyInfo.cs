@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Backload.Examples.Example02")]
+[assembly: AssemblyTitle("Backload.Examples.Example03")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Steffen Habermehl")]
-[assembly: AssemblyProduct("Backload.Examples.Example02")]
+[assembly: AssemblyProduct("Backload.Examples.Example03")]
 [assembly: AssemblyCopyright("Copyright © Steffen Habermehl 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

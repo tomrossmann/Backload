@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Backload.Examples.Example02
+namespace Backload.Examples.Example03
 {
     public static class WebApiConfig
     {
