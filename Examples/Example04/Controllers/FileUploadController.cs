@@ -24,7 +24,6 @@ namespace Backload.Examples.Example04.Controllers
     // Method 2: Use a common controller, instantiate a FileUploadHandler object 
     // from BackloadController and call HandleRequest(Request) on it.
     // NOTE: In this example we registered an event handler to cancel a file upload.
-    // Method 2: Instatiate a FileUploadHandler object in your common controller and call the HandleRequest() method
     public class FileUploadInstanceController : Controller
     {
         public JsonResult UploadHandler()

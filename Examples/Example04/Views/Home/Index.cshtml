@@ -58,7 +58,7 @@
 <div class="ex-inf">
 <h2>Example 4: Using your own controllers</h2>
     <p>Sometimes you want to setup your own controller instead using the built in controller to receive incoming requests, before calling <span class="bl">Backload.</span> to handle the file storage. Common scenarios are: Process additional form fields, logging, access control, 
-        executing additional business logic, etc. This can be easily achieved in tow ways: You can derive your controller from BackloadController or you can instatiate a FileUploadHandler object and call the 
+        executing additional business logic, etc. This can be easily achieved in two ways: You can derive your controller from BackloadController or you can instatiate a FileUploadHandler object and call the 
         HandleRequest method on it. Now you have full controll and you can also leverage the great functionality of the <span class="bl">Backload.</span> component.
     </p>
 </div>
@@ -173,9 +173,9 @@
 
 
 <div class="ex-inf">
-    <h4>How to include an external config file</h4>
+    <h4>How to setup your own controller</h4>
 <p>Method 1: Deriving from BackloadController:</p>
-<pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Method&nbsp;1:&nbsp;Derive&nbsp;your&nbsp;controller&nbsp;from&nbsp;BackloadController&nbsp;and&nbsp;call&nbsp;the&nbsp;base&nbsp;classe</span>
+<pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Method&nbsp;1:&nbsp;Derive&nbsp;your&nbsp;controller&nbsp;from&nbsp;BackloadController&nbsp;and&nbsp;call&nbsp;the&nbsp;base&nbsp;class</span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">FileUploadDerivedController</span>&nbsp;:&nbsp;<span style="color:#2b91af;">BackloadController</span>
 &nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">override</span>&nbsp;<span style="color:#2b91af;">JsonResult</span>&nbsp;UploadHandler()
