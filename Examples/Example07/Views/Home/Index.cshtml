@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 2";
+    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 7";
 }
 
 @section styles {   
@@ -56,10 +56,12 @@
     </div>
 </div>
 <div class="ex-inf">
-<h2>Example 6: Managing subfolders: Using the object context</h2>
-    <p>Imagine you host an artist library where users can upload files for an artist. You may want to store files of each artist in its own subfolder. You can use the objectContext feature (client side). The object context may be an unique artist name or an id. Whenever you post an object context along with your request, the handler will store the uploaded file in a subfulder with the value
-        of the object context. The easiest way is to place an input field (hidden or text) or select form field within the &lt;form&gt; tag. Another way is to manipulate the url or body before the request starts. (see: <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/How-to-submit-additional-form-data" target="_blank">How to submit additional form data</a>. Note: On GET requests (return uploaded files), subfolders are ignored by default, so 
-        the handler will not return files in subfolders. You have to set the attribute getInclSubFolders="true" in the config. 
+<h2>Example 7: Managing subfolders: Using the upload context</h2>
+    <p>In example 6 we've created an artists library, where a specific artist has the object context. Let's go a bit further. We want to categorize the work of an artist in youth period, adult period and late period. Files for these categories should be stored in subfolders of the artist with the current object context.
+        This task can be automatically done by the upload context feature (client side). Whenever you post an upload context along with your request, the handler will store the uploaded file in the appropriate subfolder with the name of the uploadContext value. The uploadContext value can hold multiple values separated by 
+        semicolon which lead to an even more complex folder structure (see example). The easiest way is to place an input field (hidden or text) or select 
+        form field within the &lt;form&gt; tag. Another way is to manipulate the url or body before the request starts. (see: <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/How-to-submit-additional-form-data" target="_blank">How to submit additional form data</a>. Note: On GET requests (return uploaded files), 
+        subfolders are ignored by default, so the handler will not return files in subfolders. You have to set the attribute getInclSubFolders="true" in the config. 
     </p>
 </div>
 
@@ -117,7 +119,14 @@
         <option value="jan_vermeer">Jan Vermeer</option>
         <option value="leonardo_da_vinci">Leonardo Da Vinci</option>
     </select>
-    <p>&nbsp;</p>
+    <span class="periods-list-info">Please select a period:</span>
+    <select id="periods" name="uploadContext" class="periods-list">
+        <option value="youth">Youth</option>
+        <option value="adult" selected>Adulthood</option>
+        <option value="late">Later years</option>
+        <option value="complex1;complex2;complex3">Complex structure</option>
+        <option value="complex1;complex2;complex4">Complex structure 2</option>
+    </select>    <p>&nbsp;</p>
 <!-- BEGIN: jQuery Fle Upload Plugin -->
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="row fileupload-buttonbar">
@@ -225,11 +234,13 @@
 <input type="hidden" name="objectContext" value="user123" />
 
 <div class="ex-inf">
-    <h4>How to setup object context subfolders</h4>
+    <h4>How to setup upload context subfolders</h4>
 <p>Method 1: Just include an input field (type hidden or text) or a select field within the &lt;form&gt; tag:</p>
 <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">form</span>&nbsp;<span style="color:red;">id</span><span style="color:blue;">=&quot;fileupload&quot;</span>&nbsp;<span style="color:red;">action</span><span style="color:blue;">=&quot;/Backload/UploadHandler&quot;</span>&nbsp;<span style="color:red;">method</span><span style="color:blue;">=&quot;POST&quot;</span>&nbsp;<span style="color:red;">enctype</span><span style="color:blue;">=&quot;multipart/form-data&quot;&gt;</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Note:&nbsp;If&nbsp;objectContext&nbsp;is&nbsp;empty,&nbsp;uploadContext&nbsp;subfolders&nbsp;are&nbsp;in&nbsp;the&nbsp;global&nbsp;context.</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">input</span>&nbsp;<span style="color:red;">type</span><span style="color:blue;">=&quot;hidden&quot;</span>&nbsp;<span style="color:red;">name</span><span style="color:blue;">=&quot;objectContext&quot;</span>&nbsp;<span style="color:red;">value</span><span style="color:blue;">=&quot;raffael&quot;</span>&nbsp;<span style="color:blue;">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">input</span>&nbsp;<span style="color:red;">type</span><span style="color:blue;">=&quot;hidden&quot;</span>&nbsp;<span style="color:red;">name</span><span style="color:blue;">=&quot;uploadContext&quot;</span>&nbsp;<span style="color:red;">value</span><span style="color:blue;">=&quot;adult_period&quot;</span>&nbsp;<span style="color:blue;">/&gt;</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;/</span><span style="color:maroon;">form</span><span style="color:blue;">&gt;</span></pre>
 <br />
@@ -237,18 +248,25 @@
 <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;$(<span style="color:#a31515;">&#39;#fileupload&#39;</span>).bind(<span style="color:#a31515;">&#39;fileuploadsubmit&#39;</span>,&nbsp;<span style="color:blue;">function</span>&nbsp;(e,&nbsp;data)&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;The&nbsp;example&nbsp;input,&nbsp;doesn&#39;t&nbsp;have&nbsp;to&nbsp;be&nbsp;part&nbsp;of&nbsp;the&nbsp;upload&nbsp;form:</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;$oc&nbsp;=&nbsp;$(<span style="color:#a31515;">&#39;#objContext&#39;</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.formData&nbsp;=&nbsp;{&nbsp;objectContext:&nbsp;$oc.val()&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;$uc&nbsp;=&nbsp;$(<span style="color:#a31515;">&#39;#upContext&#39;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.formData&nbsp;=&nbsp;{&nbsp;objectContext:&nbsp;$oc.val()&nbsp;,&nbsp;uploadContext:&nbsp;$uc.val()&nbsp;};
 &nbsp;&nbsp;&nbsp;&nbsp;});
 </pre><br />
-<p>Method 3: Manipulate the url and add objectContext to the querystring:</p>
-<pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;fileUploadUrl&nbsp;=&nbsp;<span style="color:#a31515;">&quot;/Backload/UploadHandler?&quot;</span>&nbsp;+&nbsp;<span style="color:#a31515;">&quot;objectContext=raffael&quot;</span>;
+<p>Method 3: Manipulate the url and add objectContext and uploadContext to the querystring:</p>
+<pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;fileUploadUrl&nbsp;=&nbsp;<span style="color:#a31515;">&quot;/Backload/UploadHandler?&quot;</span>&nbsp;+&nbsp;<span style="color:#a31515;">&quot;objectContext=raffael&amp;uploadContext=adult_period&quot;</span>;
 </pre><br />
 <p>Don't forget, to enable the getInclSubFolders attribute in the config, so the Backload. handler will search in subfolders: </p>
 <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">fileUpload</span><span style="color:blue;">&nbsp;</span><span style="color:red;">getInclSubFolders</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">true</span>&quot;<span style="color:blue;">&nbsp;...&nbsp;/&gt;</span>
 </pre><br />
     <h4>Description</h4>
     <p>
-        In this example we showed you how to store files with respect to its object context. For more information on how to include extra forms data before a client side request starts, consult the <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/How-to-submit-additional-form-data" target="_blank">docs</a> of the client side plugin.
+        In this example we showed you how to categorize uploaded files in subfolders of an object that has the current object context. 
+        Note: You do not need to use objectContext. If objectContext is an empty string (or not provided in the request) the subfolders 
+        of the upload context will be stored in the global context. Try the "Complex structure" value of the periods select element. It strores
+        files in a complex subfolder structure. The value of "Complex structure" is "complex1;complex2;complex3". This will lead to the following 
+        file path: "[objectContext]/complex1/complex2/complex3/[uploaded file]. For more information on how to include extra forms data before a client 
+        side request starts, consult the <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/How-to-submit-additional-form-data" target="_blank">docs</a> of the client side plugin.
+
     </p>
     <br />
     <h5>License information</h5>
