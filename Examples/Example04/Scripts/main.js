@@ -66,7 +66,7 @@ $(function () {
 $("document").ready(function () {
     // The Colorbox plugin needs to be informed on new uploaded files in the template in order to bind a handler to it. 
     // There must be a little delay, because the fileuploaddone event is triggered before the new template item is created.
-    // A more elegant solution would be to use jQuery's delegated .on method, witch automatically binds to the anchors in a
+    // A more elegant solution would be to use jQuery's delegated .on method, which automatically binds to the anchors in a
     // newly created template item, and then call colorbox manually.
     $('#fileupload').bind('fileuploaddone', function (e, data) {
         setTimeout(function(){$(".files tr[data-type=image] a").colorbox()}, 1000);
