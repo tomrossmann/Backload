@@ -36,7 +36,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 02: Configuration basics: Using web.config](https://github.com/blackcity/Backload/wiki/Example-02)<br />
 [Example 03: Configuration basics: Using an external config file](https://github.com/blackcity/Backload/wiki/Example-03)<br />
 [Example 04: Using your own controllers](https://github.com/blackcity/Backload/wiki/Example-04)<br />
-[Example 05: Using server side image manipulation features](https://github.com/blackcity/Backload/wiki/Example-05)
+[Example 05: Using server side image manipulation features](https://github.com/blackcity/Backload/wiki/Example-05)<br />
+[Example 06: Managing subfolders: Using the object context](https://github.com/blackcity/Backload/wiki/Example-06)
 
 ### Demos
 You can find all demos in the repositories.
