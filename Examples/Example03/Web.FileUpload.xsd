@@ -2,7 +2,7 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense" xmlns:name="urn:fileupload-schema" >
   <xs:element name="fileUpload">
     <xs:annotation>
-      <xs:documentation>Basic settings for the FileUploadHandlerMVC library. TIP: You do not need to include any of these setting in your web.config or external config file, if these default settings suit your needs.</xs:documentation>
+      <xs:documentation>Basic settings for the Backload. component library. TIP: You do not need to include any of these setting in your web.config or external config file, if these default settings suit your needs.</xs:documentation>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence maxOccurs="unbounded">
@@ -164,7 +164,7 @@
       <xs:attribute name="allowDelete" type="xs:boolean" default="true" use="optional"><xs:annotation><xs:documentation>Set to "false" if deletion of uploaded files should be not possible [Default: "true"]</xs:documentation></xs:annotation></xs:attribute>
       <xs:attribute name="deleteHandler" type="xs:string" default="" use="optional"><xs:annotation><xs:documentation>By default (deleteHandler="") the FileUploadHandler handles incoming delete requests. If you need to delete uploaded files within your own business logic set a relative (~/...) or absolute path (starts with http or https). The url of the handler is returned to the browser in the json output for the delete url [Default: ""]</xs:documentation></xs:annotation></xs:attribute>
       <xs:attribute name="enableIntegratedHandler" type="xs:boolean" default="true" use="optional"><xs:annotation><xs:documentation>By default the internal file upload handler is running and ready to receive incoming files or requests. This enables us zero configuration. If you want to set up your own controller in order to do some business logic, set this to "false". [Default: "true"]</xs:documentation></xs:annotation></xs:attribute>
-      <xs:attribute name="storageContext" default="Filesystem" use="optional" ><xs:annotation><xs:documentation>Files can be stored in the file system or in a database (through the Entity Framework) [Default: "Filesystem]</xs:documentation></xs:annotation>
+      <xs:attribute name="storageContext" default="Filesystem" use="optional" ><xs:annotation><xs:documentation>Files may be stored in the file system or in a database (through the Entity Framework) [Default: "Filesystem"]</xs:documentation></xs:annotation>
         <xs:simpleType >
           <xs:restriction base="xs:string">
             <xs:enumeration value="Filesystem"><xs:annotation><xs:documentation>Saves uploaded files in the file system [Default]</xs:documentation></xs:annotation></xs:enumeration>

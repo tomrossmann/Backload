@@ -38,11 +38,12 @@ namespace Backload.Examples.Example03
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            // Use bundeling for client files (scripts (js) and styles (css)). You can include/exclude the image gallery provided by the default JQuery file upload ui demo implementaion
+            // NOTE: If you downloaded the Backload component using NuGet, the RegisterBundles() method is now in ~/App_Start/BackloadConfig.cs
+            // Use bundeling for client files (scripts (js) and styles (css)). 
             // Comment this out, if you manually include the files in your page
-            // Overload: RegisterBundles(BundleTable.Bundles, inclImageGallery, pathToScripts, pathToStyles) 
-            // Example: Backload.Configuration.FileUploadBundles.RegisterBundles(BundleTable.Bundles, false, "~/Scripts/FileUpload/", "~/Content/FileUpload/css/");
-            Backload.Configuration.FileUploadBundles.RegisterBundles(BundleTable.Bundles, false);
+            // Overload: RegisterBundles(BundleTable.Bundles, pathToScripts, pathToStyles) 
+            // Example: Backload.Configuration.FileUploadBundles.RegisterBundles(BundleTable.Bundles, "~/Scripts/FileUpload/", "~/Content/FileUpload/css/");
+            // Backload.Configuration.FileUploadBundles.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

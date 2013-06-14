@@ -8,7 +8,7 @@
         @Styles.Render("~/Content/themes/base/css")
         @Styles.Render("~/Content/css")
         <!-- We use Backloads. bundeling feature to register all client side javascript and style files of the jQuery File Upload Plugin  -->
-        @Styles.Render("~/bundles/fileupload/jqueryui/css")
+        @Styles.Render("~/bundles/fileupload/jqueryui/BasicPlusUI/css")
         @RenderSection("styles", required: false)
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
@@ -33,7 +33,7 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryui")
         <!-- We use Backloads. bundeling feature to register all client side javascript and style files of the jQuery File Upload Plugin  -->
-        @Scripts.Render("~/bundles/fileupload/jqueryui/js")
+        @Scripts.Render("~/bundles/fileupload/jqueryui/BasicPlusUI/js")
         @RenderSection("scripts", required: false)
     </body>
 </html>
