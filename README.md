@@ -41,7 +41,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 07: Managing subfolders: Using the upload context](https://github.com/blackcity/Backload/wiki/Example-07)
 
 ### Demo: Jquery File Upload Plugin (original demo) with Backload
-The original demo shipped with the File Upload Plugin working with the Backload the server side component can be found (here)[https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp].  
+The original demo shipped with the File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
 
 ### License
 [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload): Copyright 2013, Sebastian Tschan, [https://blueimp.net](https://blueimp.net), License: MIT license<br />
