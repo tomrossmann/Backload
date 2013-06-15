@@ -42,9 +42,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Backload, Version=1.7.2.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
+    <Reference Include="Backload, Version=1.7.3.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Backload.1.7.2.0\lib\net45\Backload.dll</HintPath>
+      <HintPath>..\packages\Backload.1.7.3.0\lib\net45\Backload.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -229,10 +229,10 @@
     <Content Include="Content\FileUpload\css\bootstrap\bootstrap-image-gallery.debug.css" />
     <Content Include="Content\FileUpload\css\bootstrap\bootstrap-responsive.debug.css" />
     <Content Include="Content\FileUpload\css\bootstrap\bootstrap.debug.css" />
-    <Content Include="Content\FileUpload\css\jquery.fileupload-jui.css" />
     <Content Include="Content\FileUpload\css\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\FileUpload\css\jquery.fileupload-ui.css" />
     <Content Include="Content\FileUpload\css\jquery.image-gallery.debug.css" />
+    <Content Include="Content\FileUpload\css\jqueryui\jquery.fileupload-jui.css" />
     <Content Include="Content\FileUpload\img\glyphicons-halflings-white.png" />
     <Content Include="Content\FileUpload\img\loading.gif" />
     <Content Include="Content\FileUpload\img\progressbar.gif" />
@@ -305,8 +305,18 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\ColorBox\jquery.colorbox-min.js" />
     <Content Include="Scripts\ColorBox\jquery.colorbox.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
     <None Include="Scripts\jquery-2.0.2-vsdoc.js" />
+    <Content Include="Scripts\FileUpload\angularjs\angular.debug.js" />
     <Content Include="Scripts\FileUpload\bootstrap\bootstrap-image-gallery.debug.js" />
     <Content Include="Scripts\FileUpload\bootstrap\bootstrap.debug.js" />
     <Content Include="Scripts\FileUpload\canvas-to-blob.debug.js" />
@@ -319,10 +329,14 @@
     <Content Include="Scripts\FileUpload\jquery.fileupload-jui.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-process.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\FileUpload\jquery.fileupload-validate.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-video.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload.js" />
     <Content Include="Scripts\FileUpload\jquery.iframe-transport.js" />
     <Content Include="Scripts\FileUpload\jquery.image-gallery.debug.js" />
+    <Content Include="Scripts\FileUpload\jqueryui\jquery.fileupload-jui.js" />
+    <Content Include="Scripts\FileUpload\jqueryui\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\FileUpload\jqueryui\jquery.fileupload.js" />
     <Content Include="Scripts\FileUpload\jqueryui\jquery.ui.widget.js" />
     <Content Include="Scripts\FileUpload\load-image.debug.js" />
     <Content Include="Scripts\FileUpload\tmpl.debug.js" />
@@ -345,15 +359,6 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
