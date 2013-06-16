@@ -6,7 +6,7 @@ The version in these examples is tailored for the famous client side [jQuery Fil
 
 ### Highlights
 
-**Backload** is a feature rich server side component witch can be fully customized (declaratively) within the web.config file file (resp. a linked config file). Complex storage structures are supported and handled by the component without a single line of code, whether the storage location is the file system or a database. If you want to upload different file types (images, pdfs, doc, etc) content type based subfolders can be configured to automatically store different file types in different sub folders (e.g. /images, /pdfs, /movies, etc).
+**Backload** is a feature rich server side component witch can be fully customized (declaratively) within the web.config file (resp. a linked config file). Complex storage structures are supported and handled by the component without a single line of code, whether the storage location is the file system or a database. If you want to upload different file types (images, pdfs, doc, etc) content type based subfolders can be configured to automatically store different file types in different sub folders (e.g. /images, /pdfs, /movies, etc).
 
 The zero configuration feature allows quick setups, a default MVC controller is ready to handle incoming requests. For more complex scenarios, where you have to run your own business logic, you can derive from the default controller or call the handler method from your code. 
 
@@ -40,8 +40,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 06: Managing subfolders: Using the object context](https://github.com/blackcity/Backload/wiki/Example-06)<br />
 [Example 07: Managing subfolders: Using the upload context](https://github.com/blackcity/Backload/wiki/Example-07)
 
-### Demo: Jquery File Upload Plugin (original demo) with Backload
-The original demo shipped with the File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
+### Demo: JQuery File Upload Plugin (original demo) with Backload
+The original demo shipped with the JQuery File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
 
 ### License
 [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload): Copyright 2013, Sebastian Tschan, [https://blueimp.net](https://blueimp.net), License: MIT license<br />
