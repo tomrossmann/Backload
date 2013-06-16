@@ -12,7 +12,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 **Backload** supports cropping and resizing of images. The parameters can be set within the web.config file or by an incoming request from the client. Multiple image manipulation features are implemented. Type conversion is also supported.
 
-**Backload** can create unique file names (GUIDs). So files cannot be overwritten or, if this is the purpose of using this feature, cannot accessed from the web withour the knowledge of the new name. Mapping of the original file name to the new file name and back is also implemented. This feature can be used to send a friendly name back to the client. 
+**Backload** can create unique file names (GUIDs). So files cannot be overwritten or, if this is the purpose of using this feature, cannot be accessed from the web without knowledge of the new name. Mapping of the original file name to the new file name and back is also implemented. This feature can be used to send a friendly name back to the client. 
 
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
@@ -22,7 +22,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Content type subfolders: Based on the content type files can automatically be stored in an appropriate subfolder. This feature is fully customizable.
 * Unique file names: Files can be stored with a unique name and also remapped to their original name.
 * Cropping and resizing: This can be setup in the web.config file or in a request from the client.
-* Image type convertion: Images can be converted to a different target type.
+* Image type conversion: Images can be converted to a different target type.
 * Security: Access control with authentication and authorization (roles based).
 
 ### Setup
