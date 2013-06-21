@@ -4,7 +4,7 @@
 The version in these examples is tailored for the famous client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, but it can be easily customized to work with a different client side plugins.
 
 ### Roadmap
-Starting with the next release we open up the Backload component for extensions (plugins) using .NET MEF (Managed Extensibility Framework) which is part of the .NET Framework. The extensiona are very easy to write and clean up the code drastically. You'll be able to hook into several access points through the entire processing pipline. Extensions can be added, deleted and renamed within the Extensions folder while the MVC applicaiton is running. Use Cases: Manipulate incoming data before it is processed, store incoming files in multiple locations, use a custom cloud storage, perform additional image manipulation, and many more.
+Starting with the next release we open up the Backload component for extensions (plugins) using .NET MEF (Managed Extensibility Framework) which is part of the .NET Framework. The extensions are very easy to write and clean up the code drastically. You'll be able to hook into several steps through the entire processing pipline. Extensions can be added, deleted and renamed within the Extensions folder while the MVC applicaiton is running. Use Cases: Manipulate incoming data before it is processed, store incoming files in multiple locations, use a custom cloud storage, perform additional image manipulation, and many more.
 
 ### Highlights
 
