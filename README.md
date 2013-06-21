@@ -3,6 +3,8 @@
 **Backload** is a professional, full featured ASP.NET MVC 4 file upload controller and handler (server side). It has been developed as part of a commercial product for the aero craft industry. 
 The version in these examples is tailored for the famous client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, but it can be easily customized to work with a different client side plugins.
 
+### Roadmap
+Starting with the next release we open up the Backload component for extensions (plugins) using .NET MEF (Managed Extensibility Framework) which is part of the .NET Framework. The extensiona are very easy to write and clean up the code drastically. You'll be able to hook into several access points through the entire processing pipline. Extensions can be added, deleted and renamed within the Extensions folder while the MVC applicaiton is running. Use Cases: Manipulate incoming data before it is processed, store incoming files in multiple locations, use a custom cloud storage, perform additional image manipulation, and many more.
 
 ### Highlights
 
@@ -14,6 +16,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 **Backload** can create unique file names (GUIDs). So files cannot be overwritten or, if this is the purpose of using this feature, cannot be accessed from the web without knowledge of the new name. Mapping of the original file name to the new file name and back is also implemented. This feature can be used to send a friendly name back to the client. 
 
+
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
 * Declarative configuration: Features will be setup within the web.config or a linked config file.
@@ -24,6 +27,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Cropping and resizing: This can be setup in the web.config file or in a request from the client.
 * Image type conversion: Images can be converted to a different target type.
 * Security: Access control with authentication and authorization (roles based).
++ Extensibility (coming release): Dynamically hook in your own extensions. (Multiple extensions for a specific processing step are supported).
 
 ### Setup
 [Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)
