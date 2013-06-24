@@ -1,0 +1,293 @@
+﻿@model IEnumerable<Backload.Examples.Example08.Data.Models.Artist>
+
+@{
+    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 7";
+}
+
+@section styles {   
+    <!-- Optional: Include jQuery ui themes for the themes switcher -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/dark-hive/jquery-ui.css" id="theme">
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <link href="~/Content/ColorBox/colorbox.css" rel="stylesheet" />
+    <!-- Optional: Some styles for this demo page -->
+    <link href="~/Content/styles.css" rel="stylesheet" />
+}
+    
+
+@section scripts {
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <script src="~/Scripts/ColorBox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+}
+<div class="ex-head">
+<h2><span class="bl">Backload.</span>&nbsp;&nbsp;A professional File Upload handler</h2>
+    <span class="theme-switcher-info">Select a jQuery ui theme:</span>
+    <select id="theme-switcher" class="theme-switcher">
+        <option value="base">Base</option>
+        <option value="black-tie">Black Tie</option>
+        <option value="blitzer">Blitzer</option>
+        <option value="cupertino">Cupertino</option>
+        <option value="dark-hive" selected>Dark Hive</option>
+        <option value="dot-luv">Dot Luv</option>
+        <option value="eggplant">Eggplant</option>
+        <option value="excite-bike">Excite Bike</option>
+        <option value="flick">Flick</option>
+        <option value="hot-sneaks">Hot sneaks</option>
+        <option value="humanity">Humanity</option>
+        <option value="le-frog">Le Frog</option>
+        <option value="mint-choc">Mint Choc</option>
+        <option value="overcast">Overcast</option>
+        <option value="pepper-grinder">Pepper Grinder</option>
+        <option value="redmond">Redmond</option>
+        <option value="smoothness">Smoothness</option>
+        <option value="south-street">South Street</option>
+        <option value="start">Start</option>
+        <option value="sunny">Sunny</option>
+        <option value="swanky-purse">Swanky Purse</option>
+        <option value="trontastic">Trontastic</option>
+        <option value="ui-darkness">UI Darkness</option>
+        <option value="ui-lightness">UI Lightness</option>
+        <option value="vader">Vader</option>
+    </select>
+
+    <div class="ex-desc">This is a demo in a series of examples showing the usage and features of <span class="bl">Backload.</span>, a professional full featured ASP.NET MVC file upload server side controller/handler, in the version for the 
+        popular <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload plugin from blueimp</a>. 
+        We're using the jQuery ui version here, but you can also use the bootstrap version. This has no influence on the <span class="bl">Backload.</span> controller. For more information on the client side 
+        plugin see <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">here</a>.<br />
+        <span class="ex-imp">Important note:</span> This example uses jQuery 2.0. Older Browsers (e.g. IE < 9) are <a href="http://blog.jquery.com/2013/04/18/jquery-2-0-released/" target="_blank">not supported</a> anymore since v2.0! Use jQuery v1.9.1 instead.
+    </div>
+</div>
+<div class="ex-inf">
+<h2>Example 8: Extensibility: Writing a simple extension</h2>
+    <p>In this example we will create some simple extensions (plugins). Backload uses .NET <a href="http://msdn.microsoft.com/en-us/library/dd460648.aspx" target="_blank">MEF (Managed Extensibility Framework)</a> introduced in .NET4 to provide the extensibility feature. Extensions must be within the ~/bin/Extensions folder resp. a subfolder and can be dynamically added or removed while the application is running. 
+        When the extensibility feature is fully implemented (Backload version 2.0 and above) it will provide several extension points through the whole processing pipeline, from the incoming request to the outgoing response. Multiple extensions can handle a single extension point and may all influence the further processing. 
+        All you need to do is to derive a class from an appropriate interface (e. g. Backload.Contracts.IIncomingRequest), mark this class with the System.ComponentModel.Composition.ExportAttribute (e. g. [Export(typeof(IIncomingRequest))]), do some processing and copy the assembly into the Extensions folder (together with the Backload.Contracts.dll).
+    </p>
+</div>
+
+
+<form id="fileupload" action="/Backload/UploadHandler" method="POST" enctype="multipart/form-data">
+<div class="ex-fup">
+    <span class="artists-list-info">Please select an artist:</span>
+    <select id="artists" name="objectContext" class="artists-list">
+    @foreach (var artist in Model)
+    {
+        <option value="@artist.ArtistId">@artist.ArtistName</option>
+    }
+        <option value="malicious_or_bad_request">Demo: Bad/Malicíous request</option>
+    </select>
+    <span class="periods-list-info">Please select a period:</span>
+    <select id="periods" name="uploadContext" class="periods-list">
+        <option value="youth">Youth</option>
+        <option value="adult" selected>Adulthood</option>
+        <option value="late">Later years</option>
+    </select>    <p>&nbsp;</p>
+
+<!-- BEGIN: jQuery Fle Upload Plugin -->
+    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+    <div class="row fileupload-buttonbar">
+        <div class="span7">
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <span class="btn btn-success fileinput-button">
+                <i class="icon-plus icon-white"></i>
+                <span>Add files...</span>
+                <input type="file" name="files[]" multiple>
+            </span>
+            <button type="submit" class="btn btn-primary start">
+                <i class="icon-upload icon-white"></i>
+                <span>Start upload</span>
+            </button>
+            <button type="reset" class="btn btn-warning cancel">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>Cancel upload</span>
+            </button>
+            <button type="button" class="btn btn-danger delete">
+                <i class="icon-trash icon-white"></i>
+                <span>Delete</span>
+            </button>
+            <input type="checkbox" class="toggle">
+        </div>
+        <!-- The global progress information -->
+        <div class="span5 fileupload-progress fade">
+            <!-- The global progress bar -->
+            <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                <div class="bar" style="width:0%;"></div>
+            </div>
+            <!-- The extended global progress information -->
+            <div class="progress-extended">&nbsp;</div>
+        </div>
+    </div>
+    <!-- The loading indicator is shown during file processing -->
+    <div class="fileupload-loading"></div>
+    <br>
+    <!-- The table listing the files available for upload/download -->
+    <table id="demo-fup-table" role="presentation" class="table table-striped ui-widget"><tbody class="files ui-widget-content" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+</div>
+</form>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade ui-state-hover" data-type="{%=file.type%}">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+            <td>
+                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+            </td>
+            <td>{% if (!o.options.autoUpload) { %}
+                <button class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}</td>
+        {% } else { %}
+            <td colspan="2"></td>
+        {% } %}
+        <td class="action">{% if (!i) { %}
+            <button class="btn btn-warning cancel">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>Cancel</span>
+            </button>
+        {% } %}</td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade ui-state-default" >
+        {% if (file.error) { %}
+            <td></td>
+            <td class="name"><span>{%=file.name%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+        {% } else { %}
+            <td class="preview">{% if (file.thumbnail_url) { %}
+                <a href="{%=file.url%}" target="_blank" title="{%=file.name%}" data-gallery="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+            {% } %}</td>
+            <td class="name">
+                <a href="{%=file.url%}" target="_blank" title="{%=file.name%}" data-gallery="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+            </td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td colspan="2"></td>
+        {% } %}
+        <td class="action">
+            <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                <i class="icon-trash icon-white"></i>
+                <span>Delete</span>
+            </button>
+            <input type="checkbox" name="delete" value="1" class="toggle">
+        </td>
+    </tr>
+{% } %}
+</script>
+<!-- END: jQuery Fle Upload Plugin -->
+
+<input type="hidden" name="objectContext" value="user123" />
+
+<div class="ex-inf">
+    <h4>3 steps to develop a basic extension</h4>
+    <ul>
+        <li>Create a class library and derive a class from an appropriate interface from Backload.Contracts.dll</li>
+        <li>Mark your class with the System.ComponentModel.Composition.ExportAttribute (e.g. [Export(typeof(IIncomingRequest))])</li>
+        <li>Build the project and copy the dll into the ~/bin/Extensions folder of your application (The assembly must have the naming schema Backload.Extension.*.dll).</li>
+    </ul>
+    <h4>Example 1: A simple extension</h4>
+<p>In this example we use the project "Extension01". This extension will handle requests immediately after the reuest comes in. The purpose of this plugin is to refuse further processing if an artist is not in the database (Only on uploads, POST).</p>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">namespace</span>&nbsp;Backload.Extension.Contoso
+{
+&nbsp;&nbsp;&nbsp;&nbsp;[<span style="color:#2b91af;">Export</span>(<span style="color:blue;">typeof</span>(<span style="color:#2b91af;">IIncomingRequest</span>))]
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">IncomingRequest</span>&nbsp;:&nbsp;<span style="color:#2b91af;">IIncomingRequest</span>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ObjectContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;UploadContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryFileName&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryExtraFolder&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">StopProcessingType</span>&nbsp;StopProcessing&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ProcessingMessage&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">List</span>&lt;<span style="color:#2b91af;">ExtensionLogger</span>&gt;&nbsp;Logger&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">bool</span>&nbsp;ProcessStep(System.Web.<span style="color:#2b91af;">HttpRequestBase</span>&nbsp;request,&nbsp;<span style="color:blue;">string</span>&nbsp;httpMethod)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(httpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;POST&quot;</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Validate&nbsp;if&nbsp;the&nbsp;artist&nbsp;is&nbsp;in&nbsp;the&nbsp;database</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">using</span>&nbsp;(<span style="color:blue;">var</span>&nbsp;artists&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">ArtistsLibrary</span>())
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;artist&nbsp;=&nbsp;artists.Artists.FirstOrDefault(a&nbsp;=&gt;&nbsp;a.ArtistId&nbsp;==&nbsp;<span style="color:blue;">this</span>.ObjectContext);
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(artist&nbsp;==&nbsp;<span style="color:blue;">null</span>)&nbsp;&nbsp;<span style="color:green;">//&nbsp;Artist&nbsp;not&nbsp;in&nbsp;list</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Stop&nbsp;further&nbsp;processing&nbsp;of&nbsp;the&nbsp;pipeline&nbsp;but&nbsp;all&nbsp;extensions&nbsp;can&nbsp;do&nbsp;their&nbsp;work&nbsp;(maybe&nbsp;logging,&nbsp;etc.).</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">this</span>.StopProcessing&nbsp;=&nbsp;<span style="color:#2b91af;">StopProcessingType</span>.StopProcessingPipelineOnly;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">this</span>.ProcessingMessage&nbsp;=&nbsp;<span style="color:#a31515;">&quot;Artist&nbsp;not&nbsp;in&nbsp;list&quot;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">true</span>;&nbsp;<span style="color:green;">//&nbsp;Return&nbsp;value&nbsp;is&nbsp;true,&nbsp;because&nbsp;the&nbsp;extension&nbsp;has&nbsp;changed&nbsp;properties.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;&nbsp;<span style="color:green;">//&nbsp;No&nbsp;properties&nbsp;have&nbsp;been&nbsp;changed,&nbsp;so&nbsp;false&nbsp;is&nbsp;returned.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+</pre>
+<br />
+        <h4>Example 2: Using Logger to access extensions called so far.</h4>
+
+<p>In this example we use the Logger property to get some information about extensions called so far (if any). Add the existing project Extension02 into the solution (as its unloaded so far), set a breakpoint, run the application and upload a file.</p>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">namespace</span>&nbsp;Backload.Extension.Contoso
+{
+&nbsp;&nbsp;&nbsp;&nbsp;[<span style="color:#2b91af;">Export</span>(<span style="color:blue;">typeof</span>(<span style="color:#2b91af;">IIncomingRequest</span>))]
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">MultipleDemo</span>&nbsp;:&nbsp;<span style="color:#2b91af;">IIncomingRequest</span>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ObjectContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;UploadContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryFileName&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryExtraFolder&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">StopProcessingType</span>&nbsp;StopProcessing&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ProcessingMessage&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">List</span>&lt;<span style="color:#2b91af;">ExtensionLogger</span>&gt;&nbsp;Logger&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">bool</span>&nbsp;ProcessStep(System.Web.<span style="color:#2b91af;">HttpRequestBase</span>&nbsp;request,&nbsp;<span style="color:blue;">string</span>&nbsp;httpMethod)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(httpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;POST&quot;</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;UploadContext&nbsp;is&nbsp;a&nbsp;subfolder&nbsp;of&nbsp;ObjectContext.&nbsp;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;A&nbsp;tree&nbsp;of&nbsp;subfolders&nbsp;can&nbsp;be&nbsp;achieved&nbsp;by&nbsp;seperating&nbsp;the&nbsp;subfolder&nbsp;names&nbsp;with&nbsp;a&nbsp;semicolon.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;When&nbsp;there&nbsp;are&nbsp;multiple&nbsp;extensions&nbsp;manipulating&nbsp;the&nbsp;UploadContext&nbsp;or&nbsp;any&nbsp;other&nbsp;property,</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;all&nbsp;can&nbsp;contibuting&nbsp;to&nbsp;the&nbsp;value&nbsp;returned&nbsp;to&nbsp;the&nbsp;processing&nbsp;pipline.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(<span style="color:blue;">string</span>.IsNullOrEmpty(<span style="color:blue;">this</span>.UploadContext)&nbsp;==&nbsp;<span style="color:blue;">false</span>)&nbsp;<span style="color:blue;">this</span>.UploadContext&nbsp;+=&nbsp;<span style="color:#a31515;">&quot;;&quot;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">this</span>.UploadContext&nbsp;+=&nbsp;<span style="color:#a31515;">&quot;subfolder_&quot;</span>&nbsp;+&nbsp;Logger.Count.ToString();&nbsp;<span style="color:green;">//&nbsp;Logger&nbsp;lists&nbsp;all&nbsp;extensions&nbsp;call&nbsp;so&nbsp;far</span>
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">true</span>;&nbsp;<span style="color:green;">//&nbsp;Return&nbsp;value&nbsp;is&nbsp;true,&nbsp;because&nbsp;the&nbsp;extension&nbsp;has&nbsp;changed&nbsp;properties.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;&nbsp;<span style="color:green;">//&nbsp;No&nbsp;properties&nbsp;have&nbsp;been&nbsp;changed,&nbsp;so&nbsp;false&nbsp;is&nbsp;returned.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre>
+    <br />
+    <h4>Example 3: Multiple extensions dynamically added/removed</h4>
+<p>In this example you'll learn how dynamically adding or removing extensions is supported. Be sure you have a breakpoint within the MultipleDemo.cs (Extension02). Now go to the ~/bin/Extensions folder and copy the Backload.Extension.MultipleDemo.dll. Make sure the copies have the correct naming schema (Backload.Extension.*.dll). When you run the application the breakpoint will be called multiple times. When you upload a file, each extension now adds a new subfolder to the UploadContext property (which is the purpose of this extension we created).</p>
+<br />
+<p>Don't forget, to include Backload.Contract.dll in the ~/bin/Extensions folder.</p>
+<br />
+    <h4>Description</h4>
+    <p>
+        In this example we showed you how easy it is to create your own extensions to the Backload component. 
+        We also used the Logger property to get information about extensions called so far. 
+        Finally we added (deleted/renamed) multiple extensions dynamically to the Extensions folder. All where called in the request and contributed to Backloads processing pipeline.
+    </p>
+    <br />
+    <h5>License information</h5>
+    <p class="licenses">
+        <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload Plugin:</a> Copyright 2013, Sebastian Tschan, <a href="https://blueimp.net" target="_blank">https://blueimp.net</a>, License: <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a><br />
+        <a href="https://github.com/northstream/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>, (<a href="https://github.com/northstream/backload#professional" target="_blank">Professional version</a> is only available under a commercial license.
+</p>
+
+</div>
+
