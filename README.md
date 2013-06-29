@@ -43,7 +43,9 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 05: Using server side image manipulation features](https://github.com/blackcity/Backload/wiki/Example-05)<br />
 [Example 06: Managing subfolders: Using the object context](https://github.com/blackcity/Backload/wiki/Example-06)<br />
 [Example 07: Managing subfolders: Using the upload context](https://github.com/blackcity/Backload/wiki/Example-07)<br />
-[Example 08: Extensibility: Writing a simple extension](https://github.com/blackcity/Backload/wiki/Example-08)
+[Example 08: Extensibility: Writing a simple extension](https://github.com/blackcity/Backload/wiki/Example-08)<br />
+[Example 08: Extensibility: Handle and extend the PlUpload plugin (Moxiecode)](https://github.com/blackcity/Backload/wiki/Example-08)
+
 
 ### Demo: JQuery File Upload Plugin (original demo) with Backload
 The original demo shipped with the JQuery File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
