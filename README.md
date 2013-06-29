@@ -4,7 +4,7 @@
 The version in these examples is tailored for the famous client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, but it can be easily customized to work with a different client side plugins.
 
 ### Roadmap
-Starting with the next release we open up the Backload component for extensions (plugins) using .NET MEF (Managed Extensibility Framework) which is part of the .NET Framework. The extensions are very easy to write and clean up the code drastically. You'll be able to hook into several steps through the entire processing pipline. Extensions can be added, deleted and renamed within the Extensions folder while the MVC applicaiton is running. Use Cases: Manipulate incoming data before it is processed, store incoming files in multiple locations, use a custom cloud storage, perform additional image manipulation, and many more.
+Starting with release 1.8.0 we open up the Backload component for extensions (plugins) using .NET MEF (Managed Extensibility Framework) which is part of the .NET Framework. The extensions are very easy to write and clean up the code drastically. You'll be able to hook into several steps through the entire processing pipline. Extensions can be added, deleted and renamed within the Extensions folder while the MVC applicaiton is running. Use Cases: Manipulate incoming data before it is processed, store incoming files in multiple locations, use a custom cloud storage, perform additional image manipulation, and many more.
 
 ### Highlights
 
@@ -44,7 +44,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 06: Managing subfolders: Using the object context](https://github.com/blackcity/Backload/wiki/Example-06)<br />
 [Example 07: Managing subfolders: Using the upload context](https://github.com/blackcity/Backload/wiki/Example-07)<br />
 [Example 08: Extensibility: Writing a simple extension](https://github.com/blackcity/Backload/wiki/Example-08)<br />
-[Example 08: Extensibility: Handle and extend the PlUpload plugin (Moxiecode)](https://github.com/blackcity/Backload/wiki/Example-09)
+[Example 09: Extensibility: Handle and extend the PlUpload plugin (Moxiecode)](https://github.com/blackcity/Backload/wiki/Example-09)
 
 
 ### Demo: JQuery File Upload Plugin (original demo) with Backload
