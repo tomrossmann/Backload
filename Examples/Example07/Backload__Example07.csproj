@@ -43,10 +43,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Backload">
-      <HintPath>..\packages\Backload.1.8.1.2\lib\net45\Backload.dll</HintPath>
+      <HintPath>..\packages\Backload.1.8.2.0\lib\net45\Backload.dll</HintPath>
     </Reference>
-    <Reference Include="Backload.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Backload.1.8.1.2\lib\net45\Backload.Contracts.dll</HintPath>
+    <Reference Include="Backload.Contracts">
+      <HintPath>..\packages\Backload.1.8.2.0\lib\net45\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -156,6 +156,8 @@
     <Content Include="Content\ColorBox\images\loading.gif" />
     <Content Include="Content\ColorBox\images\loading_background.png" />
     <Content Include="Content\ColorBox\images\overlay.png" />
+    <Content Include="Content\demos.bootstrap.styles.css" />
+    <Content Include="Content\demos.jqueryui.styles.css" />
     <Content Include="Content\FileUpload\content-types\128\Excel.png" />
     <Content Include="Content\FileUpload\content-types\128\File.png" />
     <Content Include="Content\FileUpload\content-types\128\Image.png" />
@@ -304,6 +306,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
+    <Content Include="Release notes.txt" />
+    <Content Include="Scripts\demos.angularjs.js" />
+    <Content Include="Scripts\demos.bootstrap.basic.js" />
+    <Content Include="Scripts\demos.bootstrap.basicplus.js" />
+    <Content Include="Scripts\demos.bootstrap.basicplusui.js" />
+    <Content Include="Scripts\demos.jqueryui.basicplusui.js" />
     <Content Include="Scripts\FileUpload\angularjs\angular.debug.js" />
     <Content Include="Scripts\FileUpload\bootstrap\bootstrap-image-gallery.debug.js" />
     <Content Include="Scripts\FileUpload\bootstrap\bootstrap.debug.js" />

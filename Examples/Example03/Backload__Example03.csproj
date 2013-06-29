@@ -43,10 +43,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Backload">
-      <HintPath>..\packages\Backload.1.8.1.2\lib\net45\Backload.dll</HintPath>
+      <HintPath>..\packages\Backload.1.8.2.0\lib\net45\Backload.dll</HintPath>
     </Reference>
-    <Reference Include="Backload.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Backload.1.8.1.2\lib\net45\Backload.Contracts.dll</HintPath>
+    <Reference Include="Backload.Contracts">
+      <HintPath>..\packages\Backload.1.8.2.0\lib\net45\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -335,15 +335,15 @@
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Web.FileUpload.config" />
     <None Include="Web.FileUpload.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.FileUploadGroup.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.2.js" />

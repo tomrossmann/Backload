@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 2";
+}
+
+@section styles {   
+    <!-- Optional: Include jQuery ui themes for the themes switcher -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/dark-hive/jquery-ui.css" id="theme" />
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <link href="~/Content/ColorBox/colorbox.css" rel="stylesheet" />
+    <!-- Optional: Some styles for this demo page -->
+    <link href="~/Content/styles.css" rel="stylesheet" />
+}    
+    
+
+@section scripts {
+    <!-- PlUpload files, latest branch from GitHub -->
+    <link rel="stylesheet" href="Content/PlUpload/jquery.ui.plupload/css/jquery.ui.plupload.css" />
+    <script type="text/javascript" src="Scripts/PlUpload/moxie.min.js"></script>
+    <script type="text/javascript" src="Scripts/PlUpload/plupload.js"></script>
+    <script type="text/javascript" src="Scripts/PlUpload/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
+
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <script src="~/Scripts/ColorBox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main-jqfileupload.js"></script>
+    <script type="text/javascript" src="~/Scripts/main-plupload.js"></script>
+}
+<div class="ex-head">
+<h2><span class="bl">Backload.</span>&nbsp;&nbsp;A professional File Upload handler</h2>
+    <span class="theme-switcher-info">Select a jQuery ui theme:</span>
+    <select id="theme-switcher" class="theme-switcher">
+        <option value="base">Base</option>
+        <option value="black-tie">Black Tie</option>
+        <option value="blitzer">Blitzer</option>
+        <option value="cupertino">Cupertino</option>
+        <option value="dark-hive" selected>Dark Hive</option>
+        <option value="dot-luv">Dot Luv</option>
+        <option value="eggplant">Eggplant</option>
+        <option value="excite-bike">Excite Bike</option>
+        <option value="flick">Flick</option>
+        <option value="hot-sneaks">Hot sneaks</option>
+        <option value="humanity">Humanity</option>
+        <option value="le-frog">Le Frog</option>
+        <option value="mint-choc">Mint Choc</option>
+        <option value="overcast">Overcast</option>
+        <option value="pepper-grinder">Pepper Grinder</option>
+        <option value="redmond">Redmond</option>
+        <option value="smoothness">Smoothness</option>
+        <option value="south-street">South Street</option>
+        <option value="start">Start</option>
+        <option value="sunny">Sunny</option>
+        <option value="swanky-purse">Swanky Purse</option>
+        <option value="trontastic">Trontastic</option>
+        <option value="ui-darkness">UI Darkness</option>
+        <option value="ui-lightness">UI Lightness</option>
+        <option value="vader">Vader</option>
+    </select>
+
+    <div class="ex-desc">This is a demo in a series of examples showing the usage and features of <span class="bl">Backload.</span>, a professional full featured ASP.NET MVC file upload server side controller/handler, in the version for the 
+        popular <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload plugin from blueimp</a>. 
+        We're using the jQuery ui version here, but you can also use the bootstrap version. This has no influence on the <span class="bl">Backload.</span> controller. For more information on the client side 
+        plugin see <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">here</a>.<br />
+        <span class="ex-imp">Important note:</span> This example uses jQuery 2.0. Older Browsers (e.g. IE < 9) are <a href="http://blog.jquery.com/2013/04/18/jquery-2-0-released/" target="_blank">not supported</a> anymore since v2.0! Use jQuery v1.9.1 instead.
+    </div>
+</div>
+<div class="ex-inf">
+<h2>Example 9: Extensibility: Serving multiple Plugins. The PlUpload Plugin</h2>
+    <p><span class="bl">Backloads.</span> Extensibility feature allows you full control through the processing pipeline while your code keeps clean and easy to maintain. You 
+        just need to derive from an interface related to a specific extension point within the processing pipeline, read, process and write back the values Backload provides you and 
+        your done. You can add or remove your assemblies while the MVC Application is running. So you can test new processings or change settings without stopping or recompiling 
+        the upload handler. <br />
+        In this example you will learn how one Backload instance serves multiple file upload plugins at the same time (<a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">Jquery File Upload Plugin</a> 
+        and <a href="http://www.plupload.com" target="_blank">Moxiecodes PlUpload</a>) by extensions without touching the main code of the handler.
+        For demo purposes only, we also extended the default functionality of PlUpload to be more like a file manager plugin instead of only being a filuploader. 
+        So, we added the handling of existing server side files and server side file deletion. Note: The settings in this example for the client side plugins are for modern browsers only 
+        (JQuery > 2.0). Older Browsers (e.g. IE8 and below) are not supported.
+    </p>
+</div>
+
+
+<!-- BEGIN: jQuery Fle Upload Plugin -->
+<form id="fileupload" action="/Backload/UploadHandler" method="POST" enctype="multipart/form-data">
+<div class="ex-fup">
+    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+    <div class="row fileupload-buttonbar">
+        <div class="span7">
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <span class="btn btn-success fileinput-button">
+                <i class="icon-plus icon-white"></i>
+                <span>Add files...</span>
+                <input type="file" name="files[]" multiple>
+            </span>
+            <button type="submit" class="btn btn-primary start">
+                <i class="icon-upload icon-white"></i>
+                <span>Start upload</span>
+            </button>
+            <button type="reset" class="btn btn-warning cancel">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>Cancel upload</span>
+            </button>
+            <button type="button" class="btn btn-danger delete">
+                <i class="icon-trash icon-white"></i>
+                <span>Delete</span>
+            </button>
+            <input type="checkbox" class="toggle">
+        </div>
+        <!-- The global progress information -->
+        <div class="span5 fileupload-progress fade">
+            <!-- The global progress bar -->
+            <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                <div class="bar" style="width:0%;"></div>
+            </div>
+            <!-- The extended global progress information -->
+            <div class="progress-extended">&nbsp;</div>
+        </div>
+    </div>
+    <!-- The loading indicator is shown during file processing -->
+    <div class="fileupload-loading"></div>
+    <br>
+    <!-- The table listing the files available for upload/download -->
+    <table id="demo-fup-table" role="presentation" class="table table-striped ui-widget"><tbody class="files ui-widget-content" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+</div>
+</form>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade ui-state-hover" data-type="{%=file.type%}">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+            <td>
+                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+            </td>
+            <td>{% if (!o.options.autoUpload) { %}
+                <button class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}</td>
+        {% } else { %}
+            <td colspan="2"></td>
+        {% } %}
+        <td class="action">{% if (!i) { %}
+            <button class="btn btn-warning cancel">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>Cancel</span>
+            </button>
+        {% } %}</td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade ui-state-default" data-type="{%=file.extra_info.main_type%}" >
+        {% if (file.error) { %}
+            <td></td>
+            <td class="name"><span>{%=file.name%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+        {% } else { %}
+            <td class="preview">{% if (file.thumbnail_url) { %}
+                <a href="{%=file.url%}" target="_blank" title="{%=file.name%}" data-gallery="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+            {% } %}</td>
+            <td class="name">
+                <a href="{%=file.url%}" target="_blank" title="{%=file.extra_info.original_name%}" data-gallery="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+            </td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td colspan="2"></td>
+        {% } %}
+        <td class="action">
+            <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                <i class="icon-trash icon-white"></i>
+                <span>Delete</span>
+            </button>
+            <input type="checkbox" name="delete" value="1" class="toggle">
+        </td>
+    </tr>
+{% } %}
+</script>
+<!-- END: jQuery Fle Upload Plugin -->
+<br />
+
+
+<div class="ex-inf">
+    <h4>PlUpload from Moxiecode</h4>
+    <p>PlUpload is a commercial file upload plugin from Moxiecode (TinyMCE). While PlUpload does not support handling of existing files and file deletion server side out of the box, 
+        we've included this functionality in this example. Look into the script (~/Scripts/main-plupload.js) to see how we've done it. In short: We extended the file class with 
+        the urls, hook to some events and make an ajax call to retrieve existing files. We also need to provide a thumbnail for existing files. So, together with the Backload component, 
+        you have now a full file manager plugin. 
+    </p>
+<!-- BEGIN: PlUpload Plugin -->
+    <form  method="post" action="/Backload/UploadHandler">
+	    <div id="uploader">
+		    <p>Your browser doesn't have HTML5 or HTML 4 support.</p>
+	    </div>
+    </form>
+<!-- END: PlUpload Plugin -->
+    <br />
+    <h4>Convention based extension handling vs. conditional handling</h4>
+    <p>We have two upload plugins in our form, but the extension in the example code is only for PlUpload. To ensure that our extension only handles PlUpload requests, there are two options : 
+        Convention or conditional based handling. In our example we use handling based on convention, where the convention is: <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The namespace of our extension contains <code>Plugin.PlUpload</code> (not case sensitive)<br />
+        With our request we send a <code>plugin=plupload</code> querystring. When a <code>plugin</code> querystring is set with a none emply value, the extension manager only calls extensions where 
+        the fully qualified name contains <code>Plugin.[queryvalue]</code>. If you do not want to use convention based handling, just do not send a <code>plugin</code> querystring or leave it empty (<code>plugin=</code>)<br />
+        You may use conditional handling instead. The extension code is called, and you make the decision based on a condition if to handle the request or not in your code. 
+        Typically you parse the request (querystring or body) for a condition. Example:
+        <pre>&nbsp;&nbsp;&nbsp;string control = request.QueryString["control"];
+&nbsp;&nbsp;&nbsp;if ((string.IsNullOrEmpty(control)) || (control != "plupload")) return false;</pre>
+    </p>
+    <br />
+    <h4>Example instructions</h4>
+    <p>
+        First of all, we extended the functionality of PlUpload. You are able to upload, delete and list existing files on the server. In order to test the demo, upload a file to the server and refresh the page 
+        to verify that the file is uploaded (After refreshing you should again see the file). Then delete it (In order to delete a file, click on the small
+        sign on the right upper corner in thumbnail view or on the far right in list view. Refresh the page again. The file should be gone now.<br />
+        There's nothing fancy in the JavaScript code to do this. First, we make an ajax call to the Backload controller to retrieve existing files, we fill a <code>plupload.File</code> 
+        objects with the data, add it to the list and append a thumbnail in the right place. Next we attached a handler to the <code>FilesRemoved</code> event to make a ajax call to 
+        the server in order to delete the server file. The file object provided in the handler already has the delete url. Finally we've attached a handler to the <code>FileUploaded</code>
+        event, in order to extend the <code>plupload.File</code> object with the deleteUrl, the fileUrl and a thumbnail.<br />
+        The extension that handles the custom response for the PlUpload plugin is straightforward. We use existing data to build the json response. Again, we use convention based extension 
+        handling. As you can see in the extensions code, we have no condition to distinguish between calls from the jQuery File Upload Plugin and PlUpload. This is handled by the 
+        Backload component, as we followed the convention to use the naming schema <code>Plugin.PlUpload</code> within the namespace of our extension and we send a <code>plugin=plupload</code>
+        querystring in the request.
+    </p>
+    <br />
+    <h4>Description</h4>
+    <p>
+        In this example you learned how to leverage the IOutgoingResponse interface to completely and conditionally change the json response for a different fileupload plugin. 
+        To handle multiple  different plugins at the same time just write your extensions for the plugins you want to serve and drop it into the extensions folder.
+    </p>
+    <br />
+    <h5>License information</h5>
+    <p class="licenses">
+        <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload Plugin:</a> Copyright 2013, Sebastian Tschan, <a href="https://blueimp.net" target="_blank">https://blueimp.net</a>, License: <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a><br />
+        <a href="https://github.com/northstream/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>, (<a href="https://github.com/northstream/backload#professional" target="_blank">Professional version</a> is only available under a commercial license.
+</p>
+
+</div>
+
