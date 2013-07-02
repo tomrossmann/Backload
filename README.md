@@ -57,5 +57,5 @@ Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload
 
 ### License
 [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload): Copyright 2013, Sebastian Tschan, [https://blueimp.net](https://blueimp.net), License: MIT license<br />
-[Backload. (Standard version)](https://github.com/blackcity/Backload): [@Backload_MVC](https://twitter.com/backload_mvc), Copyright 2013, Steffen Habermehl, License (Standard version): MIT license, (Professional version is only available under a commercial license. 
+[Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license, (Professional version is only available under a commercial license. Twitter: [@Backload_MVC](https://twitter.com/backload_mvc), 
 
