@@ -56,6 +56,7 @@ The original demo shipped with the JQuery File Upload Plugin working with the Ba
 Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload_mvc)
 
 ### License
-[jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload): Copyright 2013, Sebastian Tschan, [https://blueimp.net](https://blueimp.net), License: MIT license<br />
-[Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license, (Professional version is only available under a commercial license. Twitter: [@Backload_MVC](https://twitter.com/backload_mvc), 
+[Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license<br />
+Professional and Enterprise (source code) version are available under a commercial license.<br/>
+Follow us on Twitter: [@Backload_MVC](https://twitter.com/backload_mvc)
 
