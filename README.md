@@ -19,7 +19,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 **Backload** can create unique file names (GUIDs). So files cannot be overwritten or, if this is the purpose of using this feature, cannot be accessed from the web without knowledge of the new name. Mapping of the original file name to the new file name and back is also implemented. This feature can be used to send a friendly name back to the client. 
 
-**Backload** is extensible. Extensions are normal, easy to write classes, decorated with an ExportAttribute, that are implementing a simple interface. Using extensions is a very cheap process regarding system resources. They are very good testable, scalable, isolate code and can be dynamically added and removed while the MVC app is running. You may want to add a new functionality (e.g. exception logging, change client side plugin, etc.) or perform tests without changing or stopping the application (See examples 08+).
+**Backload** is extensible. Extensions are normal, easy to write classes, implementing a simple interface and decorated with an ExportAttribute. Using extensions is a very cheap process regarding system resources. They are very good testable, scalable, isolate code and can be dynamically added and removed while the MVC app is running. You may want to add a new functionality (e.g. exception logging, change client side plugin, etc.) or perform tests without changing or stopping the application (See examples 08+).
 
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
