@@ -21,6 +21,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 **Backload** is extensible. Extensions are normal, easy to write classes, implementing a simple interface and decorated with an ExportAttribute. Using extensions is a very cheap process regarding system resources. They are very good testable, scalable, isolate code and can be dynamically added and removed while the MVC app is running. You may want to add a new functionality (e.g. exception logging, change client side plugin, etc.) or perform tests without changing or stopping the application (See examples 08+).
 
+**Backload** has proven its scalability in production with hundreds of thousands uploads a day. Internally it is designed to work asynchronously where possible and it supports and encourages the development of asynchronous extensions.
+
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
 * Declarative configuration: Features will be setup within the web.config or a linked config file.
@@ -32,6 +34,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Image type conversion: Images can be converted to a different target type.
 * Security: Access control with authentication and authorization (roles based).
 + Extensibility (coming release): Dynamically hook in your own extensions. (Multiple extensions for a specific processing step are supported).
++ Scalability by asynchronous internal code and asynchronous support for extensions.
 
 ### Setup
 [Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)
