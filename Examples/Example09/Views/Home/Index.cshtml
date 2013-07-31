@@ -204,7 +204,7 @@
     <p>We have two upload plugins in our form, but the extension in the example code is only for PlUpload. To ensure that our extension only handles PlUpload requests, there are two options : 
         Convention or conditional based handling. In our example we use handling based on convention, where the convention is: <br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The namespace of our extension contains <code>Plugin.PlUpload</code> (not case sensitive)<br />
-        With our request we send a <code>plugin=plupload</code> querystring. When a <code>plugin</code> querystring is set with a none emply value, the extension manager only calls extensions where 
+        With our request we send a <code>plugin=plupload</code> querystring. When a <code>plugin</code> querystring is set with a none empty value, the extension manager only calls extensions where 
         the fully qualified name contains <code>Plugin.[queryvalue]</code>. If you do not want to use convention based handling, just do not send a <code>plugin</code> querystring or leave it empty (<code>plugin=</code>)<br />
         You may use conditional handling instead. The extension code is called, and you make the decision based on a condition if to handle the request or not in your code. 
         Typically you parse the request (querystring or body) for a condition. Example:
@@ -227,7 +227,7 @@
         querystring in the request.
     </p>
     <br />
-    <h4>Description</h4>
+    <h4>Conclusion</h4>
     <p>
         In this example you learned how to leverage the IOutgoingResponse interface to completely and conditionally change the json response for a different fileupload plugin. 
         To handle multiple  different plugins at the same time just write your extensions for the plugins you want to serve and drop it into the extensions folder.
@@ -235,9 +235,8 @@
     <br />
     <h5>License information</h5>
     <p class="licenses">
-        <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload Plugin:</a> Copyright 2013, Sebastian Tschan, <a href="https://blueimp.net" target="_blank">https://blueimp.net</a>, License: <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a><br />
-        <a href="https://github.com/northstream/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>, (<a href="https://github.com/northstream/backload#professional" target="_blank">Professional version</a> is only available under a commercial license.
-</p>
-
+        <a href="https://github.com/blackcity/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>,<br />
+        <a href="mailto:s.habermehl@freenet.de" target="_blank">Professional and Enterprise versions</a> are only available under a commercial license.<br />
+        Follow us on Twitter: <a href="https://twitter.com/backload_mvc" target="_blank">&#0064;Backload_MVC</a></p>
 </div>
 

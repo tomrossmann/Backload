@@ -18,11 +18,11 @@ $(function () {
     // In this example we do NOT use the builtin file upload handler.
     // var fileUploadUrl = "/Backload/UploadHandler";
 
-    // Test 1: Call the derived handler method
-    var fileUploadUrl = "/FileUploadDerived/UploadHandler";
+    // Demo 1: Call the asynchronous method of the derived handler (version 1.9+)
+    var fileUploadUrl = "/FileUploadDerived/FileHandler";
 
-    // Test 2: Call the instantiated handler method
-    // var fileUploadUrl = "/FileUploadInstance/UploadHandler";
+    // Demo 2: Call the instantiated handler method
+    // var fileUploadUrl = "/FileUploadInstance/FileHandler";
 
 
     // Initialize the jQuery File Upload widget:

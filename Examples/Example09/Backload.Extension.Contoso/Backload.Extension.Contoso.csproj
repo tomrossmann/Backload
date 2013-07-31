@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Backload.Contracts">
-      <HintPath>.\Backload.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\Backload.Contracts.1.9\lib\net45\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -46,10 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PlugIn.PlUpload.cs" />
+    <Compile Include="PluginHandler\PlUploadFiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Backload.Contracts.dll" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

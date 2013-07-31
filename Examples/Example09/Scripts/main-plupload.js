@@ -7,8 +7,8 @@ $(function () {
     $("#uploader").plupload({
         runtimes: 'html5,html4',
         url: backloadController,
-        max_file_size: '20000mb',
-        max_file_count: 10, // user can add no more then 10 files at a time
+        max_file_size: '20mb',
+        max_file_count: 64, // user can add no more then 10 files at a time
         rename: true,
         multiple_queues: true,
         filters: [{ title: "Image files", extensions: "jpg,gif,png" }], // Specify what files to browse for

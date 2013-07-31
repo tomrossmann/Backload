@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 2";
+}
+
+@section styles {   
+    <!-- Optional: Include jQuery ui themes for the themes switcher -->
+    <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/dark-hive/jquery-ui.css" id="theme" />-->
+    <link href="~/Content/themes/dark-hive/jquery-ui.css" rel="stylesheet" />
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <link href="~/Content/ColorBox/colorbox.css" rel="stylesheet" />
+    <!-- Optional: Some styles for this demo page -->
+    <link href="~/Content/styles.css" rel="stylesheet" />
+}    
+    
+
+@section scripts {
+    <!-- PlUpload files, latest branch from GitHub -->
+    <link rel="stylesheet" href="Content/PlUpload/jquery.ui.plupload/css/jquery.ui.plupload.css" />
+    <script type="text/javascript" src="Scripts/PlUpload/moxie.min.js"></script>
+    <script type="text/javascript" src="Scripts/PlUpload/plupload.js"></script>
+    <script type="text/javascript" src="Scripts/PlUpload/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
+
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <script src="~/Scripts/ColorBox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+}
+<div class="ex-head">
+<h2><span class="bl">Backload.</span>&nbsp;&nbsp;A professional File Upload handler</h2>
+    <span class="theme-switcher-info">Select a jQuery ui theme:</span>
+    <select id="theme-switcher" class="theme-switcher">
+        <option value="base">Base</option>
+        <option value="black-tie">Black Tie</option>
+        <option value="blitzer">Blitzer</option>
+        <option value="cupertino">Cupertino</option>
+        <option value="dark-hive" selected>Dark Hive</option>
+        <option value="dot-luv">Dot Luv</option>
+        <option value="eggplant">Eggplant</option>
+        <option value="excite-bike">Excite Bike</option>
+        <option value="flick">Flick</option>
+        <option value="hot-sneaks">Hot sneaks</option>
+        <option value="humanity">Humanity</option>
+        <option value="le-frog">Le Frog</option>
+        <option value="mint-choc">Mint Choc</option>
+        <option value="overcast">Overcast</option>
+        <option value="pepper-grinder">Pepper Grinder</option>
+        <option value="redmond">Redmond</option>
+        <option value="smoothness">Smoothness</option>
+        <option value="south-street">South Street</option>
+        <option value="start">Start</option>
+        <option value="sunny">Sunny</option>
+        <option value="swanky-purse">Swanky Purse</option>
+        <option value="trontastic">Trontastic</option>
+        <option value="ui-darkness">UI Darkness</option>
+        <option value="ui-lightness">UI Lightness</option>
+        <option value="vader">Vader</option>
+    </select>
+
+    <div class="ex-desc">This is a demo in a series of examples showing the usage and features of <span class="bl">Backload.</span>, a professional full featured ASP.NET MVC file upload server side controller/handler, in the version for the 
+        popular <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload plugin from blueimp</a>. 
+        We're using the jQuery ui version here, but you can also use the bootstrap version. This has no influence on the <span class="bl">Backload.</span> controller. For more information on the client side 
+        plugin see <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">here</a>.<br />
+        <span class="ex-imp">Important note:</span> This example uses jQuery 2.0. Older Browsers (e.g. IE < 9) are <a href="http://blog.jquery.com/2013/04/18/jquery-2-0-released/" target="_blank">not supported</a> anymore since v2.0! Use jQuery v1.9.1 instead.
+    </div>
+</div>
+<div class="ex-inf">
+<h2>Example 11: Extensibility: Asynchronous operations with async/await, Tasks and Threads</h2>
+    <p><span class="bl">Backload</span> internally uses asynchronous operations and also supports this for extensions. Asynchronous code does not block 
+        the UI thread when long running operations (File I/O, web requests, etc) have to be done. Multiple long running operations can be executed in 
+        parallel. Backload simplifies developing asynconous code with the relatively new .NET feature async/await and Tasks. For more information on 
+        async/await and Tasks please refer to the documentation on MSDN.<br />
+        In this example, we've created multiple demos to show you different ways to work with asynchronous tasks within your extensions code. We will 
+        show you if and when results of long running tasks will be awaited.<br />
+        Note: The settings in this example for the client side plugins are for modern browsers only (JQuery > 2.0). Older Browsers (e.g. IE8 and below) are not supported.
+    </p>
+</div>
+
+<!-- BEGIN: PlUpload Plugin -->
+    <form  method="post" action="/Backload/UploadHandler">
+	    <div id="uploader">
+		    <p>Your browser doesn't have HTML5 or HTML 4 support.</p>
+	    </div>
+    </form>
+<!-- END: PlUpload Plugin -->
+<div class="ex-inf">
+    <br />
+    <h4>How to use this example</h4>
+    <p>
+        We have 5 extensions in this example (2 GetFilesRequest extensions, a DeleteFilesRequest extension, a StoreFileRequest extension an an OutgoingResponse extension for PlUpload). 
+        Open the extensions in Visual Studio and set breakpoint at the beginning of the code. Keep in mind, when changing the code of an extension, rebuild the extensions project or add the extension to 
+        the project dependencies (context menu or the project menu). The output build path  is set to the ~/bin/extensions folder of the main MVC application so the application will use the current extension assembly. Otherwise you may use the old assembly.
+        First, go to the <code>GetFilesRequest</code> extension and note, that we've simulated a long running task with this line of code:
+        <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;t&nbsp;=&nbsp;<span style="color:#2b91af;">Task</span>.Run(()&nbsp;=&gt;&nbsp;<span style="color:#2b91af;">Task</span>.Delay(System.<span style="color:#2b91af;">TimeSpan</span>.FromSeconds(10)));</pre>
+    </p>
+
+    <h4>Demo 1: We do not await the result of the task</h4>
+    <p>
+        Run the application. We do not care about (await) the results of this task, so it does not block and we get the results almost instantly. The task runs as a background thread 
+        within the AppDomains thread pool. You should not use this technique with a file IO, because the thread may be aborted when Backload returns. In the next demos we 
+        await the result maybe because we need to make sure that the task succeeded.
+    </p>
+
+    <h4>Demo 2: Using the await keyword to await the result immediately</h4>
+    <p>Uncomment the line below, set breakpoints (also in the GetFilesRequest2 extension) and rebuild the extension and run the solution. You'll 
+        notice that debugging stops and awaits the result of the task. The subsequent code and extensions are not executed until the task is finished. 
+        But, the ui thread is not blocked and tied up and the operating system can do other work. You can see this, because the web page comes back. 
+        Usually, when executing and debugging synchronous code, the web page only shows up when the code returns.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">await</span>&nbsp;t;</pre>
+
+    <h4>Demo 3: Use ExtensionTasks to await the result before the next extension is called</h4>
+    <p>Comment out the await line above, uncomment the line below, set breakpoints and rebuild the extension and run the solution. The debugging 
+        now doesn't stop and the extension returns. Before calling the next extension within this extension point, the extension manager awaits 
+        the result. Note that the second extension below isn't executed until the task is finished.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;context.PipelineControl.TaskManager.ExtensionTasks.Add(t);</pre>
+    
+    <h4>Demo 4: Use ExtensionPointTasks to await the result after all extensions returned</h4>
+    <p>Comment out the await line above, uncomment the line below, set breakpoints and rebuild the extension and run the solution. 
+       When debugging the application you'll see, that the second extension also can execute and finish its code, before the extension manager 
+       awaits the result at the end of the extension point (before code execution returns to the pipeline). 
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;context.PipelineControl.TaskManager.ExtensionPointTasks.Add(t);</pre>    
+
+    <h4>Demo 5: Use PipelineExtendedTasks to await the result before Backload returns</h4>
+    <p>Comment out the await line above, uncomment the line below, set breakpoints and rebuild the extension and run the solution. 
+       Make sure you have set a breakpoint in the OutgoingResponse extension where the response for the PlUpload plugin is generated. 
+       Maindifference to the code above is, that the OutgoingResponse extension was called before the Pipeline waits for the result of the task. 
+       PipelineExtendedTasks is ultimately the last point in the processing pipeline before the Pipeline returns the results to the client.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;context.PipelineControl.TaskManager.PipelineExtendedTasks.Add(t);</pre>    
+    
+    <h4>Demo 6: Use Task.Run(...) and wait for the results</h4>
+    <p>Now go to the DeleteFiles extension. When we uploaded a file, we made copies in the ~/Files/_Backup and the ~/Files/_Temp folders. In a 
+        DELETE request we want to delete those files too. In this demo we use Task.Run() to execute the delete method by a thread of the AppDomains
+        thread pool. Note that we await the result of the task; otherwise the thread may be aborted when Backload returns and not all files were deleted.
+    </p> 
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;t&nbsp;=&nbsp;<span style="color:#2b91af;">Task</span>.Run(()&nbsp;=&gt;&nbsp;DeleteTempFiles(dirTemp,&nbsp;file.FileName));
+&nbsp;&nbsp;&nbsp;context.PipelineControl.TaskManager.ExtensionPointTasks.Add(t);</pre>  
+    
+    <h4>Demo 7: Use a separate thread to do work independently</h4>
+    <p>Now go to the StoreFile extension. In this demo we do our work in a separate thread and do not care about the result (fire&forget strategy). 
+       Because we cannot be sure that the thread finished the work successfully be careful with this approach.
+       If you rely on the results, use Thread.Join(), async/await, the task based approach or check if the files exist in another 
+       extension, a subsequent request, a different code or even another application.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;<span style="color:blue;">new</span>&nbsp;System.Threading.<span style="color:#2b91af;">Thread</span>(<span style="color:blue;">new</span>&nbsp;System.Threading.<span style="color:#2b91af;">ThreadStart</span>(<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">MuchToDo</span>(File,&nbsp;localBackupPath).WriteFiles)).Start();</pre>
+
+    <br />
+    <h4>Conclusion</h4>
+    <p>
+        In this example you learned some techniques to develop asynchronous code for File I/O, web requests or other long running operations. 
+        The easiest way to develop asynchronous code is to make use of the new async and await keywords and to use tasks. Backload provides several 
+        scopes where to await (multiple) results of tasks. Whenever possible you should use the asynchronous operations .NET provides, e.g. FileStream.WriteAsync() etc.
+    </p>
+    <br />
+    <h5>License information</h5>
+    <p class="licenses">
+        <a href="https://github.com/blackcity/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>,<br />
+        <a href="mailto:s.habermehl@freenet.de" target="_blank">Professional and Enterprise versions</a> are only available under a commercial license.<br />
+        Follow us on Twitter: <a href="https://twitter.com/backload_mvc" target="_blank">&#0064;Backload_MVC</a>
+	</p>
+</div>
+

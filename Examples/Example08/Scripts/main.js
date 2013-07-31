@@ -64,4 +64,6 @@ $("document").ready(function () {
     $('#fileupload').bind('fileuploaddone', function (e, data) {
         setTimeout(function(){$(".files tr[data-type=image] a").colorbox()}, 1000);
     })
+    var type = "image/jpeg";
+    var e = new RegExp();
 });

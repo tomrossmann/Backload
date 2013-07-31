@@ -190,7 +190,7 @@
 <span style="color:green;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:blue;">--&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">sectionGroup</span><span style="color:blue;">&nbsp;</span><span style="color:red;">name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">fileUploadGroup</span>&quot;<span style="color:blue;">&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">section</span><span style="color:blue;">&nbsp;</span><span style="color:red;">name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">fileUpload</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">
-<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>type</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Backload.Configuration.FileUploadSection,&nbsp;Backload,&nbsp;Version=1.7,&nbsp;Culture=neutral,&nbsp;PublicKeyToken=02eaf42ab375d363</span>&quot;
+<span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>type</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Backload.Configuration.FileUploadSection,&nbsp;Backload,&nbsp;Version=1.9,&nbsp;Culture=neutral,&nbsp;PublicKeyToken=02eaf42ab375d363</span>&quot;
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:red;">requirePermission</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">false</span>&quot;<span style="color:blue;">&nbsp;/&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">sectionGroup</span><span style="color:blue;">&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">configSections</span><span style="color:blue;">&gt;</span>
@@ -203,12 +203,14 @@
     <p>
         Now add a config file into the path you set above (e.g. Web.FileUpload.config) and make your settings within the fileUpload section. Example:
     </p>
-<pre style="font-family: Consolas; font-size: 13px; color: black; background: white; overflow:hidden"><span style="color:blue;">&lt;?</span><span style="color:#a31515;">xml</span><span style="color:blue;">&nbsp;</span><span style="color:red;">version</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">1.0</span>&quot;<span style="color:blue;">?&gt;</span>
-<span style="color:blue;">&lt;</span><span style="color:#a31515;">fileUpload</span><span style="color:blue;">&nbsp;</span><span style="color:red;">storageContext</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Filesystem</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">xmlns:xsi</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">http://www.w3.org/2001/XMLSchema-instance</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">xmlns:name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">urn:fileupload-schema</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">xsi:noNamespaceSchemaLocation</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Web.FileUpload.xsd</span>&quot;<span style="color:blue;">&nbsp;&gt;</span>
-<span style="color:blue;">&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">fileSystem</span><span style="color:blue;">&nbsp;</span><span style="color:red;">filesRoot</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">~/Uploads</span>&quot;<span style="color:blue;">&nbsp;/&gt;</span>
-<span style="color:blue;">&lt;/</span><span style="color:#a31515;">fileUpload</span><span style="color:blue;">&gt;</span>
-</pre><br />
-    <h4>Description</h4>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">&lt;</span><span style="color:#a31515;">fileUpload</span><span style="color:blue;">&nbsp;</span><span style="color:red;">storageContext</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Filesystem</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">xmlns:xsi</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">http://www.w3.org/2001/XMLSchema-instance</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">xmlns:name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">urn:fileupload-schema</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">xsi:noNamespaceSchemaLocation</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Web.FileUpload.xsd</span>&quot;<span style="color:blue;">&nbsp;</span>
+<span style="color:blue;">&nbsp;&nbsp;</span><span style="color:red;">thumbsUrlPattern</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">{Backload}</span>&quot;<span style="color:blue;">&nbsp;&gt;</span>
+ 
+<span style="color:blue;">&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">fileSystem</span><span style="color:blue;">&nbsp;</span><span style="color:red;">filesRoot</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">~/Uploads</span>&quot;<span style="color:blue;">&nbsp;/&gt;&nbsp;&lt;!--</span><span style="color:green;">&nbsp;Sets&nbsp;the&nbsp;root&nbsp;upload&nbsp;folder&nbsp;to&nbsp;&quot;Uploads&quot;&nbsp;(default:&nbsp;Files)&nbsp;</span><span style="color:blue;">--&gt;</span>
+<span style="color:blue;">&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">cacheManager</span><span style="color:blue;">&nbsp;</span><span style="color:red;">lastModified</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">true</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">etag</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">true</span>&quot;<span style="color:blue;">/&gt;&nbsp;&lt;!--</span><span style="color:green;">&nbsp;Add&nbsp;some&nbsp;cache&nbsp;headers&nbsp;to&nbsp;the&nbsp;response.&nbsp;</span><span style="color:blue;">--&gt;</span>
+<span style="color:blue;">&lt;/</span><span style="color:#a31515;">fileUpload</span><span style="color:blue;">&gt;</span></pre>
+    <br />
+    <h4>Conclusion</h4>
     <p>
         This example shows how to include a separate config file, so you can use it with the <span class="bl">Backload.</span> component. In this sample we set the root upload folder to "~/Uploads" (default: "~/files") and 
         use the file system as storage context (default). Note: Don't forget to include the schema file (Web.FileUpload.xsd) into your root folder, otherwise schema validation and Visual Studio Intelligence 
@@ -217,9 +219,9 @@
     <br />
     <h5>License information</h5>
     <p class="licenses">
-        <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload Plugin:</a> Copyright 2013, Sebastian Tschan, <a href="https://blueimp.net" target="_blank">https://blueimp.net</a>, License: <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a><br />
-        <a href="https://github.com/northstream/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>, (<a href="https://github.com/northstream/backload#professional" target="_blank">Professional version</a> is only available under a commercial license.
+        <a href="https://github.com/blackcity/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>,<br />
+        <a href="mailto:s.habermehl@freenet.de" target="_blank">Professional and Enterprise versions</a> are only available under a commercial license.<br />
+        Follow us on Twitter: <a href="https://twitter.com/backload_mvc" target="_blank">&#0064;Backload_MVC</a>
 </p>
-
 </div>
 

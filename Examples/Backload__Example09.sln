@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backload__Example09", "Example09\Backload__Example09.csproj", "{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3206DB3E-5F63-4DD0-B60A-E3F86A4F2B33} = {3206DB3E-5F63-4DD0-B60A-E3F86A4F2B33}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backload.Extension.Contoso", "Example09\Backload.Extension.Contoso\Backload.Extension.Contoso.csproj", "{3206DB3E-5F63-4DD0-B60A-E3F86A4F2B33}"
 EndProject

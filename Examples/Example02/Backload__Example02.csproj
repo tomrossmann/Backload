@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,13 +43,21 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Backload">
-      <HintPath>..\packages\Backload.1.8.2.0\lib\net45\Backload.dll</HintPath>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Backload.Contracts, Version=1.8.2.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Backload.1.8.2.0\lib\net45\Backload.Contracts.dll</HintPath>
+    <Reference Include="Backload, Version=1.9.0.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Backload.1.9.0.0\lib\net45\Backload.dll</HintPath>
+    </Reference>
+    <Reference Include="Backload.Contracts, Version=1.9.0.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Backload.1.9.0.0\lib\net45\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,6 +78,10 @@
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.0\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -117,16 +130,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx">
-      <HintPath>..\packages\WebActivatorEx.2.0.1\lib\net40\WebActivatorEx.dll</HintPath>
+      <HintPath>..\packages\WebActivatorEx.2.0.2\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -152,81 +162,94 @@
   <ItemGroup>
     <Content Include="bin\Extensions\Backload.Contracts.dll" />
     <Content Include="bin\Extensions\_extensions.txt" />
+    <Content Include="Content\Backload\content-types\128\Excel.png" />
+    <Content Include="Content\Backload\content-types\128\File.png" />
+    <Content Include="Content\Backload\content-types\128\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\128\Image.png" />
+    <Content Include="Content\Backload\content-types\128\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\128\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\128\PDF.png" />
+    <Content Include="Content\Backload\content-types\128\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\128\Text.png" />
+    <Content Include="Content\Backload\content-types\128\Word.png" />
+    <Content Include="Content\Backload\content-types\16\Excel.png" />
+    <Content Include="Content\Backload\content-types\16\File.png" />
+    <Content Include="Content\Backload\content-types\16\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\16\Image.png" />
+    <Content Include="Content\Backload\content-types\16\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\16\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\16\PDF.png" />
+    <Content Include="Content\Backload\content-types\16\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\16\Text.png" />
+    <Content Include="Content\Backload\content-types\16\Word.png" />
+    <Content Include="Content\Backload\content-types\24\Excel.png" />
+    <Content Include="Content\Backload\content-types\24\File.png" />
+    <Content Include="Content\Backload\content-types\24\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\24\Image.png" />
+    <Content Include="Content\Backload\content-types\24\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\24\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\24\PDF.png" />
+    <Content Include="Content\Backload\content-types\24\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\24\Text.png" />
+    <Content Include="Content\Backload\content-types\24\Word.png" />
+    <Content Include="Content\Backload\content-types\32\Excel.png" />
+    <Content Include="Content\Backload\content-types\32\File.png" />
+    <Content Include="Content\Backload\content-types\32\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\32\Image.png" />
+    <Content Include="Content\Backload\content-types\32\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\32\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\32\PDF.png" />
+    <Content Include="Content\Backload\content-types\32\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\32\Text.png" />
+    <Content Include="Content\Backload\content-types\32\Word.png" />
+    <Content Include="Content\Backload\content-types\48\Excel.png" />
+    <Content Include="Content\Backload\content-types\48\File.png" />
+    <Content Include="Content\Backload\content-types\48\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\48\Image.png" />
+    <Content Include="Content\Backload\content-types\48\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\48\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\48\PDF.png" />
+    <Content Include="Content\Backload\content-types\48\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\48\Text.png" />
+    <Content Include="Content\Backload\content-types\48\Word.png" />
+    <Content Include="Content\Backload\content-types\64\Excel.png" />
+    <Content Include="Content\Backload\content-types\64\File.png" />
+    <Content Include="Content\Backload\content-types\64\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\64\Image.png" />
+    <Content Include="Content\Backload\content-types\64\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\64\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\64\PDF.png" />
+    <Content Include="Content\Backload\content-types\64\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\64\Text.png" />
+    <Content Include="Content\Backload\content-types\64\Word.png" />
+    <Content Include="Content\Backload\content-types\72\Excel.png" />
+    <Content Include="Content\Backload\content-types\72\File.png" />
+    <Content Include="Content\Backload\content-types\72\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\72\Image.png" />
+    <Content Include="Content\Backload\content-types\72\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\72\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\72\PDF.png" />
+    <Content Include="Content\Backload\content-types\72\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\72\Text.png" />
+    <Content Include="Content\Backload\content-types\72\Word.png" />
+    <Content Include="Content\Backload\content-types\96\Excel.png" />
+    <Content Include="Content\Backload\content-types\96\File.png" />
+    <Content Include="Content\Backload\content-types\96\FileNotFound.png" />
+    <Content Include="Content\Backload\content-types\96\Image.png" />
+    <Content Include="Content\Backload\content-types\96\Multimedia.png" />
+    <Content Include="Content\Backload\content-types\96\OpenOffice-Writer.png" />
+    <Content Include="Content\Backload\content-types\96\PDF.png" />
+    <Content Include="Content\Backload\content-types\96\PowerPoint.png" />
+    <Content Include="Content\Backload\content-types\96\Text.png" />
+    <Content Include="Content\Backload\content-types\96\Word.png" />
     <Content Include="Content\ColorBox\colorbox.css" />
     <Content Include="Content\ColorBox\images\border.png" />
     <Content Include="Content\ColorBox\images\controls.png" />
     <Content Include="Content\ColorBox\images\loading.gif" />
     <Content Include="Content\ColorBox\images\loading_background.png" />
     <Content Include="Content\ColorBox\images\overlay.png" />
-    <Content Include="Content\FileUpload\content-types\128\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\128\File.png" />
-    <Content Include="Content\FileUpload\content-types\128\Image.png" />
-    <Content Include="Content\FileUpload\content-types\128\Multimedia.png" />
-    <Content Include="Content\FileUpload\content-types\128\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\128\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\128\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\128\Text.png" />
-    <Content Include="Content\FileUpload\content-types\128\Word.png" />
-    <Content Include="Content\FileUpload\content-types\16\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\16\File.png" />
-    <Content Include="Content\FileUpload\content-types\16\Image.png" />
-    <Content Include="Content\FileUpload\content-types\16\Multimedia.png" />
-    <Content Include="Content\FileUpload\content-types\16\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\16\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\16\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\16\Text.png" />
-    <Content Include="Content\FileUpload\content-types\16\Word.png" />
-    <Content Include="Content\FileUpload\content-types\24\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\24\File.png" />
-    <Content Include="Content\FileUpload\content-types\24\Image.png" />
-    <Content Include="Content\FileUpload\content-types\24\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\24\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\24\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\24\Text.png" />
-    <Content Include="Content\FileUpload\content-types\24\Word.png" />
-    <Content Include="Content\FileUpload\content-types\32\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\32\File.png" />
-    <Content Include="Content\FileUpload\content-types\32\Image.png" />
-    <Content Include="Content\FileUpload\content-types\32\Multimedia.png" />
-    <Content Include="Content\FileUpload\content-types\32\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\32\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\32\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\32\Text.png" />
-    <Content Include="Content\FileUpload\content-types\32\Word.png" />
-    <Content Include="Content\FileUpload\content-types\48\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\48\File.png" />
-    <Content Include="Content\FileUpload\content-types\48\Image.png" />
-    <Content Include="Content\FileUpload\content-types\48\Multimedia.png" />
-    <Content Include="Content\FileUpload\content-types\48\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\48\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\48\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\48\Text.png" />
-    <Content Include="Content\FileUpload\content-types\48\Word.png" />
-    <Content Include="Content\FileUpload\content-types\64\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\64\File.png" />
-    <Content Include="Content\FileUpload\content-types\64\Image.png" />
-    <Content Include="Content\FileUpload\content-types\64\Multimedia.png" />
-    <Content Include="Content\FileUpload\content-types\64\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\64\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\64\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\64\Text.png" />
-    <Content Include="Content\FileUpload\content-types\64\Word.png" />
-    <Content Include="Content\FileUpload\content-types\72\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\72\File.png" />
-    <Content Include="Content\FileUpload\content-types\72\Image.png" />
-    <Content Include="Content\FileUpload\content-types\72\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\72\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\72\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\72\Text.png" />
-    <Content Include="Content\FileUpload\content-types\72\Word.png" />
-    <Content Include="Content\FileUpload\content-types\96\Excel.png" />
-    <Content Include="Content\FileUpload\content-types\96\File.png" />
-    <Content Include="Content\FileUpload\content-types\96\Image.png" />
-    <Content Include="Content\FileUpload\content-types\96\OpenOffice-Writer.png" />
-    <Content Include="Content\FileUpload\content-types\96\PDF.png" />
-    <Content Include="Content\FileUpload\content-types\96\PowerPoint.png" />
-    <Content Include="Content\FileUpload\content-types\96\Text.png" />
-    <Content Include="Content\FileUpload\content-types\96\Word.png" />
+    <Content Include="Content\FileUpload\cors\postmessage.html" />
+    <Content Include="Content\FileUpload\cors\result.html" />
     <Content Include="Content\FileUpload\css\bootstrap\bootstrap-ie6.debug.css" />
     <Content Include="Content\FileUpload\css\bootstrap\bootstrap-image-gallery.debug.css" />
     <Content Include="Content\FileUpload\css\bootstrap\bootstrap-responsive.debug.css" />
@@ -236,6 +259,7 @@
     <Content Include="Content\FileUpload\css\jquery.image-gallery.debug.css" />
     <Content Include="Content\FileUpload\css\jqueryui\jquery.fileupload-jui.css" />
     <Content Include="Content\FileUpload\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\FileUpload\img\glyphicons-halflings.png" />
     <Content Include="Content\FileUpload\img\loading.gif" />
     <Content Include="Content\FileUpload\img\progressbar.gif" />
     <Content Include="Content\FileUpload\img\progressblue.gif" />
@@ -307,23 +331,30 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\ColorBox\jquery.colorbox-min.js" />
     <Content Include="Scripts\ColorBox\jquery.colorbox.js" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Uploads\Dock.jpg" />
+    <Content Include="Uploads\Garden.jpg" />
+    <Content Include="Uploads\_thumbs\Dock.jpg.png" />
+    <Content Include="Uploads\_thumbs\Garden.jpg.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.FileUpload.config" />
+    <None Include="Web.FileUpload.Default.config" />
     <None Include="Web.FileUpload.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.FileUploadGroup.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Scripts\jquery-2.0.2.intellisense.js" />
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <Content Include="Scripts\FileUpload\angularjs\angular.debug.js" />
     <Content Include="Scripts\FileUpload\bootstrap\bootstrap-image-gallery.debug.js" />
     <Content Include="Scripts\FileUpload\bootstrap\bootstrap.debug.js" />
@@ -348,14 +379,11 @@
     <Content Include="Scripts\FileUpload\jqueryui\jquery.ui.widget.js" />
     <Content Include="Scripts\FileUpload\load-image.debug.js" />
     <Content Include="Scripts\FileUpload\tmpl.debug.js" />
-    <Content Include="Scripts\jquery-2.0.2.js" />
-    <Content Include="Scripts\jquery-2.0.2.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery-2.0.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

@@ -60,8 +60,8 @@
 <div class="ex-inf">
 <h2>Example 8: Extensibility: Writing a simple extension</h2>
     <p>In this example we will create some simple extensions (plugins). Backload uses .NET <a href="http://msdn.microsoft.com/en-us/library/dd460648.aspx" target="_blank">MEF (Managed Extensibility Framework)</a> introduced in .NET4 to provide the extensibility feature. Extensions must be within the ~/bin/Extensions folder resp. a subfolder and can be dynamically added or removed while the application is running. 
-        When the extensibility feature is fully implemented (Backload version 2.0 and above) it will provide several extension points through the whole processing pipeline, from the incoming request to the outgoing response. Multiple extensions can handle a single extension point and may all influence the further processing. 
-        All you need to do is to derive a class from an appropriate interface (e. g. Backload.Contracts.IIncomingRequest), mark this class with the System.ComponentModel.Composition.ExportAttribute (e. g. [Export(typeof(IIncomingRequest))]), do some processing and copy the assembly into the Extensions folder (together with the Backload.Contracts.dll).
+        Backload provides several extension points through the whole processing pipeline, from the incoming request (<code>IIncomingRequest</code>) to the outgoing response (<code>IOutgoingResponse</code>. Multiple extensions can handle a single extension point and may all influence the further processing (see example below). 
+        All you need to do is to implement the appropriate interface (e. g. <code>Backload.Contracts.IIncomingRequest</code>) for your extension class, mark this class with the <code>System.ComponentModel.Composition.ExportAttribute</code> (e. g. <code>[Export(typeof(IIncomingRequest))]</code>), do some processing and copy the assembly into the Extensions folder (together with the <code>Backload.Contracts.dll</code>).
     </p>
 </div>
 
@@ -81,7 +81,8 @@
         <option value="youth">Youth</option>
         <option value="adult" selected>Adulthood</option>
         <option value="late">Later years</option>
-    </select>    <p>&nbsp;</p>
+    </select>
+    <p>&nbsp;</p>
 
 <!-- BEGIN: jQuery Fle Upload Plugin -->
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -128,7 +129,7 @@
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade ui-state-hover" data-type="{%=file.type%}">
+    <tr class="template-upload fade ui-state-hover" data-type="{%=file.type.match(/^(\w*)/)[0]%}">
         <td class="preview"><span class="fade"></span></td>
         <td class="name"><span>{%=file.name%}</span></td>
         <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
@@ -159,7 +160,7 @@
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade ui-state-default" >
+    <tr class="template-download fade ui-state-default" data-type="{%=file.type.match(/^(\w*)/)[0]%}">
         {% if (file.error) { %}
             <td></td>
             <td class="name"><span>{%=file.name%}</span></td>
@@ -192,101 +193,96 @@
 <div class="ex-inf">
     <h4>3 steps to develop a basic extension</h4>
     <ul>
-        <li>Create a class library and derive a class from an appropriate interface from Backload.Contracts.dll</li>
-        <li>Mark your class with the System.ComponentModel.Composition.ExportAttribute (e.g. [Export(typeof(IIncomingRequest))])</li>
-        <li>Build the project and copy the dll into the ~/bin/Extensions folder of your application (The assembly must have the naming schema Backload.Extension.*.dll).</li>
+        <li>Create a class library and implement an appropriate interface from <code>Backload.Contracts.dll</code></li>
+        <li>Mark your class with the <code>System.ComponentModel.Composition.ExportAttribute</code> (e.g. <code>[Export(typeof(IIncomingRequest))]</code>)</li>
+        <li>Build the extension make sure you have set the build output path to the <code>~/bin/Extensions</code> folder of your MVC application, otherwise you always have to copy it into this folder (The assembly must have the naming schema Backload.Extension.*.dll).</li>
+        <li>Optional: It is useful to add the extension to the project dependencies of the MVC app. If you clean and rebuild your MVC application the extension will be copied into the extensions folder automatically.</li>
     </ul>
     <h4>Example 1: A simple extension</h4>
-<p>In this example we use the project "Extension01". This extension will handle requests immediately after the reuest comes in. The purpose of this plugin is to refuse further processing if an artist is not in the database (Only on uploads, POST).</p>
-    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">namespace</span>&nbsp;Backload.Extension.Contoso
+<p>In this example we use the project "Backload.Extension.Contoso.VeryBadRequest". This extension will handle requests immediately after the request comes in (<code>IIncomingRequest</code>). The purpose of this plugin is to refuse further processing if an artist is not in the database (Only on uploads, POST). 
+    To test the demo, add a breakpoint in the extensions code, select the latest entry in the artist drop down ("Bad Request") and upload a file. The extension sends a Bad Request status back to the client.
+</p>
+   <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">[<span style="color:#2b91af;">Export</span>(<span style="color:blue;">typeof</span>(<span style="color:#2b91af;">IIncomingRequest</span>))]
+<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">VeryBadRequest</span>&nbsp;:&nbsp;<span style="color:#2b91af;">IIncomingRequest</span>
 {
-&nbsp;&nbsp;&nbsp;&nbsp;[<span style="color:#2b91af;">Export</span>(<span style="color:blue;">typeof</span>(<span style="color:#2b91af;">IIncomingRequest</span>))]
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">IncomingRequest</span>&nbsp;:&nbsp;<span style="color:#2b91af;">IIncomingRequest</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">bool</span>&nbsp;Execute(<span style="color:#2b91af;">IBackloadContext</span>&nbsp;context,&nbsp;<span style="color:#2b91af;">IIncomingRequestParam</span>&nbsp;param)
 &nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ObjectContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;UploadContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryFileName&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryExtraFolder&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">StopProcessingType</span>&nbsp;StopProcessing&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ProcessingMessage&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">List</span>&lt;<span style="color:#2b91af;">ExtensionLogger</span>&gt;&nbsp;Logger&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">bool</span>&nbsp;ProcessStep(System.Web.<span style="color:#2b91af;">HttpRequestBase</span>&nbsp;request,&nbsp;<span style="color:blue;">string</span>&nbsp;httpMethod)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(context.HttpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;POST&quot;</span>)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(httpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;POST&quot;</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;This&nbsp;extension&nbsp;validate&nbsp;if&nbsp;the&nbsp;artist&nbsp;is&nbsp;in&nbsp;the&nbsp;database,&nbsp;and&nbsp;returns&nbsp;a&nbsp;Bad&nbsp;Request&nbsp;status&nbsp;(400)&nbsp;if&nbsp;not.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;IMPORTANT:&nbsp;Don&#39;t&nbsp;forget&nbsp;to&nbsp;rebuild&nbsp;the&nbsp;extension&nbsp;when&nbsp;you&nbsp;changed&nbsp;code.&nbsp;Otherwise&nbsp;you&nbsp;may&nbsp;use&nbsp;the&nbsp;old&nbsp;extensions&nbsp;code.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">using</span>&nbsp;(<span style="color:blue;">var</span>&nbsp;artists&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">ArtistsLibrary</span>())
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Validate&nbsp;if&nbsp;the&nbsp;artist&nbsp;is&nbsp;in&nbsp;the&nbsp;database</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">using</span>&nbsp;(<span style="color:blue;">var</span>&nbsp;artists&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">ArtistsLibrary</span>())
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;artist&nbsp;=&nbsp;artists.Artists.FirstOrDefault(a&nbsp;=&gt;&nbsp;a.ArtistId&nbsp;==&nbsp;<span style="color:blue;">this</span>.ObjectContext);
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(artist&nbsp;==&nbsp;<span style="color:blue;">null</span>)&nbsp;&nbsp;<span style="color:green;">//&nbsp;Artist&nbsp;not&nbsp;in&nbsp;list</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Stop&nbsp;further&nbsp;processing&nbsp;of&nbsp;the&nbsp;pipeline&nbsp;but&nbsp;all&nbsp;extensions&nbsp;can&nbsp;do&nbsp;their&nbsp;work&nbsp;(maybe&nbsp;logging,&nbsp;etc.).</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">this</span>.StopProcessing&nbsp;=&nbsp;<span style="color:#2b91af;">StopProcessingType</span>.StopProcessingPipelineOnly;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">this</span>.ProcessingMessage&nbsp;=&nbsp;<span style="color:#a31515;">&quot;Artist&nbsp;not&nbsp;in&nbsp;list&quot;</span>;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">true</span>;&nbsp;<span style="color:green;">//&nbsp;Return&nbsp;value&nbsp;is&nbsp;true,&nbsp;because&nbsp;the&nbsp;extension&nbsp;has&nbsp;changed&nbsp;properties.</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;artist&nbsp;=&nbsp;artists.Artists.FirstOrDefault(a&nbsp;=&gt;&nbsp;a.ArtistId&nbsp;==&nbsp;param.BackloadValues.ObjectContext);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(artist&nbsp;==&nbsp;<span style="color:blue;">null</span>)&nbsp;&nbsp;<span style="color:green;">//&nbsp;Artist&nbsp;not&nbsp;in&nbsp;list</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Stop&nbsp;further&nbsp;processing&nbsp;of&nbsp;the&nbsp;pipeline&nbsp;but&nbsp;all&nbsp;extensions&nbsp;can&nbsp;do&nbsp;their&nbsp;task&nbsp;(maybe&nbsp;logging,&nbsp;etc.).</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.PipelineControl.ExecutePipeline&nbsp;=&nbsp;<span style="color:blue;">false</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Send a http status (400 Bad Request) to the client.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.Request.RequestContext.HttpContext.Response.StatusCode&nbsp;=&nbsp;400;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">true</span>;&nbsp;<span style="color:green;">//&nbsp;Return&nbsp;value&nbsp;is&nbsp;true,&nbsp;because&nbsp;the&nbsp;extension&nbsp;has&nbsp;changed&nbsp;properties.</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;&nbsp;<span style="color:green;">//&nbsp;No&nbsp;properties&nbsp;have&nbsp;been&nbsp;changed,&nbsp;so&nbsp;false&nbsp;is&nbsp;returned.</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;&nbsp;<span style="color:green;">//&nbsp;No&nbsp;properties&nbsp;have&nbsp;been&nbsp;changed,&nbsp;so&nbsp;false&nbsp;is&nbsp;returned.</span>
 &nbsp;&nbsp;&nbsp;&nbsp;}
-}
-</pre>
+}</pre>
 <br />
-        <h4>Example 2: Using Logger to access extensions called so far.</h4>
+        <h4>Example 2: Using <code>ProcessControl.Message</code> to share data between extensions.</h4>
 
-<p>In this example we use the Logger property to get some information about extensions called so far (if any). Add the existing project Extension02 into the solution (as its unloaded so far), set a breakpoint, run the application and upload a file.</p>
-    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">namespace</span>&nbsp;Backload.Extension.Contoso
+<p>In this example we use the <code>ProcessControl.Message</code> property to share data between extensions (increase index). Go to the "MutlipleExtensions.cs" file and comment out the <code>return false</code> statement at the beginning of the execution method.
+   Rebuild the extension, set a breakpoint, run the application and upload a file. The extension adds an additional subfolder to store the file. It increases an index to get the new subfolder name from a string array. In the real world this data may comes from a database, a webservice or is calculated. The extension code uses <code>PipelineControl.Message</code> to pass data to other extensions, but so far there are no other extensions that use this data.</p>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">[<span style="color:#2b91af;">Export</span>(<span style="color:blue;">typeof</span>(<span style="color:#2b91af;">IIncomingRequest</span>))]
+<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">MultipleExtensions</span>&nbsp;:&nbsp;<span style="color:#2b91af;">IIncomingRequest</span>
 {
-&nbsp;&nbsp;&nbsp;&nbsp;[<span style="color:#2b91af;">Export</span>(<span style="color:blue;">typeof</span>(<span style="color:#2b91af;">IIncomingRequest</span>))]
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">MultipleDemo</span>&nbsp;:&nbsp;<span style="color:#2b91af;">IIncomingRequest</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>[]&nbsp;datetime&nbsp;=&nbsp;<span style="color:#a31515;">&quot;2000-2099&nbsp;2010-2019&nbsp;yyyy&nbsp;MM&nbsp;dd&nbsp;HH&nbsp;mm&nbsp;ss&quot;</span>.Split(<span style="color:#a31515;">&#39;&nbsp;&#39;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>[]&nbsp;lorem&nbsp;=&nbsp;<span style="color:#a31515;">&quot;Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet&nbsp;consectetur&nbsp;adipisicing&nbsp;elit&nbsp;sed&nbsp;do&nbsp;eiusmod&nbsp;tempor&nbsp;incididunt&nbsp;ut&nbsp;labore&nbsp;et&nbsp;dolore&nbsp;magna&nbsp;aliqua&nbsp;Ut&nbsp;enim&nbsp;ad&nbsp;minim&nbsp;veniam&nbsp;quis&nbsp;nostrud&nbsp;exercitation&nbsp;ullamco&nbsp;laboris&nbsp;nisi&nbsp;ut&nbsp;aliquip&nbsp;ex&nbsp;ea&nbsp;commodo&nbsp;consequat&nbsp;Duis&nbsp;aute&nbsp;irure&nbsp;dolor&nbsp;in&nbsp;reprehenderit&nbsp;in&nbsp;voluptate&nbsp;velit&nbsp;esse&nbsp;cillum&nbsp;dolore&nbsp;eu&nbsp;fugiat&nbsp;nulla&nbsp;pariatur&nbsp;Excepteur&nbsp;sint&nbsp;occaecat&nbsp;cupidatat&nbsp;non&nbsp;proident&nbsp;sunt&nbsp;in&nbsp;culpa&nbsp;qui&nbsp;officia&nbsp;deserunt&nbsp;mollit&nbsp;anim&nbsp;id&nbsp;est&nbsp;laborum&quot;</span>.Split(<span style="color:#a31515;">&#39;&nbsp;&#39;</span>);
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">bool</span>&nbsp;Execute(<span style="color:#2b91af;">IBackloadContext</span>&nbsp;context,&nbsp;<span style="color:#2b91af;">IIncomingRequestParam</span>&nbsp;param)
 &nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ObjectContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;UploadContext&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryFileName&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;QueryExtraFolder&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">StopProcessingType</span>&nbsp;StopProcessing&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">string</span>&nbsp;ProcessingMessage&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:#2b91af;">List</span>&lt;<span style="color:#2b91af;">ExtensionLogger</span>&gt;&nbsp;Logger&nbsp;{&nbsp;<span style="color:blue;">get</span>;&nbsp;<span style="color:blue;">set</span>;&nbsp;}
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">bool</span>&nbsp;ProcessStep(System.Web.<span style="color:#2b91af;">HttpRequestBase</span>&nbsp;request,&nbsp;<span style="color:blue;">string</span>&nbsp;httpMethod)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;2:&nbsp;Comment&nbsp;out&nbsp;the&nbsp;following&nbsp;line&nbsp;and&nbsp;rebuild&nbsp;the&nbsp;solution&nbsp;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(context.HttpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;POST&quot;</span>)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(httpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;POST&quot;</span>)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;UploadContext&nbsp;is&nbsp;a&nbsp;subfolder&nbsp;of&nbsp;ObjectContext.&nbsp;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;A&nbsp;tree&nbsp;of&nbsp;subfolders&nbsp;can&nbsp;be&nbsp;achieved&nbsp;by&nbsp;seperating&nbsp;the&nbsp;subfolder&nbsp;names&nbsp;with&nbsp;a&nbsp;semicolon.</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;When&nbsp;there&nbsp;are&nbsp;multiple&nbsp;extensions&nbsp;manipulating&nbsp;the&nbsp;UploadContext&nbsp;or&nbsp;any&nbsp;other&nbsp;property,</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;all&nbsp;can&nbsp;contibuting&nbsp;to&nbsp;the&nbsp;value&nbsp;returned&nbsp;to&nbsp;the&nbsp;processing&nbsp;pipline.</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(<span style="color:blue;">string</span>.IsNullOrEmpty(<span style="color:blue;">this</span>.UploadContext)&nbsp;==&nbsp;<span style="color:blue;">false</span>)&nbsp;<span style="color:blue;">this</span>.UploadContext&nbsp;+=&nbsp;<span style="color:#a31515;">&quot;;&quot;</span>;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">this</span>.UploadContext&nbsp;+=&nbsp;<span style="color:#a31515;">&quot;subfolder_&quot;</span>&nbsp;+&nbsp;Logger.Count.ToString();&nbsp;<span style="color:green;">//&nbsp;Logger&nbsp;lists&nbsp;all&nbsp;extensions&nbsp;call&nbsp;so&nbsp;far</span>
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">true</span>;&nbsp;<span style="color:green;">//&nbsp;Return&nbsp;value&nbsp;is&nbsp;true,&nbsp;because&nbsp;the&nbsp;extension&nbsp;has&nbsp;changed&nbsp;properties.</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;&nbsp;<span style="color:green;">//&nbsp;No&nbsp;properties&nbsp;have&nbsp;been&nbsp;changed,&nbsp;so&nbsp;false&nbsp;is&nbsp;returned.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">int</span>&nbsp;startIdx&nbsp;=&nbsp;context.PipelineControl.Message.MessageCode;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">string</span>&nbsp;subfolder&nbsp;=&nbsp;<span style="color:blue;">string</span>.Empty;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(startIdx&nbsp;&lt;&nbsp;8)&nbsp;subfolder&nbsp;=&nbsp;<span style="color:#2b91af;">DateTime</span>.Now.ToString(datetime[startIdx]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">else</span>&nbsp;subfolder&nbsp;=&nbsp;lorem[startIdx&nbsp;-&nbsp;8];
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(<span style="color:blue;">string</span>.IsNullOrEmpty(param.BackloadValues.UploadContext)&nbsp;==&nbsp;<span style="color:blue;">false</span>)&nbsp;param.BackloadValues.UploadContext&nbsp;+=&nbsp;<span style="color:#a31515;">&quot;;&quot;</span>;&nbsp;<span style="color:green;">//&nbsp;Seperate&nbsp;subfolders&nbsp;with&nbsp;a&nbsp;semicolon</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.BackloadValues.UploadContext&nbsp;+=&nbsp;subfolder;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;There&nbsp;are&nbsp;multiple&nbsp;ways&nbsp;sharing&nbsp;data&nbsp;between&nbsp;extensions.&nbsp;Here&nbsp;we&nbsp;use&nbsp;PipelineControl.Message&nbsp;to&nbsp;increase&nbsp;the&nbsp;index.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Note,&nbsp;that&nbsp;the&nbsp;ExtensionLogger&nbsp;logs&nbsp;the&nbsp;messages&nbsp;(subfolders)&nbsp;in&nbsp;PipelineControl.Message&nbsp;returned&nbsp;from&nbsp;the&nbsp;extension</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.PipelineControl.Message.MessageText&nbsp;=&nbsp;subfolder;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.PipelineControl.Message.MessageCode&nbsp;+=&nbsp;1;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">true</span>;&nbsp;<span style="color:green;">//&nbsp;Processed&nbsp;value&nbsp;is&nbsp;true,&nbsp;because&nbsp;the&nbsp;extension&nbsp;has&nbsp;changed&nbsp;properties.</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;&nbsp;<span style="color:green;">//&nbsp;No&nbsp;properties&nbsp;have&nbsp;been&nbsp;changed,&nbsp;so&nbsp;false&nbsp;is&nbsp;returned.</span>
 &nbsp;&nbsp;&nbsp;&nbsp;}
 }</pre>
     <br />
     <h4>Example 3: Multiple extensions dynamically added/removed</h4>
-<p>In this example you'll learn how dynamically adding or removing extensions is supported. Be sure you have a breakpoint within the MultipleDemo.cs (Extension02). Now go to the ~/bin/Extensions folder and copy the Backload.Extension.MultipleDemo.dll. Make sure the copies have the correct naming schema (Backload.Extension.*.dll). When you run the application the breakpoint will be called multiple times. When you upload a file, each extension now adds a new subfolder to the UploadContext property (which is the purpose of this extension we created).</p>
+<p>Now comes the fun part. In this example you'll dynamically add or remove extensions. Make sure the MVC application is up and running! If you did not set a breakpoint within the MultipleExtensions.cs (Project Backload.Extension.Contoso.MutilipleExt), do so. Now go to the <code>~/bin/Extensions</code> folder and copy the <code>Backload.Extension.MultipleExtensions.dll</code> multiple times (maybe 10-20). You can leave the name of the copies as it is as long as the copies have the correct naming schema (Backload.Extension.*.dll). Now upload a file. Visual Studio debugger comes up and the breakpoint for all extensions will be hit. Each extension now adds a new subfolder to the UploadContext property (which is the purpose of this extension we created).</p>
 <br />
-<p>Don't forget, to include Backload.Contract.dll in the ~/bin/Extensions folder.</p>
-<br />
-    <h4>Description</h4>
+    <h4>Conclusion</h4>
     <p>
         In this example we showed you how easy it is to create your own extensions to the Backload component. 
-        We also used the Logger property to get information about extensions called so far. 
-        Finally we added (deleted/renamed) multiple extensions dynamically to the Extensions folder. All where called in the request and contributed to Backloads processing pipeline.
+        We also used the <code>PiplineControl.Message</code> property to share data between extensions. 
+        Finally we added (deleted/renamed) multiple extensions dynamically to the Extensions folder. All were called in the request and contributed to Backloads processing pipeline.
     </p>
     <br />
     <h5>License information</h5>
     <p class="licenses">
-        <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload Plugin:</a> Copyright 2013, Sebastian Tschan, <a href="https://blueimp.net" target="_blank">https://blueimp.net</a>, License: <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a><br />
-        <a href="https://github.com/northstream/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>, (<a href="https://github.com/northstream/backload#professional" target="_blank">Professional version</a> is only available under a commercial license.
+        <a href="https://github.com/blackcity/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>,<br />
+        <a href="mailto:s.habermehl@freenet.de" target="_blank">Professional and Enterprise versions</a> are only available under a commercial license.<br />
+        Follow us on Twitter: <a href="https://twitter.com/backload_mvc" target="_blank">&#0064;Backload_MVC</a>
 </p>
 
 </div>
