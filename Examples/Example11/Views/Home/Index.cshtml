@@ -88,7 +88,7 @@
         We have 5 extensions in this example (2 GetFilesRequest extensions, a DeleteFilesRequest extension, a StoreFileRequest extension an an OutgoingResponse extension for PlUpload). 
         Open the extensions in Visual Studio and set breakpoint at the beginning of the code. Keep in mind, when changing the code of an extension, rebuild the extensions project or add the extension to 
         the project dependencies (context menu or the project menu). The output build path  is set to the ~/bin/extensions folder of the main MVC application so the application will use the current extension assembly. Otherwise you may use the old assembly.
-        First, go to the <code>GetFilesRequest</code> extension and note, that we've simulated a long running task with this line of code:
+        First, go to the <code>GetFilesRequest</code> extension and note that we implemented and exported the asynchronous version of <code>IGetFilesRequest</code> (<code>IGetFilesRequestAsync</code>) which returns a <code>Task&lt;bool&gt;</code> instead of <code>bool</code>. Don't be afraid, if you're new to asynchronous programming in .NET, you symply return a normal boolean. The <code>async</code> modifier enables you to await the results of a long running task and do not block the thread. We've simulate a long running task with the code:
         <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;t&nbsp;=&nbsp;<span style="color:#2b91af;">Task</span>.Run(()&nbsp;=&gt;&nbsp;<span style="color:#2b91af;">Task</span>.Delay(System.<span style="color:#2b91af;">TimeSpan</span>.FromSeconds(10)));</pre>
     </p>
 
@@ -116,16 +116,16 @@
     
     <h4>Demo 4: Use ExtensionPointTasks to await the result after all extensions returned</h4>
     <p>Comment out the await line above, uncomment the line below, set breakpoints and rebuild the extension and run the solution. 
-       When debugging the application you'll see, that the second extension also can execute and finish its code, before the extension manager 
+       While debugging the application you'll see, that the second extension also can execute and finish its code, before the extension manager 
        awaits the result at the end of the extension point (before code execution returns to the pipeline). 
     </p>   
     <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;context.PipelineControl.TaskManager.ExtensionPointTasks.Add(t);</pre>    
 
     <h4>Demo 5: Use PipelineExtendedTasks to await the result before Backload returns</h4>
     <p>Comment out the await line above, uncomment the line below, set breakpoints and rebuild the extension and run the solution. 
-       Make sure you have set a breakpoint in the OutgoingResponse extension where the response for the PlUpload plugin is generated. 
-       Maindifference to the code above is, that the OutgoingResponse extension was called before the Pipeline waits for the result of the task. 
-       PipelineExtendedTasks is ultimately the last point in the processing pipeline before the Pipeline returns the results to the client.
+       Make sure you have set a breakpoint in the <code>OutgoingResponse</code> extension where the response for the PlUpload plugin is generated. 
+       Main difference to the code above is, that the OutgoingResponse extension is called before the Pipeline waits for the result of the task. 
+       <code>PipelineExtendedTasks</code> is ultimately the last point in the processing pipeline before the Pipeline returns the results to the client.
     </p>   
     <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;context.PipelineControl.TaskManager.PipelineExtendedTasks.Add(t);</pre>    
     
@@ -139,7 +139,7 @@
     
     <h4>Demo 7: Use a separate thread to do work independently</h4>
     <p>Now go to the StoreFile extension. In this demo we do our work in a separate thread and do not care about the result (fire&forget strategy). 
-       Because we cannot be sure that the thread finished the work successfully be careful with this approach.
+       Because we cannot be sure that the thread finished successfully be careful with this approach.
        If you rely on the results, use Thread.Join(), async/await, the task based approach or check if the files exist in another 
        extension, a subsequent request, a different code or even another application.
     </p>   

@@ -57,10 +57,11 @@
 </div>
 <div class="ex-inf">
 <h2>Example 1: Zero configuration</h2>
-    <p><span class="bl">Backload.</span> has a very rich set of configuration options. It can be entirely configured within the web.config file or alternatively  a config file linked to the web.config. But, 
-        you do not have to set any option if you are happy with the defaults (For convenience we only use <span class="bl">Backloads.</span> bundling feature in order to link the scripts and styles of the 
-        jQuery file upload plugin to the page, see: global.asax and _layout.cshtml). Note: It is strongly recommend taking a look on how the
-        client side jQuery File Upload plugin uses templating (see html source code). You can easily style the plugin by adding or removing styles in the template or even add new functionality to the plugin.
+    <p><span class="bl">Backload.</span> has a very rich set of configuration options. It can be entirely configured within the web.config file or alternatively a config file linked to the web.config. 
+        But, you do not have to set any option if you are happy with the defaults (In these examples we use Backloads 
+        bundling feature in order to link the scripts and styles of the client side plugin to the page). 
+        Note: If you use the client side jQuery File Upload plugin it is strongly recommend taking a look on how it uses templating (see html source code). 
+        You can easily style the plugin by adding or removing styles in the template or even add new functionality to the plugin.
     </p>
 </div>
 
@@ -178,7 +179,7 @@
     <ol>
         <li>Make sure, you have write access to the default upload folder "~/files".</li>
         <li>Reference the <span class="bl">Backload.</span> assembly (Backload.dll).</li>
-        <li>Include the client side jQuery File Upload Plugin files. You can use <span class="bl">Backloads.</span> bundeling feature (see global.asax and _Layout.cshtml).</li>
+        <li>Include the client side plugin files. If you use the jQuery File Upload Plugin, you can use <span class="bl">Backloads.</span> bundeling feature.</li>
         <li>Initialize the client side plugin with the url of the default upload handler:</li>
     </ol>
     <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">
@@ -191,7 +192,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;});
 </pre>
     <br />
-    To use the bundeling feature of Backload add the following lines to global.asax and the view (resp. _layout.cshtml).
+    In order to use the bundeling feature of Backload you have several options: Install the NuGet package <code>pm> JQuery_File_Upload_Plugin</code> (> v8.6) which registers the bundles on <code>AppStart</code> in <code>BackloadConfig.cs</code> (see <code>App_Start</code> folder) or 
+    add the following lines to global.asax (or <code>BackloadConfig.cs</code> or <code>BundlesConfig.cs</code>):
         <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;global.asax:</span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Use&nbsp;bundeling&nbsp;for&nbsp;client&nbsp;files&nbsp;(scripts&nbsp;(js)&nbsp;and&nbsp;styles&nbsp;(css)).&nbsp;You&nbsp;can&nbsp;include/exclude&nbsp;the&nbsp;image&nbsp;gallery&nbsp;provided&nbsp;by&nbsp;</span>
@@ -199,7 +201,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Comment&nbsp;this&nbsp;out,&nbsp;if&nbsp;you&nbsp;manually&nbsp;include&nbsp;the&nbsp;files&nbsp;in&nbsp;your&nbsp;page</span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Overload:&nbsp;RegisterBundles(BundleTable.Bundles,&nbsp;inclImageGallery,&nbsp;pathToScripts,&nbsp;pathToStyles)&nbsp;</span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Example:&nbsp;Backload...RegisterBundles(BundleTable.Bundles,&nbsp;false,&nbsp;&quot;~/Scripts/FileUpload/&quot;,&nbsp;&quot;~/Content/FileUpload/css/&quot;);</span>
-&nbsp;&nbsp;&nbsp;&nbsp;Backload.Configuration.<span style="color:#2b91af;">FileUploadBundles</span>.RegisterBundles(<span style="color:#2b91af;">BundleTable</span>.Bundles,&nbsp;<span style="color:blue;">false</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;Backload.Configuration.<span style="color:#2b91af;">Bundles</span>.RegisterBundles(<span style="color:#2b91af;">BundleTable</span>.Bundles,&nbsp;<span style="color:blue;">false</span>);
+</pre><br />
+     Call the <code>Render()</code> method for the appropriate styles and script bundles in a view or in _layout.cshtml).
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;_layout.cshtml (or a view):</span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">head</span><span style="color:blue;">&gt;</span>

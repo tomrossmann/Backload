@@ -60,7 +60,8 @@
     <p><span class="bl">Backload.</span> has a very rich set of configuration options. It can be entirely configured within the web.config file or alternatively  a config file linked to the web.config. But, 
         you do not have to set any option if you are happy with the defaults. In this example we show you how to configure the <span class="bl">Backload.</span> component in a separate config file, in 
         order to keep the web.config clean. This example does the same as the previous Example 02: We change the root upload files path to "~/Uploads", but now in a separate config file (web.FileUpload.config). 
-        Take a look how we utilize Visual Studio Intelligence and schema validation.
+        Take a look how we utilize Visual Studio Intelligence and schema validation. Note: If you installed the Backload component by the NuGet Package Manager (<code>PM> Install-Package Backload</code>) the following steps are automatically done for you.
+
     </p>
 </div>
 
@@ -178,6 +179,7 @@
     <ol>
         <li>Prepare the web.config file as in Example 02</li>
         <li>Add a configSource attribute to the fileUpload section with an appropriate file path that points to the external config file (e.g. Web.FileUpload.config). Omit any other settings.</li>
+        <li>Take a look in the <code>Web.FileUpload.Default.config</code> and <code>Web.FileUpload.xsd</code> files to learn more about options, settings and defaults.</li>
     </ol>
 
 <pre style="font-family: Consolas; font-size: 13px; color: black; background: white; overflow:hidden"><span style="color:blue;">&lt;</span><span style="color:#a31515;">configuration</span><span style="color:blue;">&gt;</span>
@@ -214,7 +216,7 @@
     <p>
         This example shows how to include a separate config file, so you can use it with the <span class="bl">Backload.</span> component. In this sample we set the root upload folder to "~/Uploads" (default: "~/files") and 
         use the file system as storage context (default). Note: Don't forget to include the schema file (Web.FileUpload.xsd) into your root folder, otherwise schema validation and Visual Studio Intelligence 
-        won't work. Make sure you have the appropriate write permissions.
+        won't work. Make sure you have the appropriate write permissions. The <code>Web.FileUpload.Default.config</code> file includes all options and settings with its default values and is fully commented. The <code>Web.FileUpload.xsd</code> file is the schema file.
     </p>
     <br />
     <h5>License information</h5>

@@ -60,8 +60,9 @@
 <div class="ex-inf">
 <h2>Example 8: Extensibility: Writing a simple extension</h2>
     <p>In this example we will create some simple extensions (plugins). Backload uses .NET <a href="http://msdn.microsoft.com/en-us/library/dd460648.aspx" target="_blank">MEF (Managed Extensibility Framework)</a> introduced in .NET4 to provide the extensibility feature. Extensions must be within the ~/bin/Extensions folder resp. a subfolder and can be dynamically added or removed while the application is running. 
-        Backload provides several extension points through the whole processing pipeline, from the incoming request (<code>IIncomingRequest</code>) to the outgoing response (<code>IOutgoingResponse</code>. Multiple extensions can handle a single extension point and may all influence the further processing (see example below). 
-        All you need to do is to implement the appropriate interface (e. g. <code>Backload.Contracts.IIncomingRequest</code>) for your extension class, mark this class with the <code>System.ComponentModel.Composition.ExportAttribute</code> (e. g. <code>[Export(typeof(IIncomingRequest))]</code>), do some processing and copy the assembly into the Extensions folder (together with the <code>Backload.Contracts.dll</code>).
+        Backload provides several extension points through the whole processing pipeline, from the incoming request (<code>IIncomingRequest</code>) to the outgoing response (<code>IOutgoingResponse</code>). Multiple extensions can handle a single extension point and may all influence the further processing (see example below). 
+        All you need to do is to implement the appropriate interface (e. g. <code>Backload.Contracts.Extension.IIncomingRequest</code>) for your extension class, mark this class with the <code>System.ComponentModel.Composition.ExportAttribute</code> (e. g. <code>[Export(typeof(IIncomingRequest))]</code>), do some processing and copy the assembly into the Extensions folder (together with the <code>Backload.Contracts.dll</code>).
+        Important note: Look in the examples to learn how we set the project build path (extension) and project dependencies (MVC app) to automatically compile and copy the extension into the <code>~/bin/Extension</code> folder.
     </p>
 </div>
 

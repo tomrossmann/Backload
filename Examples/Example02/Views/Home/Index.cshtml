@@ -59,7 +59,8 @@
 <h2>Example 2: Using the web.config</h2>
     <p><span class="bl">Backload.</span> has a very rich set of configuration options. It can be entirely configured within the web.config file or alternatively  a config file linked to the web.config. But, 
         you do not have to set any option if you are happy with the defaults. In this example we show you how to prepare the web.config file, so <span class="bl">Backload.</span> can be configured.
-        In this example we want to change the root upload files path to "~/Uploads". Take a look how we utilize Visual Studio Intelligence and schema validation.
+        In this example we want to change the root upload files path to "~/Uploads". Take a look how we utilize Visual Studio Intelligence and schema validation. 
+        Note: If you installed the Backload component by the NuGet Package Manager (<code>PM> Install-Package Backload</code>) the following steps are automatically done for you.
     </p>
 </div>
 
@@ -184,7 +185,7 @@
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--</span><span style="color:green;">&nbsp;Declare&nbsp;a&nbsp;new&nbsp;section&nbsp;group&nbsp;(&quot;fileUploadGroup&quot;)&nbsp;with&nbsp;a&nbsp;config&nbsp;section&nbsp;(&quot;fileUpload&quot;)&nbsp;within&nbsp;&lt;configSections&gt;&nbsp;</span><span style="color:blue;">--&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">sectionGroup</span><span style="color:blue;">&nbsp;</span><span style="color:red;">name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">fileUploadGroup</span>&quot;<span style="color:blue;">&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">section</span><span style="color:blue;">&nbsp;</span><span style="color:red;">name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">fileUpload</span>&quot;<span style="color:blue;"></span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">type</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Backload.Configuration.FileUploadSection,&nbsp;Backload,&nbsp;Version=1.7,&nbsp;Culture=neutral,&nbsp;PublicKeyToken=02eaf42ab375d363</span>&quot;<span style="color:blue;"></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">type</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Backload.Configuration.FileUploadSection,&nbsp;Backload,&nbsp;Version=1.9,&nbsp;Culture=neutral,&nbsp;PublicKeyToken=02eaf42ab375d363</span>&quot;<span style="color:blue;"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">requirePermission</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">false</span>&quot;
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span style="color:blue;">/</span></span><span style="color:#a31515;">section</span>&quot;<span style="color:blue;">&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">sectionGroup</span><span style="color:blue;">&gt;</span>

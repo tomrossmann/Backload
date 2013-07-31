@@ -92,7 +92,7 @@
     <h4>Example 1: Using a <code>success</code> property (HTTP Status 200)</h4>
     <p>
         In the first example we simply set a success property to false. If a class derived from <code>IFileUploadStatus</code> not has been created yet (because the exception was too early in 
-        the processing pipeline, we create our own (A FileUploadStatus class internally holds the values to create the Json response) and return it back to the pipeline. 
+        the processing pipeline, we create our own (A <code>FileUploadStatus</code> object internally holds the values for each file handled in a request. Main purpose is to store the values for the response. Once created, the FileUploadStatus object is passed through the entire pipeline and to all extensions (after IIncomingRequest) until the results are returned to the browser). 
         Note, that after we finished our exception handling the pipeline produces the Json output as usual along with a HTTP Status code 200. 
         Now the client side <code>FileUploaded</code> event handler will be invoked, not the error handler, because of the HTTP Status 200 (ok). So in this example we need a switch 
         on the <code>file.success==[true|false]</code> condition and do the error handling ourselves.<br />
@@ -116,7 +116,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;went&nbsp;wrong.&nbsp;PlUpload&nbsp;isn&#39;t&nbsp;very&nbsp;good&nbsp;in&nbsp;changing&nbsp;the&nbsp;state&nbsp;from&nbsp;your&nbsp;code.&nbsp;Example&nbsp;2&nbsp;provides&nbsp;a&nbsp;cleaner&nbsp;solution.</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Don&#39;t&nbsp;forget&nbsp;to&nbsp;rebuild&nbsp;your&nbsp;extension&nbsp;if&nbsp;you&nbsp;have&nbsp;not&nbsp;set&nbsp;a&nbsp;project&nbsp;dependency&nbsp;in&nbsp;your&nbsp;MVC&nbsp;app</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.Request.RequestContext.HttpContext.Response.StatusCode&nbsp;=&nbsp;200;&nbsp;<span style="color:green;">//&nbsp;Backload&nbsp;has&nbsp;set&nbsp;500&nbsp;Internal&nbsp;Server&nbsp;Error,&nbsp;we&nbsp;revert&nbsp;this&nbsp;for&nbsp;demo&nbsp;purposes</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.Response.StatusCode&nbsp;=&nbsp;200;&nbsp;<span style="color:green;">//&nbsp;Backload&nbsp;has&nbsp;set&nbsp;500&nbsp;Internal&nbsp;Server&nbsp;Error,&nbsp;we&nbsp;revert&nbsp;this&nbsp;for&nbsp;demo&nbsp;purposes</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;((param.FileStatus&nbsp;!=&nbsp;<span style="color:blue;">null</span>)&nbsp;&amp;&amp;&nbsp;(param.FileStatus.Files.Count&nbsp;&gt;&nbsp;0))
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">foreach</span>&nbsp;(<span style="color:blue;">var</span>&nbsp;file&nbsp;<span style="color:blue;">in</span>&nbsp;param.FileStatus.Files)
@@ -140,7 +140,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;}</pre>
     <h5>Client side FileUploaded event handler</h5>  
-    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;If&nbsp;the&nbsp;HTTP&nbsp;status&nbsp;code&nbsp;is&nbsp;&lt;&nbsp;400&nbsp;the&nbsp;FileUploaded&nbsp;will&nbsp;be&nbsp;called</span>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;If&nbsp;the&nbsp;HTTP&nbsp;status&nbsp;code&nbsp;is&nbsp;&lt;&nbsp;400&nbsp;the&nbsp;FileUploaded&nbsp;event&nbsp;handler&nbsp;will&nbsp;be&nbsp;called</span>
 &nbsp;&nbsp;&nbsp;&nbsp;uploader.bind(<span style="color:#a31515;">&#39;FileUploaded&#39;</span>,&nbsp;<span style="color:blue;">function</span>&nbsp;(up,&nbsp;files,&nbsp;result)&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.each(files,&nbsp;<span style="color:blue;">function</span>&nbsp;(i,&nbsp;file)&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(remoteFiles[i].success)&nbsp;{
@@ -172,7 +172,7 @@
 &nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;which&nbsp;will&nbsp;be&nbsp;sent&nbsp;with&nbsp;the&nbsp;HTTP&nbsp;status&nbsp;code.&nbsp;The&nbsp;client&nbsp;error&nbsp;handler&nbsp;can&nbsp;use&nbsp;the&nbsp;Json&nbsp;object.</span>
 &nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Comment&nbsp;in&nbsp;the&nbsp;following&nbsp;line&nbsp;(Don&#39;t&nbsp;forget&nbsp;to&nbsp;clean&nbsp;and&nbsp;rebuild&nbsp;your&nbsp;solution):</span>
 &nbsp;&nbsp;&nbsp;<span style="color:green;">//</span>
-&nbsp;&nbsp;&nbsp;request.RequestContext.HttpContext.Response.StatusCode&nbsp;=&nbsp;500;</pre>
+&nbsp;&nbsp;&nbsp;context.Response.StatusCode&nbsp;=&nbsp;500;</pre>
     <h5>Client side error handler</h5>
         <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;<span style="color:green;">//&nbsp;If&nbsp;the&nbsp;HTTP&nbsp;status&nbsp;code&nbsp;is&nbsp;&gt;=&nbsp;400&nbsp;the&nbsp;Error&nbsp;handler&nbsp;will&nbsp;be&nbsp;called</span>
 &nbsp;uploader.bind(<span style="color:#a31515;">&#39;Error&#39;</span>,&nbsp;<span style="color:blue;">function</span>&nbsp;(up,&nbsp;err)&nbsp;{

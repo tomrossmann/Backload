@@ -208,7 +208,7 @@
         the fully qualified name contains <code>Plugin.[queryvalue]</code>. If you do not want to use convention based handling, just do not send a <code>plugin</code> querystring or leave it empty (<code>plugin=</code>)<br />
         You may use conditional handling instead. The extension code is called, and you make the decision based on a condition if to handle the request or not in your code. 
         Typically you parse the request (querystring or body) for a condition. Example:
-        <pre>&nbsp;&nbsp;&nbsp;string control = request.QueryString["control"];
+        <pre>&nbsp;&nbsp;&nbsp;string control = context.Request.QueryString["control"];
 &nbsp;&nbsp;&nbsp;if ((string.IsNullOrEmpty(control)) || (control != "plupload")) return false;</pre>
     </p>
     <br />
@@ -226,6 +226,40 @@
         Backload component, as we followed the convention to use the naming schema <code>Plugin.PlUpload</code> within the namespace of our extension and we send a <code>plugin=plupload</code>
         querystring in the request.
     </p>
+        <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">[<span style="color:#2b91af;">Export</span>(<span style="color:blue;">typeof</span>(<span style="color:#2b91af;">IOutgoingResponse</span>))]
+<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">OutgoingResponse</span>&nbsp;:&nbsp;<span style="color:#2b91af;">IOutgoingResponse</span>
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">bool</span>&nbsp;Execute(<span style="color:#2b91af;">IBackloadContext</span>&nbsp;context,&nbsp;<span style="color:#2b91af;">IOutgoingResponseParam</span>&nbsp;param)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;IMPORTANT&nbsp;NOTE:</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Backload&nbsp;v1.9&nbsp;and&nbsp;above&nbsp;can&nbsp;handle&nbsp;PlUpload&nbsp;internally&nbsp;now.&nbsp;Just&nbsp;send&nbsp;plugin=plupload.&nbsp;You&nbsp;do&nbsp;not&nbsp;need&nbsp;an&nbsp;extension&nbsp;anymore.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Remarks:&nbsp;Don&#39;t&nbsp;forget&nbsp;to&nbsp;rebuild&nbsp;your&nbsp;extension&nbsp;if&nbsp;you&nbsp;made&nbsp;changes&nbsp;to&nbsp;your&nbsp;extension,&nbsp;otherwise&nbsp;you&nbsp;may&nbsp;use&nbsp;the&nbsp;old&nbsp;extension&nbsp;assembly.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(param.FileStatus&nbsp;==&nbsp;<span style="color:blue;">null</span>)&nbsp;<span style="color:blue;">return</span>&nbsp;<span style="color:blue;">false</span>;&nbsp;<span style="color:green;">//&nbsp;In&nbsp;case&nbsp;something&nbsp;went&nbsp;wrong</span>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(context.HttpMethod&nbsp;!=&nbsp;<span style="color:#a31515;">&quot;DELETE&quot;</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;result&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">PlUploadFiles</span>();
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">for</span>&nbsp;(<span style="color:blue;">int</span>&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;param.FileStatus.Files.Count;&nbsp;i++)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;file&nbsp;=&nbsp;param.FileStatus.Files[i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.files.Add(<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">PlUploadFile</span>(file.Success,&nbsp;file.OriginalName,&nbsp;file.FileSize,&nbsp;file.ContentType,&nbsp;file.DeleteUrl,&nbsp;file.ThumbnailUrl,&nbsp;file.FileUrl,&nbsp;file.ErrorMessage));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.Result&nbsp;=&nbsp;<span style="color:#2b91af;">Helper</span>.Json(result);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">else</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Here&nbsp;we&nbsp;use&nbsp;an&nbsp;anonymous&nbsp;type&nbsp;to&nbsp;return&nbsp;some&nbsp;data.&nbsp;PlUpload&nbsp;does&nbsp;not&nbsp;handle&nbsp;server&nbsp;side&nbsp;file&nbsp;deletion,&nbsp;but&nbsp;we&nbsp;made&nbsp;the&nbsp;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;ajax&nbsp;request&nbsp;and&nbsp;so&nbsp;we&nbsp;can&nbsp;return&nbsp;whatever&nbsp;we&nbsp;want.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;file&nbsp;=&nbsp;param.FileStatus.Files[0];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;result&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;{&nbsp;success&nbsp;=&nbsp;file.Success,&nbsp;message&nbsp;=&nbsp;file.ErrorMessage,&nbsp;name&nbsp;=&nbsp;file.FileName&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.Result&nbsp;=&nbsp;<span style="color:#2b91af;">Helper</span>.Json(result);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;(param.FileStatus.Files.Count&nbsp;&gt;&nbsp;0);&nbsp;<span style="color:green;">//&nbsp;if&nbsp;&gt;&nbsp;0&nbsp;we&#39;ve&nbsp;changed&nbsp;properties.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre>
     <br />
     <h4>Conclusion</h4>
     <p>
