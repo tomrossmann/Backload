@@ -1,7 +1,7 @@
 ## Backload
 ===========
 **Backload** is a professional, full featured ASP.NET MVC 4 file upload controller and handler (server side). It has been developed as part of a commercial product for the aero craft industry. 
-While Backload out of the  box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, it can be easily customized to work with any client side plugin (e.g. [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode, see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10).
+While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, it can be easily customized to work with any client side plugin (e.g. [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode, see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10).
 
 ### Roadmap
 #### Cloud storage
@@ -33,7 +33,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Thumbnails: Static (stored in a subfolder) or dynamically (created on a request). 
 * Security: Access control with authentication and authorization (roles based).
 + Extensibility (coming release): Dynamically hook in your own extensions. (Multiple extensions for a specific processing step are supported).
-+ Scalability by asynchronous internal code and asynchronous support for extensions.
++ Eventing: Backloads processing pipeline events enable full control of the request/response data and execution flow.
++ Scalability by asynchronous internal code and asynchronous support for events and extensions.
 
 ### Setup
 [Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)
@@ -52,7 +53,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 08: Extensibility: Writing a simple extension](https://github.com/blackcity/Backload/wiki/Example-08)<br />
 [Example 09: Extensibility: Handle and extend the PlUpload plugin (Moxiecode)](https://github.com/blackcity/Backload/wiki/Example-09)<br />
 [Example 10: Handling exceptions](https://github.com/blackcity/Backload/wiki/Example-10)<br />
-[Example 11: Asynchronous operations with async/await, Tasks and Threads](https://github.com/blackcity/Backload/wiki/Example-11)
+[Example 11: Asynchronous operations with async/await, Tasks and Threads](https://github.com/blackcity/Backload/wiki/Example-11)<br />
+[Example 12: Eventing: Using Backloads server side events](https://github.com/blackcity/Backload/wiki/Example-12)
 
 ### Demo: JQuery File Upload Plugin (original demo) with Backload
 The original demo shipped with the JQuery File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
