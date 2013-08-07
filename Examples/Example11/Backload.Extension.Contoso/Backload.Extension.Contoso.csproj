@@ -30,9 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Backload.Contracts, Version=1.9.0.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
+    <Reference Include="Backload.Contracts, Version=1.9.1.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Backload.Contracts.1.9\lib\net45\Backload.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\Backload.Contracts.1.9.1\lib\net45\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

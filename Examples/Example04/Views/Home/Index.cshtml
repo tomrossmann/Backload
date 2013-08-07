@@ -187,26 +187,28 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;}</pre>
 <p>Method 2: Instantiate a FileUploadHandler object:</p>
-    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;2:&nbsp;Use&nbsp;a&nbsp;common&nbsp;controller,&nbsp;instantiate&nbsp;a&nbsp;FileUploadHandler&nbsp;object&nbsp;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;call&nbsp;HandleRequestAsync,&nbsp;(since&nbsp;version&nbsp;1.9+)&nbsp;on&nbsp;it.</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">FileUploadInstanceController</span>&nbsp;:&nbsp;<span style="color:#2b91af;">Controller</span>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">public</span>&nbsp;<span style="color:blue;">class</span>&nbsp;<span style="color:#2b91af;">FileUploadInstanceController</span>&nbsp;:&nbsp;<span style="color:#2b91af;">Controller</span>
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">async</span>&nbsp;<span style="color:#2b91af;">Task</span>&lt;<span style="color:#2b91af;">ActionResult</span>&gt;&nbsp;FileHandler()
 &nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">async</span>&nbsp;<span style="color:#2b91af;">Task</span>&lt;<span style="color:#2b91af;">ActionResult</span>&gt;&nbsp;FileHandler()
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">FileUploadHandler</span>&nbsp;handler&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">FileUploadHandler</span>(Request,&nbsp;<span style="color:blue;">this</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler.FileUploadedStarted&nbsp;+=&nbsp;FileUploadedStarted;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler.FileUploadedFinished&nbsp;+=&nbsp;handler_FileUploadedFinished;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler.FileUploadException&nbsp;+=handler_FileUploadException;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">ActionResult</span>&nbsp;result&nbsp;=&nbsp;<span style="color:blue;">await</span>&nbsp;handler.HandleRequestAsync();
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;result;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">FileUploadHandler</span>&nbsp;handler&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">FileUploadHandler</span>(Request,&nbsp;<span style="color:blue;">this</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler.IncomingRequestStarted&nbsp;+=&nbsp;handler_IncomingRequestStarted;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">ActionResult</span>&nbsp;result&nbsp;=&nbsp;<span style="color:blue;">await</span>&nbsp;handler.HandleRequestAsync();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;result;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">void</span>&nbsp;handler_IncomingRequestStarted(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">IncomingRequestEventArgs</span>&nbsp;e)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo:&nbsp;Disallow&nbsp;PUT&nbsp;request&nbsp;within&nbsp;the&nbsp;event&nbsp;handler.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(e.Context.HttpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;PUT&quot;</span>)&nbsp;e.Context.PipelineControl.ExecutePipeline&nbsp;=&nbsp;<span style="color:blue;">false</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre>
     <br />
     <h4>Conclusion</h4>
     <p>
         This example shows how to use your own controllers to receive a request, to some processing and then call the Backload. handler. To test it, switch the urls in the main.js file 
-        and set breakpoints in both controller methods. Note: As a demo only, we've registered an event handler in this example, in order to cancel file strorage, if the file type is inappropriate. 
+        and set breakpoints in both controller methods. Note: As a demo only, we've registered an event handler in this example, in order to disallow PUT requests. 
     </p>
     <br />
     <h5>License information</h5>

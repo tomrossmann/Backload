@@ -46,13 +46,13 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Backload, Version=1.9.0.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
+    <Reference Include="Backload, Version=1.9.1.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Backload.1.9.0.0\lib\net45\Backload.dll</HintPath>
+      <HintPath>bin\Backload.dll</HintPath>
     </Reference>
-    <Reference Include="Backload.Contracts, Version=1.9.0.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
+    <Reference Include="Backload.Contracts, Version=1.9.1.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Backload.1.9.0.0\lib\net45\Backload.Contracts.dll</HintPath>
+      <HintPath>bin\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">

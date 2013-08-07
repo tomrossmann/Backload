@@ -33,35 +33,16 @@ namespace Backload.Examples.Example04.Controllers
         public async Task<ActionResult> FileHandler()
         {
             FileUploadHandler handler = new FileUploadHandler(Request, this);
-            handler.FileUploadedStarted += FileUploadedStarted;
-            handler.FileUploadedFinished += handler_FileUploadedFinished;
-            handler.FileUploadException +=handler_FileUploadException;
-            ActionResult result = await handler.HandleRequestAsync();
+            handler.IncomingRequestStarted += handler_IncomingRequestStarted;
 
+            ActionResult result = await handler.HandleRequestAsync();
             return result;
         }
 
-        void FileUploadedStarted(object sender, Backload.Eventing.UploadStartedEventArgs e)
+        void handler_IncomingRequestStarted(object sender, Eventing.Args.IncomingRequestEventArgs e)
         {
-            // Example: Prevent files of type gif to be uploaded
-            if (e.ContentType == "image/gif")
-            {
-                // Cancel uploading processing of the incoming file
-                e.CancelAction = true;
-                e.CancelMessage = "Upload canceled, File type not accepted";
-            }
+            // Demo: Disallow PUT request within the event handler.
+            if (e.Context.HttpMethod == "PUT") e.Context.PipelineControl.ExecutePipeline = false;
         }
-        
-        void handler_FileUploadException(object sender, Eventing.UploadExceptionEventArgs e)
-        {
-            // do something
-        }
-
-        void handler_FileUploadedFinished(object sender, Eventing.UploadFinishedEventArgs e)
-        {
-            // error handling
-        }
-
-
     }
 }

@@ -1,0 +1,279 @@
+﻿@{
+    ViewBag.Title = "Backload. Professional ASP.NET MVC File Upload Handler - Example 2";
+}
+
+@section styles {   
+    <!-- Optional: Include jQuery ui themes for the themes switcher -->
+    <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/dark-hive/jquery-ui.css" id="theme" /> -->
+    <link href="~/Content/themes/dark-hive/jquery-ui.css" rel="stylesheet" />
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <link href="~/Content/ColorBox/colorbox.css" rel="stylesheet" />
+    <!-- Optional: Some styles for this demo page -->
+    <link href="~/Content/styles.css" rel="stylesheet" />
+}    
+    
+
+@section scripts {
+    <!-- PlUpload files, latest branch from GitHub -->
+    <link rel="stylesheet" href="Content/PlUpload/jquery.ui.plupload/css/jquery.ui.plupload.css" />
+    <script type="text/javascript" src="Scripts/PlUpload/moxie.min.js"></script>
+    <script type="text/javascript" src="Scripts/PlUpload/plupload.js"></script>
+    <script type="text/javascript" src="Scripts/PlUpload/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
+
+    <!-- Optional: We use the jQuery colorbox plugin to view uploaded images when we click on it. -->
+    <script src="~/Scripts/ColorBox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+}
+<div class="ex-head">
+<h2><span class="bl">Backload.</span>&nbsp;&nbsp;A professional File Upload handler</h2>
+    <span class="theme-switcher-info">Select a jQuery ui theme:</span>
+    <select id="theme-switcher" class="theme-switcher">
+        <option value="base">Base</option>
+        <option value="black-tie">Black Tie</option>
+        <option value="blitzer">Blitzer</option>
+        <option value="cupertino">Cupertino</option>
+        <option value="dark-hive" selected>Dark Hive</option>
+        <option value="dot-luv">Dot Luv</option>
+        <option value="eggplant">Eggplant</option>
+        <option value="excite-bike">Excite Bike</option>
+        <option value="flick">Flick</option>
+        <option value="hot-sneaks">Hot sneaks</option>
+        <option value="humanity">Humanity</option>
+        <option value="le-frog">Le Frog</option>
+        <option value="mint-choc">Mint Choc</option>
+        <option value="overcast">Overcast</option>
+        <option value="pepper-grinder">Pepper Grinder</option>
+        <option value="redmond">Redmond</option>
+        <option value="smoothness">Smoothness</option>
+        <option value="south-street">South Street</option>
+        <option value="start">Start</option>
+        <option value="sunny">Sunny</option>
+        <option value="swanky-purse">Swanky Purse</option>
+        <option value="trontastic">Trontastic</option>
+        <option value="ui-darkness">UI Darkness</option>
+        <option value="ui-lightness">UI Lightness</option>
+        <option value="vader">Vader</option>
+    </select>
+
+    <div class="ex-desc">This is a demo in a series of examples showing the usage and features of <span class="bl">Backload.</span>, a professional full featured ASP.NET MVC file upload server side controller/handler, in the version for the 
+        popular <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">jQuery File Upload plugin from blueimp</a>. 
+        We're using the jQuery ui version here, but you can also use the bootstrap version. This has no influence on the <span class="bl">Backload.</span> controller. For more information on the client side 
+        plugin see <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank">here</a>.<br />
+        <span class="ex-imp">Important note:</span> This example uses jQuery 2.0. Older Browsers (e.g. IE < 9) are <a href="http://blog.jquery.com/2013/04/18/jquery-2-0-released/" target="_blank">not supported</a> anymore since v2.0! Use jQuery v1.9.1 instead.
+    </div>
+</div>
+<div class="ex-inf">
+<h2>Example 12: Using server side events</h2>
+    <p>Since version 1.9.1 server side events have become a first-class citizen within the Backload component. Backload provides
+        events for all steps within the processing pipeline. The events use the same signature as extensions and can be found in the args parameter which always is derived from <code>BackloadEventArgs</code>.
+        This parameter contains an <code>IBackloadContext Context</code> property which holds general data like Request, Response, Controller or PipelineControl. 
+        And it contains an <code>IExtensionParam param</code> property which has more specific information regarding the current pipeline step resp. the current event. 
+        It is derived from <code>IExtensionParam</code> and holds data like the <code>IFileUploadStatus</code>, querystring/form data sent with the request and specific data for the current event (pipeline step).<br />
+        As with extensions, you can edit the event args values which are then processed by the Backload pipeline. For example, you can log requests, 
+        perform database transactions, change uploaded files (e.g. watermarks), remove/add files from/to GET/POST/PUT/DELETE request, change the output completely (see this demo), etc.
+        Note: The settings in this example for the client side plugins are for modern browsers only (JQuery > 2.0). Older Browsers (e.g. IE8 and below) are not supported.
+    </p>
+</div>
+
+<!-- BEGIN: PlUpload Plugin -->
+    <form  method="post" action="/Backload/UploadHandler">
+	    <div id="uploader">
+		    <p>Your browser doesn't have HTML5 or HTML 4 support.</p>
+	    </div>
+    </form>
+<!-- END: PlUpload Plugin -->
+<div class="ex-inf">
+    <br />
+    <h4>Server side event log</h4>
+    <div id="eventlog">
+    </div>
+
+    <h4>Demo 1: IncomingRequestStarted event</h4>
+    <p>
+        <code>IncomingRequestStarted</code> is the first event handler called when a request comes in. In this processing step, the pipeline has processed 
+        parameters (query string and form data) and other data in the request. When this step finishes, initialization is complete. This event handler
+        is a good point to influence the further processing. You may want to set internal or custom variables (e.Param) or stop the processing if the request doesn't match 
+        your criteria. In this demo we disable PUT requests and stop the further processing of the pipeline. Only the outgoing response will be generated and corresponding event handlers/extensions will be called.
+    </p>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">public</span>&nbsp;<span style="color:blue;">void</span>&nbsp;handler_IncomingRequestStarted(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">IncomingRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;1:&nbsp;We&nbsp;forbid&nbsp;PUT&nbsp;requests and stop the execution pipeline</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(e.Context.HttpMethod&nbsp;==&nbsp;<span style="color:#a31515;">&quot;PUT&quot;</span>)&nbsp;e.Context.PipelineControl.ExecutePipeline&nbsp;=&nbsp;<span style="color:blue;">false</span>;
+}</pre>
+
+    <h4>Demo 2: AuthorizeRequestStarted event</h4>
+    <p>
+        The next step the processing pipeline executes is authorization. Within the event handler you can allow or deny authorization 
+        or revert the outcome of the authorization process completely. <code>AuthorizeRequestStarted</code> is a good place to add or remove roles, or change 
+        properties that influence the authorization process (e. g. <code>AllowAnonymous</code>). If you set <code>IsAuthorized</code> to false here, the authorization process will 
+        immediately stop with a negative result and the processing pipeline also stops (<code>PipelineControl.ExecutePipeline = false</code>). We have two demos here.
+        In the first demo we manually allow anonymous access. In the second demo we manually add roles to the current and allowed roles list.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_AuthorizeRequestStarted(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">AuthorizeRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;2a:&nbsp;Force&nbsp;authorization&nbsp;of&nbsp;anonymous&nbsp;users:</span>
+&nbsp;&nbsp;&nbsp;&nbsp;e.Param.AllowAnonymous&nbsp;=&nbsp;<span style="color:blue;">true</span>;
+}</pre>
+
+        <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_AuthorizeRequestStarted(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">AuthorizeRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;2b:&nbsp;Force&nbsp;authorization&nbsp;with&nbsp;roles:</span>
+&nbsp;&nbsp;&nbsp;&nbsp;e.Param.IsAuthenticated&nbsp;=&nbsp;<span style="color:blue;">true</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;e.Param.AllowedRoles.Add(<span style="color:#a31515;">&quot;SomeRole&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;e.Param.CurrentUserRoles.Add(<span style="color:#a31515;">&quot;SomeRole&quot;</span>);
+}</pre>
+
+    <h4>Demo 3: AuthorizeRequestFinished event</h4>
+    <p>The <code>AuthorizeRequestFinished</code> event will be raised when the authorization process has finished with a result in the 
+        <code>e.Param.IsAuthorized</code> property (true: authorized, false: not authorized). In this demo we set this property conditionally to false. This stops the further processing and sets
+        a 403 Forbidden HTTP status code but you can set your own status code. (You can influence the output in the <code>OutGoingResponseCreated</code> event handler resp. extensions).
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_AuthorizeRequestFinished(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">AuthorizeRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;3:&nbsp;Deny&nbsp;authorization&nbsp;with&nbsp;e.Param.IsAuthorized</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(e.Param.CurrentUserRoles.Contains(<span style="color:#a31515;">&quot;SomeOtherRole&quot;</span>))&nbsp;e.Param.IsAuthorized&nbsp;=&nbsp;<span style="color:blue;">false</span>;
+}</pre>
+        
+    <h4>Demo 4: GetFilesRequestStarted event</h4>
+    <p>
+        GET requests belong to the pipeline core. This HTTP method can have two purposes: Retrieving a list of existing files or to get the file data (bytes)
+        of a single file, for example return an image. Both requests are distinguished by the existence of a <code>fileName</code> query string in the url (or an equivalent 
+        form parameter in the body). In this event handler you can change properties like the file name (if set), or filter criteria in <code>FilesFilter</code>. In 
+        this demo we set a filter in order to only return files that match these criteria. Note that <code>e.Param.FileStatus.Files</code> is empty, because no files
+        have been searched so far in the storage location.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_GetFilesRequestStarted(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">GetFilesRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;4:&nbsp;Allow&nbsp;only&nbsp;jpg&nbsp;files</span>
+&nbsp;&nbsp;&nbsp;&nbsp;e.Param.BackloadValues.FilesFilter&nbsp;=&nbsp;<span style="color:#a31515;">&quot;*.jpg&quot;</span>;
+}</pre>
+
+    <h4>Demo 5: GetFilesRequestFinished event</h4>
+    <p>
+        The <code>GetFilesRequestFinished</code> event is raised with the results of the core GET executions method. If the request is for a list of existing files
+        in the storage location, <code>e.Param.FileStatus.Files</code> contains the list of file metadata representing the existing files that match the criteria.
+        If the request was for a single file and the file exists, the <code>e.Param.FileStatus.Files</code> list has a single <code>IFileUploadStatusItem</code> with
+        the metadata and the file data (byte array) in its <code>FileData</code> property. In this demo we limit the list of existing files to 10 items. 
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_GetFilesRequestFinished(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">GetFilesRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;5:&nbsp;Limit&nbsp;the&nbsp;result&nbsp;of&nbsp;returned&nbsp;FileUploadStatusItem&nbsp;array&nbsp;to&nbsp;10&nbsp;items.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(e.Context.RequestType&nbsp;==&nbsp;<span style="color:#2b91af;">RequestType</span>.Default)&nbsp;<span style="color:green;">//&nbsp;GET&nbsp;requests&nbsp;for&nbsp;a&nbsp;file&nbsp;list&nbsp;only,&nbsp;not&nbsp;a&nbsp;single&nbsp;file</span>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">int</span>&nbsp;limit&nbsp;=&nbsp;10;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">int</span>&nbsp;count&nbsp;=&nbsp;e.Param.FileStatus.Files.Count;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(count&nbsp;&gt;&nbsp;limit)&nbsp;e.Param.FileStatus.Files.RemoveRange(limit,&nbsp;count&nbsp;-&nbsp;limit);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre>
+
+    <h4>Demo 6: StoreFileRequestStarted event</h4>
+    <p>
+        POST/PUT requests also belong to the pipeline core. The <code>StoreFileRequestStarted</code> event will be raised for every single file
+        within the request body. This is the place to change properties (even the file data), logging, database transactions, etc. In this demo
+        we replace the file to be stored with a file loaded from the file system. Note that we use the asynchronous event handler.
+    </p> 
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">async</span>&nbsp;<span style="color:#2b91af;">Task</span>&nbsp;handler_StoreFileRequestStartedAsync(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">StoreFileRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;6:&nbsp;Change&nbsp;the&nbsp;file&nbsp;to&nbsp;be&nbsp;stored</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">string</span>&nbsp;filepath&nbsp;=&nbsp;Server.MapPath(<span style="color:#a31515;">&quot;~/Resources/SomeImage.jpg&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;file&nbsp;=&nbsp;e.Param.FileStatusItem;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(System.IO.<span style="color:#2b91af;">File</span>.Exists(filepath))
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">byte</span>[]&nbsp;bytes&nbsp;=&nbsp;<span style="color:blue;">null</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">using</span>&nbsp;(<span style="color:#2b91af;">FileStream</span>&nbsp;stream&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">FileStream</span>(filepath,&nbsp;<span style="color:#2b91af;">FileMode</span>.Open,&nbsp;<span style="color:#2b91af;">FileAccess</span>.Read))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bytes&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:blue;">byte</span>[stream.Length];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">await</span>&nbsp;stream.ReadAsync(bytes,&nbsp;0,&nbsp;(<span style="color:blue;">int</span>)stream.Length);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.FileData&nbsp;=&nbsp;bytes;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.FileSize&nbsp;=&nbsp;bytes.LongLength;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.ContentType&nbsp;=&nbsp;<span style="color:#a31515;">&quot;image/jpeg&quot;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre>
+        
+    <h4>Demo 7: StoreFileRequestFinished event</h4>
+    <p>
+        The <code>StoreFileRequestFinished</code> will be raised when the core POST/PUT method finishes. In this event you may want to 
+        change properties of the file metadata, store the file in an additional location, send a message, log things, etc. In this demo we 
+        add a message to the file metadata which can be sent back to the client.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_StoreFileRequestFinished(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">StoreFileRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;7:&nbsp;Include&nbsp;a&nbsp;message&nbsp;text</span>
+&nbsp;&nbsp;&nbsp;&nbsp;e.Param.FileStatusItem.Message&nbsp;=&nbsp;<span style="color:#a31515;">&quot;Changed&nbsp;the&nbsp;file&quot;</span>;
+}</pre>
+
+    <h4>Demo 8: DeleteFilesRequestStarted event</h4>
+    <p>
+        The <code>DeleteFilesRequestStarted</code> will be raised when the core DELETE method starts. In this event you may want to remove or add 
+        files from/to the delete files list, log events or do other processing. Since we've setup the copiesRoot attribute in the config to "Backup" 
+        we have additional copies of the uploaded files within the ~/Files/Backup folder. On a delete request we now want to delete the backup files too. 
+        In this demo we add the additional files to delete to the DeleteFiles list and let Backload delete the files. To do this we clone the list of
+        the files to delete, change the UploadContext to "Backup" and add the additional file to the DeleteFiles list.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_DeleteFilesRequestFinished(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">DeleteFilesRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;9:&nbsp;In&nbsp;the&nbsp;DeleteFilesRequestStarted&nbsp;event&nbsp;handler&nbsp;we&nbsp;deleted&nbsp;the&nbsp;file&nbsp;in&nbsp;the&nbsp;handler&nbsp;itself.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;In&nbsp;this&nbsp;demo&nbsp;we&nbsp;let&nbsp;the&nbsp;Backload&nbsp;component&nbsp;do&nbsp;this&nbsp;job.&nbsp;Simply&nbsp;add&nbsp;an&nbsp;additional&nbsp;list&nbsp;of&nbsp;files&nbsp;to&nbsp;delete&nbsp;to&nbsp;the&nbsp;e.Param.DeleteFiles&nbsp;list.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">IFileUploadStatus</span>&nbsp;copy&nbsp;=&nbsp;e.Param.DeleteFiles.Clone();&nbsp;<span style="color:green;">//&nbsp;Clones&nbsp;the&nbsp;files&nbsp;to&nbsp;delete&nbsp;list</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">foreach</span>&nbsp;(<span style="color:blue;">var</span>&nbsp;file&nbsp;<span style="color:blue;">in</span>&nbsp;copy.Files)&nbsp;file.UploadContext&nbsp;=&nbsp;<span style="color:#a31515;">&quot;Backup&quot;</span>;&nbsp;<span style="color:green;">//&nbsp;Sets&nbsp;the&nbsp;delete&nbsp;folder&nbsp;for&nbsp;the&nbsp;clone&nbsp;to&nbsp;the&nbsp;Backup&nbsp;folder</span>
+&nbsp;&nbsp;&nbsp;&nbsp;e.Param.DeleteFiles.Files.AddRange(copy.Files);&nbsp;<span style="color:green;">//&nbsp;Adds&nbsp;the&nbsp;clone&nbsp;to&nbsp;the&nbsp;delete&nbsp;list</span>
+}</pre>
+
+    <h4>Demo 9: DeleteFilesRequestFinished event</h4>
+    <p>
+        The <code>DeleteFilesRequestFinished</code> will be raised when the core DELETE method finishes. In this event you may want to delete
+        additional files related to deleted files, log events or do other processing. In this demo we delete the additional files 
+        in the folder <code>~/Files/Backup</code> with the asynchronous event handler using the <code>System.IO.File.Delete()</code> method.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">async</span>&nbsp;<span style="color:#2b91af;">Task</span>&nbsp;handler_DeleteFilesRequestFinishedAsync(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">DeleteFilesRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;9:&nbsp;In&nbsp;the&nbsp;DeleteFilesRequestStarted&nbsp;event&nbsp;handler&nbsp;we&nbsp;added&nbsp;the&nbsp;additional&nbsp;files&nbsp;to&nbsp;the&nbsp;DeleteFiles&nbsp;list.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;In&nbsp;this&nbsp;demo&nbsp;we&nbsp;delete&nbsp;the&nbsp;files&nbsp;manually&nbsp;in&nbsp;the&nbsp;event&nbsp;handler.&nbsp;We&nbsp;do&nbsp;not&nbsp;want&nbsp;to&nbsp;block&nbsp;the&nbsp;ui&nbsp;thread,&nbsp;so&nbsp;we&nbsp;do&nbsp;it&nbsp;asynchronous.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">await</span>&nbsp;<span style="color:#2b91af;">Task</span>.Factory.StartNew(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;()&nbsp;=&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">foreach</span>&nbsp;(<span style="color:blue;">var</span>&nbsp;file&nbsp;<span style="color:blue;">in</span>&nbsp;e.Param.DeleteFiles.Files)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">if</span>&nbsp;(System.IO.<span style="color:#2b91af;">File</span>.Exists(file.StorageInfo.CopyPath))&nbsp;System.IO.<span style="color:#2b91af;">File</span>.Delete(file.StorageInfo.CopyPath);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});
+}</pre>
+
+        <h4>Demo 10: OutgoingResponseCreated event</h4>
+    <p>
+        The <code>OutgoingResponseCreated</code> will be raised when the output was created. The output returned to the client is in 
+        <code>e.Param.Result</code>. You can completely change the output. In this demo we want to return extra data (event log) to the client. 
+        We need to add this to the JSON output as an additional JSON object. The easiest way to do this is to create an anonymous object and 
+        assign it to the Data property of the JsonResult object.
+    </p>   
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">void</span>&nbsp;handler_OutgoingResponseCreated(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">OutgoingResponseEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;e.Context.PipelineControl.Message.MessageText&nbsp;+=&nbsp;<span style="color:blue;">string</span>.Format(_logpattern,&nbsp;<span style="color:#a31515;">&quot;log-out&quot;</span>,&nbsp;<span style="color:#a31515;">&quot;OutgoingResponseCreated&quot;</span>,&nbsp;<span style="color:#2b91af;">DateTime</span>.Now.ToLongTimeString())&nbsp;+&nbsp;<span style="color:#a31515;">&quot;&amp;nbsp;&lt;br&nbsp;/&gt;&quot;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;_logevent&nbsp;=&nbsp;e.Context.PipelineControl.Message.MessageText;
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Demo&nbsp;10:&nbsp;Because&nbsp;we&nbsp;want&nbsp;to&nbsp;return&nbsp;extra&nbsp;data&nbsp;(event&nbsp;log)&nbsp;to&nbsp;the&nbsp;client&nbsp;we&nbsp;need&nbsp;to&nbsp;add&nbsp;this&nbsp;to&nbsp;the&nbsp;JSON&nbsp;output&nbsp;as&nbsp;an&nbsp;additional&nbsp;JSON&nbsp;object.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;The&nbsp;easiest&nbsp;way&nbsp;to&nbsp;do&nbsp;this&nbsp;is&nbsp;to&nbsp;create&nbsp;an&nbsp;anonymous&nbsp;object&nbsp;and&nbsp;assign&nbsp;it&nbsp;to&nbsp;the&nbsp;Data&nbsp;property&nbsp;of&nbsp;the&nbsp;JsonResult&nbsp;object:</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;result&nbsp;=&nbsp;(<span style="color:#2b91af;">JsonResult</span>)e.Param.Result;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">var</span>&nbsp;plupload&nbsp;=&nbsp;(<span style="color:#2b91af;">PlUpload</span>)result.Data;&nbsp;<span style="color:green;">//&nbsp;JsonResult.Data&nbsp;is&nbsp;always&nbsp;of&nbsp;type&nbsp;object.&nbsp;We&nbsp;convert&nbsp;it&nbsp;to&nbsp;the&nbsp;underlying&nbsp;PlUpload&nbsp;object.</span>
+&nbsp;&nbsp;&nbsp;&nbsp;result.Data&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;{&nbsp;files&nbsp;=&nbsp;plupload.files,&nbsp;eventlog&nbsp;=&nbsp;e.Context.PipelineControl.Message.MessageText&nbsp;};&nbsp;<span style="color:green;">//&nbsp;Assing&nbsp;anonymous&nbsp;object</span>
+}</pre>
+
+    <br />
+    <h4>Conclusion</h4>
+    <p>
+        In this we example showed you some events raised when a specific point in the processing pipeline is reached. The args parameter of the event handler has 
+        almost the same signature as the corresponding extensions with an <code>IBackloadContext</code> and a parameter derived from <code>IExtensionParam</code> 
+        which has more specific properties for the current step in the processing pipeline. We can completely change the processing data, influence 
+        the pipeline's execution flow, do logging, web requests, database transactions or create our custom output for the client. Try to use asynchronous code in 
+        long running resp. I/O tasks
+    </p>
+    <br />
+    <h5>License information</h5>
+    <p class="licenses">
+        <a href="https://github.com/blackcity/backload" target="_blank">Backload. (Standard version):</a> Copyright 2013, Steffen Habermehl, License (Standard version): <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT license</a>,<br />
+        <a href="mailto:s.habermehl@freenet.de" target="_blank">Professional and Enterprise versions</a> are only available under a commercial license.<br />
+        Follow us on Twitter: <a href="https://twitter.com/backload_mvc" target="_blank">&#0064;Backload_MVC</a>
+	</p>
+</div>
+
