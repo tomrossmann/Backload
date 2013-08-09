@@ -88,6 +88,28 @@
     <div id="eventlog">
     </div>
 
+    <h4>Register event handlers</h4>
+    <p>
+        Registering an event handler is the same process like in WebForms or in WPF applications. Backloads pipeline events are declared in the <code>FileUploadHandler</code> class. 
+        All events have an additional asynchronous version which end with "Async", for example <code>IncomingRequestStartedAsync</code>. There's no need to use the asynchronous version 
+        of an event handler in normal code. Use it for long running tasks like file I/O, web requests, database transactions with remote servers, etc.
+        If you are relatively new to events Visual Studio helps you to register an event handler: Type in your instance name of the <code>FileUploadHandler</code> class (e.g. <code>handler</code> and choose
+        an event name (e.g. <code>OutgoingResponseCreated</code>). Then type "+=" and press the TAB key. Visual Studio automatically inserts an empty handler for you with the correct signature. 
+    </p>
+        <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">public</span>&nbsp;<span style="color:blue;">async</span>&nbsp;<span style="color:#2b91af;">Task</span>&lt;<span style="color:#2b91af;">ActionResult</span>&gt;&nbsp;FileHandler()
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">FileUploadHandler</span>&nbsp;handler&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">FileUploadHandler</span>(Request,&nbsp;<span style="color:blue;">this</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;handler.IncomingRequestStarted&nbsp;+=&nbsp;handler_IncomingRequestStarted;
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">ActionResult</span>&nbsp;result&nbsp;=&nbsp;<span style="color:blue;">await</span>&nbsp;handler.HandleRequestAsync();
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;result;
+}
+
+<span style="color:blue;">public</span>&nbsp;<span style="color:blue;">void</span>&nbsp;handler_IncomingRequestStarted(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">IncomingRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;do something</span>
+}</pre><br />
+
     <h4>Demo 1: IncomingRequestStarted event</h4>
     <p>
         <code>IncomingRequestStarted</code> is the first event handler called when a request comes in. In this processing step, the pipeline has processed 
