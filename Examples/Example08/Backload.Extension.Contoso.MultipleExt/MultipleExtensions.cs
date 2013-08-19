@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Backload.Extension.Contoso
 {
-    // Comment in the following code. Each extension extends the path where the files should be stored
+    // Multiple extensions demo: Each extension extends the path where the files should be stored
     // In a complex situation, you may have multiple extensions and each is responsible for calculating a single subfolder.
 
     // UploadContext is a subfolder of ObjectContext. A tree of subfolders can be achieved by seperating the subfolder names with a semicolon.

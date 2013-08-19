@@ -47,13 +47,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Backload, Version=1.9.1.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
+    <Reference Include="Backload, Version=1.9.2.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Backload.1.9.1.0\lib\net45\Backload.dll</HintPath>
+      <HintPath>..\packages\Backload.1.9.2.0\lib\net45\Backload.dll</HintPath>
     </Reference>
-    <Reference Include="Backload.Contracts, Version=1.9.1.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Backload.1.9.1.0\lib\net45\Backload.Contracts.dll</HintPath>
+    <Reference Include="Backload.Contracts, Version=1.9.2.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Backload.1.9.2.0\lib\net45\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -351,20 +350,17 @@
     <Content Include="packages.config" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <None Include="Web.Backload.Default.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.FileUpload.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web.FileUpload.Default.config" />
-    <None Include="Web.FileUploadGroup.xsd">
+    <None Include="Web.Backload.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.FileUpload.xsd">
+    <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />

@@ -358,17 +358,14 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <None Include="Web.Backload.Default.config" />
+    <None Include="Web.Backload.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.FileUpload.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web.FileUpload.Default.config" />
-    <None Include="Web.FileUpload.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web.FileUploadGroup.xsd">
+    <None Include="Web.Backload.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
@@ -379,7 +376,6 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="packages.config" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
