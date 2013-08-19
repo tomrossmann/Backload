@@ -4,7 +4,7 @@
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10).
 
 ### IMPORTANT NOTE
-Since version 1.9.2.0 the configuration declaration has changed. This may cause errors if you leave your declaration and root element name unchanged. Read more about this [here](https://github.com/blackcity/Backload/wiki/Configuration).
+Since version 1.9.2.0 the configuration declaration has changed. This may cause errors if you leave your declaration and root element name unchanged. Read more about this [here](https://github.com/blackcity/Backload/wiki/Config-changes).
 
 ### Roadmap
 #### Cloud storage
