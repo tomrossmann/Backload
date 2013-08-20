@@ -48,10 +48,10 @@
       <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Backload">
-      <HintPath>..\..\packages\Backload.1.9.2.1\lib\net45\Backload.dll</HintPath>
+      <HintPath>..\..\packages\Backload.1.9.2.2\lib\net45\Backload.dll</HintPath>
     </Reference>
     <Reference Include="Backload.Contracts">
-      <HintPath>..\..\packages\Backload.1.9.2.1\lib\net45\Backload.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\Backload.1.9.2.2\lib\net45\Backload.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

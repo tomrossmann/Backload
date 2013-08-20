@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Backload</id>
-        <version>1.9.2.1</version>
+        <version>1.9.2.2</version>
         <title>Backload. A professional, full featured ASP.NET MVC 4 file upload controller</title>
         <authors>Steffen Habermehl</authors>
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
@@ -111,7 +111,7 @@ This Release:
         <file src="content\Web.FileUpload.xsd" target="content\Web.FileUpload.xsd" />
         <file src="lib\net45\de\Backload.resources.dll" target="lib\net45\de\Backload.resources.dll" />
         <file src="lib\net45\Backload.Contracts.dll" target="lib\net45\Backload.Contracts.dll" />
-        <file src="..\lib\Backload.dll" target="lib\net45\Backload.dll" />
+        <file src="lib\net45\Backload.dll" target="lib\net45\Backload.dll" />
         <file src="Readme.txt" target="Readme.txt" />
     </files>
 </package>
