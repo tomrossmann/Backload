@@ -26,6 +26,7 @@ namespace Backload.Examples.Example13.Controllers
 
         public void handler_IncomingRequestStarted(object sender, Eventing.Args.IncomingRequestEventArgs e)
         {
+            // throw new Exception("Demo exception to be shown in the trace output");
         }
 
     }

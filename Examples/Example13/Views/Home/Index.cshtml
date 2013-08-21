@@ -55,9 +55,9 @@
     </div>
 </div>
 <div class="ex-inf">
-<h2>Example 13: Use tracing to identify problems and log errorsg </h2>
-    <p>Since version 1.9.2 standard .NET tracing is implemented in <span class="bl">Backload.</span> You can bind multiple different trace listeners to the <code>TraceSource/TraceSource</code> Backload provides.
-        Backload uses the TraceEvent mechanism to output trace messages. This enables you to set different levels of trace events to be received: Off, Critical, Error, Warning, Information and Verbose.
+<h2>Example 13: Use tracing to identify problems and log errors</h2>
+    <p>Since version 1.9.2 standard .NET tracing is implemented in <span class="bl">Backload.</span> You can bind multiple different trace listeners to the <code>TraceSource</code> Backload provides.
+        Backload uses the <code>TraceSource/TraceEvent</code> mechanism to output trace messages. This enables you to set different levels of trace events to be received: Off, Critical, Error, Warning, Information and Verbose.
         Backload uses all this levels. If you set the level to Off, tracing is disabled. In this demo we've added 4 different trace listeners to receive trace events. 
         A <code>TextWriterTraceListener</code> to save errors to a log file (text), a XmlWriterTraceListener to log to a XML file for the Microsoft Service Trace Viewer, a Ukadc.Diagnostics FileTraceListener (CodePlex)
         and Glimpse to show Trace messages on the website itself. Note: Glimpse has known problems with asynchronous code, so it stops tracing when asynchronous code is executed.   
@@ -185,7 +185,21 @@
    ...</pre>
 <br />
 
-    <h4>Demo 2: Trace output to log files</h4>
+    <h4>Demo 3: Throw an exception for demo purposes</h4>
+    <p>
+        In this demo we throw an exception and look if the error is logged. Go the the ~/Controllers/FileUploadController.cs file and uncomment the code below:
+    </p>
+    <pre style="font-family: Consolas; font-size: 13px; color: black; background: white;"><span style="color:blue;">public</span>&nbsp;<span style="color:blue;">void</span>&nbsp;handler_IncomingRequestStarted(<span style="color:blue;">object</span>&nbsp;sender,&nbsp;Eventing.Args.<span style="color:#2b91af;">IncomingRequestEventArgs</span>&nbsp;e)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">throw</span>&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:#2b91af;">Exception</span>(<span style="color:#a31515;">&quot;Demo&nbsp;exception&nbsp;to&nbsp;be&nbsp;shown&nbsp;in&nbsp;the&nbsp;trace&nbsp;output&quot;</span>);
+}</pre>
+    <p>
+        The trace message in the log file (~/logs/backload.log), which we configured to receive only errors, will look like this:<br />
+        <code>Backload Error: 10030080 : Exception occured in Environment initialization: Demo exception to be shown in the trace output.</code>
+    </p>
+    <br />
+
+    <h4>Demo 3: Trace output to log files</h4>
     <p>
         To configure tracing, .NET uses the <code>Web.config</code> and the <code>&lt;System.Diagnostics /&gt;</code> section. Uncomment the code in the <code>Web.config</code> below.
         In this configuration we add 2 listeners to the listeners list, a <code>TextWriterTraceListener</code> which outputs to a log (text) file and a <code>XmlWriterTraceListener</code>
@@ -220,7 +234,7 @@
 <span style="color:blue;">&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">switches</span><span style="color:blue;">&gt;</span>
 <span style="color:blue;">&lt;/</span><span style="color:#a31515;">system.diagnostics</span><span style="color:blue;">&gt;</span></pre>
     <br />
-    <h4>Demo 3: Add more listeners</h4>
+    <h4>Demo 4: Add more listeners</h4>
     <p>
         You can add more listeners and also remove them. Listeners can output the trace events they collect to files, databases, to web services, to the memory, etc.
         Some basic trace listeners are already provided by the .NET Framework. Third party logging frameworks (e.g. log4net) provide additional listeners
@@ -256,7 +270,9 @@
 <span style="color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#a31515;">add</span><span style="color:blue;">&nbsp;</span><span style="color:red;">name</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">traceLevel</span>&quot;<span style="color:blue;">&nbsp;</span><span style="color:red;">value</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">Information,&nbsp;ActivityTracing</span>&quot;<span style="color:blue;">&nbsp;/&gt;</span>
 <span style="color:blue;">&nbsp;&nbsp;&lt;/</span><span style="color:#a31515;">switches</span><span style="color:blue;">&gt;</span>
 <span style="color:blue;">&lt;/</span><span style="color:#a31515;">system.diagnostics</span><span style="color:blue;">&gt;</span></pre>
-     <h4>Demo 4: Turn off tracing</h4>
+    <br />
+     
+    <h4>Demo 5: Turn off tracing</h4>
     <p>
         To turn off tracing simply set the switch level to <code>Off</code>. Another way is to remove all trace listeners from the
         <code>&lt;listeners&gt;</code> list or use <code>&lt;clear /&gt;</code> at the end of the list if you only want to remove them temporarily.
