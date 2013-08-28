@@ -67,6 +67,9 @@ The original demo shipped with the JQuery File Upload Plugin working with the Ba
 ###News, releases, plans and more
 Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload_mvc)
 
+###Direct contact
+Only for commercial customers: backload.mvc [at] gmail [dot] com.
+
 ### License
 [Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license<br />
 Professional and Enterprise (source code) version are available under a commercial license.<br/>
