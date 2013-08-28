@@ -57,13 +57,18 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 09: Extensibility: Handle and extend the PlUpload plugin (Moxiecode)](https://github.com/blackcity/Backload/wiki/Example-09)<br />
 [Example 10: Handling exceptions](https://github.com/blackcity/Backload/wiki/Example-10)<br />
 [Example 11: Asynchronous operations with async/await, Tasks and Threads](https://github.com/blackcity/Backload/wiki/Example-11)<br />
-[Example 12: Eventing: Using Backloads server side events](https://github.com/blackcity/Backload/wiki/Example-12)
+[Example 12: Eventing: Using Backloads server side events](https://github.com/blackcity/Backload/wiki/Example-12)<br />
+[Example 13: Tracing: Use tracing to identify problems and log errors](https://github.com/blackcity/Backload/wiki/Example-13)
+
 
 ### Demo: JQuery File Upload Plugin (original demo) with Backload
 The original demo shipped with the JQuery File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
 
 ###News, releases, plans and more
 Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload_mvc)
+
+###Direct contact
+Only for commercial customers: backload.mvc [at] gmail [dot] com.
 
 ### License
 [Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license<br />
