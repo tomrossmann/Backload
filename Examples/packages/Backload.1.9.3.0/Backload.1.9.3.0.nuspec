@@ -121,6 +121,6 @@ Bug fixes:
         <file src="..\lib\net40\Backload.dll" target="lib\net40\Backload.dll" />
         <file src="..\lib\net45\Backload.Contracts.dll" target="lib\net45\Backload.Contracts.dll" />
         <file src="..\lib\net45\Backload.dll" target="lib\net45\Backload.dll" />
-        <file src="..\Readme.txt" target="Readme.txt" />
+        <file src="Readme.txt" target="Readme.txt" />
     </files>
 </package>
