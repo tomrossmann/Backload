@@ -70,6 +70,7 @@
 <form id="fileupload" action="/Backload/UploadHandler" method="POST" enctype="multipart/form-data">
 <div class="ex-fup">
     <span class="artists-list-info">Please select an artist:</span>
+    <!-- Note: objectContext set -->
     <select id="artists" name="objectContext" class="artists-list">
     @foreach (var artist in Model)
     {
@@ -78,6 +79,7 @@
         <option value="malicious_or_bad_request">Demo: Bad/Malicíous request</option>
     </select>
     <span class="periods-list-info">Please select a period:</span>
+    <!-- Note: uploadContext set -->
     <select id="periods" name="uploadContext" class="periods-list">
         <option value="youth">Youth</option>
         <option value="adult" selected>Adulthood</option>

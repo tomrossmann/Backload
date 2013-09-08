@@ -2,7 +2,7 @@ $(function () {
     // We use the client querystring only for demo purposes. You'll see, Backload can  
     // can handle any file upload control side by side at the same time with the help of extensions.
     // You do not need to include this querystring, if you only serve a specific plugin type
-    var backloadController = "/Backload/UploadHandler?plugin=plupload";
+    var backloadController = "/Backload/UploadHandler?plugin=PlUpload";
 
     $("#uploader").plupload({
         runtimes: 'html5,html4',
@@ -11,7 +11,7 @@ $(function () {
         max_file_count: 64, // user can add no more then 10 files at a time
         rename: true,
         multiple_queues: true,
-        filters: [{ title: "Image files", extensions: "jpg,gif,png" }], // Specify what files to browse for
+        filters: [{ title: "Image files", extensions: "jpg,gif,png,pdf" }], // Specify what files to browse for
         preinit: { Init: function (up) {  } },  // Do init stuff here 
         views: { list: true, thumbs: true, active: 'thumbs' }
     });

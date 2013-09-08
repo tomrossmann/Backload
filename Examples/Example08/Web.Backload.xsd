@@ -141,6 +141,7 @@
                 </xs:restriction>
               </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="maxFileSize" type="xs:unsignedLong" default="0" use="optional"><xs:annotation><xs:documentation>Max file size (bytes) of an image to be processed by the image processing sub pipeline. If the file size is bigger, the image is stored directly bypassing image processing [Default: "0" (unlimited)].</xs:documentation></xs:annotation></xs:attribute>
           </xs:complexType>
         </xs:element>
         <xs:element name="security" minOccurs="0">
@@ -148,6 +149,7 @@
             <xs:documentation>Security related settings. By default there are no restrictions. If you need a deeper control, set up your own controller to receive the request, do the authentication/authorization and then call the handler.</xs:documentation>
           </xs:annotation>
           <xs:complexType>
+            <xs:attribute name="forceObjectContext" type="xs:boolean" default="false" use="optional"><xs:annotation><xs:documentation>A request must always include an none empty objectContext parameter (query or form) to be valid. If you use "objectContext" to store/retirieve user related files, a malicious request could reveal some other users files, if forceObjectContext is false [Default:"false"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="allowAnonymous" type="xs:boolean" default="true" use="optional"><xs:annotation><xs:documentation>True: Anyone is allowed, false: The user must be authenticated [Default: "true"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="allowedDownloadRoles" type="xs:string" default="*" use="optional"><xs:annotation><xs:documentation>By default there are no restrictions on who can download files by a GET request. You can change this by adding a comma separated list of roles [Default: "*"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="allowedUploadRoles" type="xs:string" default="*" use="optional"><xs:annotation><xs:documentation>By default there are no restrictions on who can upload files whithin a POST/PUT request. You can change this by adding a comma separated list of roles [Default: "*"]</xs:documentation></xs:annotation></xs:attribute>
@@ -207,6 +209,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="JQueryFileUpload"><xs:annotation><xs:documentation>Generates Json for the JQueryFileUpload plugin from blueimp [Default]</xs:documentation></xs:annotation></xs:enumeration>
             <xs:enumeration value="PlUpload"><xs:annotation><xs:documentation>Generates Json for the PlUpload plugin from Moxiecode</xs:documentation></xs:annotation></xs:enumeration>
+            <xs:enumeration value="FineUploader"><xs:annotation><xs:documentation>Generates Json for the Fine Uploader from Widen Enterprises</xs:documentation></xs:annotation></xs:enumeration>
             <xs:enumeration value="Auto"><xs:annotation><xs:documentation>Send a (not case sensitive) plugin=[JQueryFileUpload|PlUpload|Custom] querystring with your request (Example: plugin=plupload). This the same as the extensions by convetion based approach to select extensions (See example 09)</xs:documentation></xs:annotation></xs:enumeration>
             <xs:enumeration value="Custom"><xs:annotation><xs:documentation>Does not generate an output before calling the OutgoingResponse extension manager. You have to generate your own output in an OutgoingResponse extension. Otherwise Backload returns a Json null string to the client.</xs:documentation></xs:annotation></xs:enumeration>
           </xs:restriction>

@@ -21,7 +21,7 @@ $(function () {
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         url: fileUploadUrl,
-        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)$/i // Allowed file types
+        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(pdf)$/i // Allowed file types
     });
 
 

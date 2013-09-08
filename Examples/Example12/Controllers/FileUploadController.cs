@@ -138,7 +138,7 @@ namespace Backload.Examples.Example12.Controllers
         void handler_StoreFileRequestFinished(object sender, Eventing.Args.StoreFileRequestEventArgs e)
         {
             // Demo 7: Include a message text
-            // e.Param.FileStatusItem.Message = "Changed the file";
+            // e.Param.FileStatusItem.Message = "Changed the storag ";
             e.Context.PipelineControl.Message.MessageText += string.Format(_logpattern, "log-post", "StoreFileRequestFinished", DateTime.Now.ToLongTimeString());
         }
 

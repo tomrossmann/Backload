@@ -35,7 +35,7 @@ namespace Backload.Extension.Contoso.Plugin.PlUpload
             //    if ((string.IsNullOrEmpty(control)) || (control != "plupload")) return false;
 
             //
-            // Remarks: Don't forget to rebuild your extension if you made changes to your extension, otherwise you may use the old extension assembly.
+            // Remarks: Don't forget to rebuild your solution if you made changes to your extension, otherwise you may use the old extension assembly.
             if (param.FileStatus == null) return false; // In case something went wrong
 
             if (context.HttpMethod != "DELETE")

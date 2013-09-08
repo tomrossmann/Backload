@@ -29,7 +29,7 @@ namespace Backload.Extension.Contoso
         {
 
             // Demo 2: Comment out the following line and rebuild the solution 
-             return false;
+            return false;
 
             if (context.HttpMethod == "POST")
             {

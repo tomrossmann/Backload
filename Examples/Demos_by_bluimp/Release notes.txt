@@ -35,3 +35,4 @@ Example 08: Extensibility: Writing extensions
 Example 09: Extensibility: Handling PlUpload (Moxiecode) and make it a full filemanager
 Example 10: Handling exceptions
 Example 11: Asynchronous operations with async/await, Tasks and Threads
+Example 12: Server side events of the processing pipeline

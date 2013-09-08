@@ -18,12 +18,12 @@ $(function () {
     // Upload directly to the Backload server side file upload handler. This is the default upload controller of the Backload. handler
     // In this example we added a "plugin" querystring, so the extension manager for the PlUpload extension gets notified not to handle this request.
     // We use convention besed extension handling (see extension code for more info).
-    var fileUploadUrl = "/Backload/UploadHandler?plugin=jqupload";
+    var fileUploadUrl = "/Backload/UploadHandler?plugin=JQueryFileUpload";
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         url: fileUploadUrl,
-        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)$/i // Allowed file types
+        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(pdf)$/i // Allowed file types
     });
 
 
