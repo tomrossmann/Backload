@@ -27,9 +27,6 @@ $(function () {
         previewMaxWidth: 80,
         previewMaxHeight: 60,
         acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(pdf)|(doc)|(docx)$/i // Allowed file types
-    })
-    .bind('fileuploaddrop', function (e, data) {
-        var s = data; /* ... */
     });
 
 
@@ -56,7 +53,20 @@ $("document").ready(function () {
     // There must be a little delay, because the fileuploaddone event is triggered before the new template item is created.
     // A more elegant solution would be to use jQuery's delegated .on method, which automatically binds to the anchors in a
     // newly created template item, and then call colorbox manually.
-    $('#fileupload').bind('fileuploaddone', function (e, data) {
-        setTimeout(function(){$(".files tr[data-type=image] a").colorbox()}, 1000);
-    })
+    $('#fileupload')
+        .bind('fileuploaddone', function (e, data) {
+            setTimeout(function () { $(".files tr[data-type=image] a").colorbox() }, 1000);
+        })
+        
+        // You do not need the following.
+        //.bind('fileuploaddestroy', function (e, data) {
+        //    var s = data.url.split("?");                                // Split and replace is way faster than RegEx here
+        //    s[1] = s[1].replace("fileName=", "").replace(".", ",");     // Make the url RESTful compliant and remove dots 
+        //                                                                // because otherwise IIS treats this as a path to a file
+        //                                                                // and it will not be routed by the Web API
+        //    data.url = s[0] + s[1];                                     // Note: Server side we must add the file manually to the 
+        //                                                                // e.Param.BackloadValues.FileName property in the IncomingRequestStarted event handler
+        //});
+        
+
 });
