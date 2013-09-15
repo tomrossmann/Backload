@@ -1,10 +1,7 @@
 ## Backload
 ===========
-**Backload** is a professional, full featured ASP.NET MVC 4 file upload controller and handler (server side). It has been developed as part of a commercial product for the aero craft industry. 
+**Backload** is a professional, full featured file uplopload controller and handler (server side) for ASP.NET MVC 4 (Web API and standard ASP.NET are also supported, see code examples). It has been developed as part of a commercial product for the aero craft industry. 
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10).
-
-### IMPORTANT NOTE
-Since version 1.9.2.0 the configuration declaration has changed. This may cause errors if you leave your declaration and root element name unchanged. Read more about this [here](https://github.com/blackcity/Backload/wiki/Config-changes).
 
 ### Roadmap
 #### Cloud storage
@@ -59,8 +56,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 10: Handling exceptions](https://github.com/blackcity/Backload/wiki/Example-10)<br />
 [Example 11: Asynchronous operations with async/await, Tasks and Threads](https://github.com/blackcity/Backload/wiki/Example-11)<br />
 [Example 12: Eventing: Using Backloads server side events](https://github.com/blackcity/Backload/wiki/Example-12)<br />
-[Example 13: Tracing: Use tracing to identify problems and log errors](https://github.com/blackcity/Backload/wiki/Example-13)
-
+[Example 13: Tracing: Use tracing to identify problems and log errors](https://github.com/blackcity/Backload/wiki/Example-13)<br />
+[Code example: How to use the Backload component with the Web API and standard ASP.NET](https://github.com/blackcity/Backload/tree/master/Examples/_HowTos)
 
 ### Demo: JQuery File Upload Plugin (original demo) with Backload
 The original demo shipped with the JQuery File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
@@ -69,7 +66,7 @@ The original demo shipped with the JQuery File Upload Plugin working with the Ba
 Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload_mvc)
 
 ###Direct contact
-Only for commercial customers: backload.mvc [at] gmail [dot] com.
+For customers and commercial requests only: backload.mvc [at] gmail [dot] com.
 
 ### License
 [Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license<br />
