@@ -38,6 +38,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 + Extensibility (coming release): Dynamically hook in your own extensions. (Multiple extensions for a specific processing step are supported).
 + Eventing: Backloads processing pipeline events enable full control of the request/response data and execution flow.
 + Scalability by asynchronous internal code and asynchronous support for events and extensions.
++ Tracing: Use standard .NET tracing to find proplems during development or log errors in production.
 
 ### Setup
 [Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)
