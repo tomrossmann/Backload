@@ -62,10 +62,16 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 ### Demo: JQuery File Upload Plugin (original demo) with Backload
 The original demo shipped with the JQuery File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
 
-###News, releases, plans and more
+### Frequently asked questions
+Before posting read the [faq](https://github.com/blackcity/Backload/wiki/faq)
+
+### Licenses and versions
+More about the different [licenses](https://github.com/blackcity/Backload/wiki/faq#versions-and-licenses)
+
+### News, releases, plans and more
 Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload_mvc)
 
-###Direct contact
+### Direct contact
 For customers and commercial requests only: backload.mvc [at] gmail [dot] com.
 
 ### License
