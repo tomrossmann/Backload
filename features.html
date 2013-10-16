@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Backload. A Server Side File Handler</title>
+    <link href="Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/styles.css" rel="stylesheet" />
+    <link href="Content/features.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-border-bottom">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Backload.</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="active"><a href="#">Features</a></li>
+            <li><a href="editions.html">Editions</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">NuGet Packages <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.nuget.org/packages/Backload/" target="_blank">Backload Core Package</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.nuget.org/packages/JQuery_File_Upload_Plugin/" target="_blank">Productivity Package</a></li>
+                <li><a href="http://www.nuget.org/packages/JQueryFileUpload_Demo_with_Backload/" target="_blank">Full Demo Package</a></li>
+              </ul>
+            </li>
+            <li><a href="https://github.com/blackcity/Backload#examples" target="_blank">Examples</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/blackcity/Backload/wiki#general" target="_blank">Documentation</a></li>
+                <li class="divider"></li>
+                <li><a href="https://github.com/blackcity/Backload/wiki/Faq" target="_blank">FAQ</a></li>
+                <li><a href="https://github.com/blackcity/Backload/wiki/Release-notes#releases" target="_blank">Release Notes</a></li>
+              </ul>
+            </li>
+            <li><a href="https://github.com/blackcity/Backload/issues" target="_blank">Issues</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="features">
+        <h2>Features</h2>
+        <p>Backload has built-in support for complex storage structures without a single line of code, automatic thumbnail creation, 
+            image processing, support for several client side file upload plugins, file bundeling, security, and more. When it comes to exceptions or upload problems, the tracing feature helps to identify errors.
+            All features can be customized declaratively (config file) or in your code. With release 2.0 Backload also supports 
+            uploads to a cloud storage. 
+        </p>
+
+        <!-- Feature Wrapper -->
+        <div class="feature_wrapper">
+
+            <!-- Features Row -->
+            <div class="row">
+                <!-- Feature -->
+                <div class="col-sm-4">
+
+                    <div class="feature">
+                        <img class="ribbon" src="Content/images/standard_badge.png" />
+                        <div class="img">
+                            <img src="Content/images/feat_config.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Highly configurable</h6>
+                            <p>
+                                Backload is highly configurable - declaratively (in the Web.config or an external config file) or in code. Some settings are 
+                                <span class="popover-item" data-trigger="hover" data-title="Complex storage structures" data-content="Complex storage structures are supported. Folders can be set server side (configuration, code) and/or client side (query string, form value).">storage folder structure</span> or 
+                                <span class="popover-item" data-trigger="hover" data-title="Storage location" data-content="Supported storage locations are file system, database (Entity Framework) and cloud storage (2.0+).">storage locations</span>, 
+                                <span class="popover-item" data-trigger="hover" data-title="Image processing" data-content="On uploads you may want to create thumbnails or resize uploaded images. These setting determine width/height, resize mode, type or subfolder (thumbnail) of the resulting image.">image processing</span> options, 
+                                <span class="popover-item" data-trigger="hover" data-title="Content-type file handling" data-content="Determines the thumbnail for none image file types. Additionally, files can be stored in subfolders based on their content-type (e.g. PDF files into a /pdf/ subfolder).">content-type</span> file handling, 
+                                <span class="popover-item" data-trigger="hover" data-title="Security features" data-content="Allow uploads, downloads or deletes based on roles for authenticated users.">security features</span>, 
+                                <span class="popover-item" data-trigger="hover" data-title="Url pattern" data-content="With Url Patterns you can define how urls (download, thumbnails, delete) are processed and returned to the client.">url patterns</span> and more.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature -->
+                <div class="col-sm-4">
+                    <div class="feature">
+                       <img class="ribbon" src="Content/images/standard_badge.png" />
+                       <div class="img">
+                            <img src="Content/images/feat_image_processing.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Image processing</h6>
+                            <p>
+                                The image processing feature enables you to generate thumbnails for uploaded files or resize images before they are stored. Options are width and height of the resulting image, resize modes, new target image type, dpi, canvas color or thumbnail path.<br />&nbsp;<br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature -->
+                <div class="col-sm-4">
+                    <div class="feature last">
+                        <div class="img">
+                            <img src="Content/images/feat_content_type.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Content-type handling</h6>
+                            <p>
+                                An uploaded file can be processed based on the its file type. For example, when you allow users to upload files like PDF files, Word files or images you may want to return related thumbnails. This feature also allows you to store files in a content type folder (e.g. /pdfs/ subfolder for PDF files).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Features Row -->
+            <div class="row">
+                <!-- Feature -->
+                <div class="col-sm-4">
+                    <div class="feature">
+                        <div class="img">
+                            <img src="Content/images/feat_cloud.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Cloud storage</h6>
+                            <p>
+                                Starting with release 2.0 Backload will support cloud storage, enabling you to upload, retrieve or delete files in the cloud with the major cloud providers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature -->
+                <div class="col-sm-4">
+                    <div class="feature">
+                        <div class="img">
+                            <img src="Content/images/feat_security.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Security</h6>
+                            <p>
+                                Backload has security features included already. Roles based authorization enables you to restrict user access on uploads, downloads or file deletion.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature -->
+                <div class="col-sm-4">
+                    <div class="feature last">
+                        <div class="img">
+                            <img src="Content/images/feat_tracing.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Tracing</h6>
+                            <p>
+                                The Backload component supports tracing with common .NET trace listeners. You can log trace messages to log files, databases or logging frameworks (e.g. log4net).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Row -->
+            <div class="row">
+                <!-- Feature -->
+                <div class="col-sm-4">
+                    <div class="feature">
+                       <img class="ribbon" src="Content/images/standard_badge.png" />
+                        <div class="img">
+                            <img src="Content/images/feat_scalability.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Scalability
+                            </h6>
+                            <p>
+                                Backload is used by customers with 100000 and more uploads per day! Internally it uses various none-blockable asynchronous programming patterns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature -->
+                <div class="col-sm-4">
+                    <div class="feature">
+                       <img class="ribbon" src="Content/images/standard_badge.png" />
+                        <div class="img">
+                            <img src="Content/images/feat_zero_config.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Zero configuration</h6>
+                            <p>
+                                Backload has many configuration options and this may lead to confusion. If you are happy with the defaults, set only those options you want to change. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature -->
+                <div class="col-sm-4">
+<!--                    <div class="feature last">
+                        <div class="img">
+                            <img src="Content/images/feat_tracing.png" />
+                        </div>
+                        <div class="text">
+                            <h6>Tracing</h6>
+                            <p>
+                                The Backload component supports tracing with commen .NET trace listeners. Log trace messages to log files, databased or logging frameworks (e.g. log4net).
+                            </p>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+      <hr />
+      <footer>
+        <p>&copy; Backload 2013 | Email: <a id="footer-mail" href="info@dummy.my">info@dummy.my</a> | Follow us on Twitter: <a href="http://twitter.com/backload_mvc" target="_contacts">@Backload_mvc</a> | GitHub: <a href="http://github.com/blackcity/backload/" target="_contacts">Docs, Examples, Issues</a> | NuGet: <a href="http://www.nuget.org/packages/Backload/" target="_contacts">Backload Core Package</a></p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Scripts/features.js"></script>
+</body>
+</html>

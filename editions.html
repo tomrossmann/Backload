@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Backload. A Server Side File Handler</title>
+    <link href="Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/styles.css" rel="stylesheet" />
+    <link href="Content/editions.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-border-bottom">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Backload.</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li class="active"><a href="#">Editions</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">NuGet Packages <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.nuget.org/packages/Backload/" target="_blank">Backload Core Package</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.nuget.org/packages/JQuery_File_Upload_Plugin/" target="_blank">Productivity Package</a></li>
+                <li><a href="http://www.nuget.org/packages/JQueryFileUpload_Demo_with_Backload/" target="_blank">Full Demo Package</a></li>
+              </ul>
+            </li>
+            <li><a href="https://github.com/blackcity/Backload#examples" target="_blank">Examples</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/blackcity/Backload/wiki#general" target="_blank">Documentation</a></li>
+                <li class="divider"></li>
+                <li><a href="https://github.com/blackcity/Backload/wiki/Faq" target="_blank">FAQ</a></li>
+                <li><a href="https://github.com/blackcity/Backload/wiki/Release-notes#releases" target="_blank">Release Notes</a></li>
+              </ul>
+            </li>
+            <li><a href="https://github.com/blackcity/Backload/issues" target="_blank">Issues</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="alert alert-success" style="display:none;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          Thank you for your order. We will contact you as soon as possible. If you have any further questions contact us <a href="contact.html" class="alert-link">here</a>.
+      </div>
+      <div class="alert alert-danger" style="display:none;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          Order has been canceled. If you want to contect us or have any further questions, you can find contact information <a href="contact.html" class="alert-link">here</a>.
+      </div>
+     <div id="editions">
+<!--        <div class="container">-->
+            <div class="head">
+                <h2>Editions</h2>
+                <p>There are 6 editions available. You've most likely started already with the Standard Edition which is free of charge. The Standard 
+                    Edition includes the most commonly used features like Storage locations, image processing, file bundeling, etc. The Professional, Enterprise and Global Leader 
+                    Edition have all features included, while the Enterprise and Global Leader Editions ship with the source code. Full versions include a 6/12/24 month support plan 
+                    while Lite Editions do not. The licenses are not time limited and you receive updates for a 6/12/24 month period. With release 1.9.4 you'll receive a license file
+                    which must be included in your projects root folder.
+                </p>
+            </div>
+
+            <div class="row charts_wrapp">
+                <!-- Plan Box -->
+                <div class="col-sm-4 standard">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <h3>Standard</h3>
+                            <div class="price">
+                                <span class="dollar">€</span> 
+                                <span class="qty">0</span> 
+                                <span class="month"> free</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Basic features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Image processing
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Storage locations (client/server)
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    All client plugins
+                                </p>
+                            </div>
+                            <a class="order" href="http://www.nuget.org/packages/Backload/" target="_blank">Download</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Plan Box -->
+                <div class="col-sm-4 pro">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <h3>Professional lite</h3>
+                            <div class="price">
+                                <span class="dollar">€</span> 
+                                <span class="qty">49</span> 
+                                <span class="month">about $65</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    All features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Security features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Content-type thumbnails/folders
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    3 Websites included
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    License not time limited
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Updates included (6 month)
+                                </p>
+                                <p>
+                                    <strong class="plus">-</strong>&nbsp;
+                                    Support plan (6 month)
+                                </p>
+                            </div>
+                            <a class="order" data-toggle="modal" href="#checkoutModal" data-edition="ProLite" data-price="49" >ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 pro">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <h3>Professional</h3>
+                            <div class="price">
+                                <span class="dollar">€</span> 
+                                <span class="qty">99</span> 
+                                <span class="month">about $135</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    All features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Security features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Content-type thumbnails/folders
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    3 Websites included
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    License not time limited
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Updates included (6 month)
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Support plan (6 month)
+                                </p>
+                            </div>
+                            <a class="order" data-toggle="modal" href="#checkoutModal" data-edition="ProFull" data-price="99">ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row charts_wrapp">
+                <!-- Plan Box -->
+                <div class="col-sm-4 pro">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <img class="ribbon" src="Content/images/badge.png" />
+                            <h3>Enterprise lite</h3>
+                            <div class="price">
+                                <span class="dollar">€</span> 
+                                <span class="qty">149</span> 
+                                <span class="month">about $199</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    All features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Security features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Content-type thumbnails/folders
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Source code
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    10 websites included
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    License not time limited
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Updates included (12 month)
+                                </p>
+                                <p>
+                                    <strong class="plus">-</strong>&nbsp;
+                                    Support plan (12 month)
+                                </p>
+                            </div>
+                            <a class="order" data-toggle="modal" href="#checkoutModal" data-edition="EntLite" data-price="149">ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 pro">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <h3>Enterprise</h3>
+                            <div class="price">
+                                <span class="dollar">€</span> 
+                                <span class="qty">199</span> 
+                                <span class="month"> about $270</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    All features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Security features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Content-type thumbnails/folders
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Source code
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    10 Websites included
+                                </p>
+                                <p>
+                                 <p>
+                                    <strong class="plus">+</strong>
+                                    License not time limited
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Updates included (12 month)
+                                </p>
+                                   <strong class="plus">+</strong>
+                                    Support plan (12 month)
+                                </p>
+                            </div>
+                            <a class="order" data-toggle="modal" href="#checkoutModal" data-edition="EntFull" data-price="199" >ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 pro">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <h3>Global Leader</h3>
+                            <div class="price">
+                                <span class="dollar">€</span> 
+                                <span class="qty">499</span> 
+                                <span class="month"> about $675</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    All features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Security features
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Content-type thumbnails/folders
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Source code
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Unlimited websites 
+                                </p>
+                                <p>
+                                 <p>
+                                    <strong class="plus">+</strong>
+                                    License not time limited
+                                </p>
+                                <p>
+                                    <strong class="plus">+</strong>
+                                    Updates included (24 month)
+                                </p>
+                                   <strong class="plus">+</strong>
+                                    Support plan "Intensive Care" (24 month)
+                                </p>
+                            </div>
+                            <a data-toggle="modal" href="#checkoutModal" data-edition="Leader" data-price="499" class="order">ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--    </div>-->
+      <hr />
+
+      <footer>
+        <p>&copy; Backload 2013 | Email: <a id="footer-mail" href="info@dummy.my">info@dummy.my</a> | Follow us on Twitter: <a href="http://twitter.com/backload_mvc" target="_contacts">@Backload_mvc</a> | GitHub: <a href="http://github.com/blackcity/backload/" target="_contacts">Docs, Examples, Issues</a> | NuGet: <a href="http://www.nuget.org/packages/Backload/" target="_contacts">Backload Core Package</a></p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Modal -->
+      <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color:#F6961B">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" style="color:#fff">Please fill out the order form</h4>
+            </div>
+            <div class="modal-body">
+              <form id="checkoutForm" class="form-horizontal" target="_top" action="https://www.paypal.com/cgi-bin/webscr" method="post" role="form">
+                <div class="form-group">
+                    <label for="edition_selected" class="col-lg-3 control-label">Edition</label>
+                    <div class="col-lg-7">
+                        <select class="form-control" name="item_number" id="edition_selected"  data-placement="bottom" data-trigger="hover" data-title="Select your edition here." >
+                          <option value="ProLite">Professional Lite Edition (€49)</option>
+                          <option value="ProFull">Professional Edition (€99)</option>
+                          <option value="EntLite">Enterprise Lite Edition (€149)</option>
+                          <option value="EntFull">Enterprise Edition (€199)</option>
+                          <option value="Leader">Global Leader Edition (€499)</option>
+                        </select>
+                        <input type="hidden" name="item_name" id="edition_description" value="Professional Lite Edition" />
+                        <input type="hidden" name="amount" id="edition_price" value="49" />
+                    </div>
+                    <div class="col-lg-2">
+                        <span class="input-hint">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name_customer" class="col-lg-3 control-label">Name</label>
+                    <div class="col-lg-7">
+                        <input type="text" data-placement="bottom" data-trigger="hover" data-title="Enter your full name (e.g. John Smith)." class="form-control" name="name_customer" id="name_customer" placeholder="Full name" />
+                    </div>
+                    <div class="col-lg-2">
+                        <span class="input-hint">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email_customer" class="col-lg-3 control-label">Email</label>
+                    <div class="col-lg-7">
+                        <input type="email" data-placement="bottom" data-trigger="hover" data-title="In order to contact you, enter a valid email adress." class="form-control" name="email_customer" id="email_customer" placeholder="Email adress" />
+                    </div>
+                    <div class="col-lg-2">
+                        <span class="input-hint">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="company_customer" class="col-lg-3 control-label">Company</label>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" name="company_customer" id="company_customer" placeholder="Company name" />
+                    </div>
+                    <div class="col-lg-2">
+                        <span class="input-hint">optional</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message_customer" class="col-lg-3 control-label">Message</label>
+                    <div class="col-lg-7">
+                        <textarea rows="3" class="form-control" name="message_customer" id="message_customer" placeholder="Message"  data-placement="bottom" data-trigger="hover" data-title="You can send us a message."></textarea>
+                    </div>
+                    <div class="col-lg-2">
+                        <span class="input-hint">optional</span>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-7 text-right">
+                    <span id="msgValidate" class="validate-hint">* Please fill out all required fields.</span>
+                </div>
+                <div class="col-lg-2">
+                </div>
+                    <input type="hidden" name="cmd" value="_donations" />
+                    <input type="hidden" name="business" value="backload.mvc@gmail.com" />
+                    <input type="hidden" name="lc" value="US" />
+                    <input type="hidden" name="no_note" value="0" />
+                    <input type="hidden" name="currency_code" value="EUR" />
+                    <input type="hidden" name="cn" value="Additional message" />
+                    <input type="hidden" name="no_shipping" value="1" />
+                    <input type="hidden" name="rm" value="1" />
+                    <input type="hidden" name="return" value="http://localhost:54276/editions.html?note=checkout_success" />
+                    <input type="hidden" name="cancel_return" value="http://localhost:54276/editions?note=checkout_canceled" />
+                    <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted" />
+                    <input type="hidden" name="cpp_header_image" value="https://raw.github.com/blackcity/Backload/master/Examples/images/Header/backload_header.png" />
+                    <input type="hidden" name="image_url" value="https://raw.github.com/blackcity/Backload/master/Examples/images/Header/backload_header_small.png" />
+              </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class="col-lg-2">
+                    <div style="background-image:url('content/images/paypal.png'); width:70px; height:25px; margin-top:5px" class="pull-right"></div>
+                </div>
+                 <div class="col-lg-4">
+                </div>
+                <div class="col-lg-6">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" id="buttonOrder">Order now</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Scripts/editions.js" type="text/javascript"></script>
+</body>
+</html>

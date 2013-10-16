@@ -1,0 +1,69 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  color: #808080;
+}
+
+footer {
+    font-size:12px;
+    margin-top:70px;
+}
+.jumbotron {
+    background-color:#202020;
+    border:none;
+    border-bottom:10px solid #ff6a00;
+    border-radius: 0px 0px;
+    background-image: url(images/jumbotron-back.png);
+}
+.jumbotron h1 {
+    color: #eee;
+    font-size: 46px;
+}
+
+.jumbotron p {
+    color: #888;
+    font-size: 18px;
+    line-height: 2em;
+}
+.navbar-border-bottom {
+    border-bottom:4px solid #ff6a00;
+}
+.brand-logo {
+    background-image: url(images/backload48_rounded5.png);
+    width: 48px;
+    height: 48px;
+    position: relative;
+    display: inline-block;
+    margin-right: 25px;
+}
+
+.popover-item
+{
+    /*color:#444; #ff6a00;*/
+    cursor:default;
+    text-decoration: underline;
+}
+.popover-item:hover
+{
+    color:#ff6a00;
+}
+.popover {
+   width: 400px !important;
+}
+
+.feature img.ribbon {
+    position: absolute;
+    top: 0;
+    right: 0; 
+    width: 85px; 
+    height: 85px;
+}
+
+#introduction {
+ margin-top:80px;
+}
+
+#introduction h4 {
+ margin-top:20px;
+}
