@@ -1,7 +1,11 @@
 ## Backload
 ===========
-**Backload** is a professional, full featured file uplopload controller and handler (server side) for ASP.NET MVC 4, MVC 5, Web API and standard ASP.NET Web Forms (see code examples). It has been developed as part of a commercial product for the aero craft industry. 
+**Backload** is a professional, full featured file upload controller and handler (server side) for ASP.NET MVC 4, MVC 5, Web API and standard ASP.NET Web Forms (see code examples). It has been developed as part of a commercial product for the aero craft industry. 
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10).
+
+### Project website
+General information, editions and how to get a Pro/Enterprise license:
+[http://blackcity.github.io/Backload/](http://blackcity.github.io/Backload/index.html). 
 
 ### Roadmap
 #### Cloud storage
@@ -65,8 +69,9 @@ The original demo shipped with the JQuery File Upload Plugin working with the Ba
 ### Frequently asked questions
 Before posting read the [faq](https://github.com/blackcity/Backload/wiki/faq)
 
-### Licenses and versions
-More about the different [licenses](https://github.com/blackcity/Backload/wiki/faq#versions-and-licenses)
+### Licenses and editions
+You can get a license for a Professional or Enterprise edition here: [http://blackcity.github.io/Backload/](http://blackcity.github.io/Backload/index.html). 
+Or read the FAQ about the different [licenses](https://github.com/blackcity/Backload/wiki/faq#versions-and-licenses)
 
 ### News, releases, plans and more
 Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload_mvc)
