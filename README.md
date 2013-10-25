@@ -74,7 +74,7 @@ You can get a license for a Professional or Enterprise edition here: [http://bac
 Or read the FAQ about the different [licenses](https://github.com/blackcity/Backload/wiki/faq#versions-and-licenses)
 
 ### News, releases, plans and more
-Follow us on Twitter (just started) [@Backload_MVC](https://twitter.com/backload_mvc)
+Follow us on Twitter (just started) [@Backload_org](https://twitter.com/backload_org)
 
 ### Direct contact
 For customers and commercial requests only: backload.mvc [at] gmail [dot] com.
@@ -82,5 +82,5 @@ For customers and commercial requests only: backload.mvc [at] gmail [dot] com.
 ### License
 [Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license<br />
 Professional and Enterprise (source code) version are available under a commercial license.<br/>
-Follow us on Twitter: [@Backload_MVC](https://twitter.com/backload_mvc)
+Follow us on Twitter: [@Backload_org](https://twitter.com/backload_org)
 
