@@ -5,7 +5,7 @@ While Backload out of the box handles the client side [jQuery File Upload Plugin
 
 ### Project website
 General information, editions and how to get a Pro/Enterprise license:
-[http://blackcity.github.io/Backload/](http://blackcity.github.io/Backload/index.html). 
+[http://backload.org/](http://backload.org). 
 
 ### Roadmap
 #### Cloud storage
@@ -70,7 +70,7 @@ The original demo shipped with the JQuery File Upload Plugin working with the Ba
 Before posting read the [faq](https://github.com/blackcity/Backload/wiki/faq)
 
 ### Licenses and editions
-You can get a license for a Professional or Enterprise edition here: [http://blackcity.github.io/Backload/](http://blackcity.github.io/Backload/index.html). 
+You can get a license for a Professional or Enterprise edition here: [http://backload.org/editions.html](http://backload.org/editions.html). 
 Or read the FAQ about the different [licenses](https://github.com/blackcity/Backload/wiki/faq#versions-and-licenses)
 
 ### News, releases, plans and more
