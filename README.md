@@ -5,7 +5,7 @@ While Backload out of the box handles the client side [jQuery File Upload Plugin
 
 ### Project website
 General information, editions and how to get a Pro/Enterprise license:
-[http://backload.org/](http://backload.org). 
+[http://backload.org](http://backload.org). 
 
 ### Roadmap
 #### Cloud storage
