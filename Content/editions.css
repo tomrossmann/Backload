@@ -51,6 +51,8 @@
           font-style: italic;
           font-weight: 300;
           font-size: 15px; }
+        #editions .charts_wrapp .plan .price span.month sup {
+          color:#a0a0a0; }
       #editions .charts_wrapp .plan .features {
         margin-top: 30px; }
         #editions .charts_wrapp .plan .features p {
