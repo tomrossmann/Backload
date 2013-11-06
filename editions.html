@@ -382,7 +382,7 @@
                 <div class="form-group">
                     <label for="name_customer" class="col-lg-3 control-label">Name</label>
                     <div class="col-lg-7">
-                        <input type="text" data-placement="bottom" data-trigger="hover" data-title="Enter your full name (e.g. John Smith)." class="form-control" name="name_customer" id="name_customer" placeholder="Full name" />
+                        <input type="text" maxlength="40" data-placement="bottom" data-trigger="hover" data-title="Enter your full name (e.g. John Smith)." class="form-control" name="name_customer" id="name_customer" placeholder="Full name" />
                     </div>
                     <div class="col-lg-2">
                         <span class="input-hint">required</span>
@@ -391,7 +391,7 @@
                 <div class="form-group">
                     <label for="email_customer" class="col-lg-3 control-label">Email</label>
                     <div class="col-lg-7">
-                        <input type="email" data-placement="bottom" data-trigger="hover" data-title="In order to contact you, enter a valid email adress." class="form-control" name="email_customer" id="email_customer" placeholder="Email adress" />
+                        <input type="email" maxlength="40" data-placement="bottom" data-trigger="hover" data-title="In order to contact you, enter a valid email adress." class="form-control" name="email_customer" id="email_customer" placeholder="Email adress" />
                     </div>
                     <div class="col-lg-2">
                         <span class="input-hint">required</span>
@@ -400,7 +400,7 @@
                 <div class="form-group">
                     <label for="company_customer" class="col-lg-3 control-label">Company</label>
                     <div class="col-lg-7">
-                        <input type="text" class="form-control" name="company_customer" id="company_customer" placeholder="Company name" />
+                        <input type="text" maxlength="50" class="form-control" name="company_customer" id="company_customer" placeholder="Company name" />
                     </div>
                     <div class="col-lg-2">
                         <span class="input-hint">optional</span>
@@ -409,7 +409,7 @@
                 <div class="form-group">
                     <label for="message_customer" class="col-lg-3 control-label">Message</label>
                     <div class="col-lg-7">
-                        <textarea rows="3" class="form-control" name="message_customer" id="message_customer" placeholder="Message"  data-placement="bottom" data-trigger="hover" data-title="You can send us a message."></textarea>
+                        <textarea rows="3" maxlength="100" class="form-control" name="message_customer" id="message_customer" placeholder="Message"  data-placement="bottom" data-trigger="hover" data-title="You can send us a message."></textarea>
                     </div>
                     <div class="col-lg-2">
                         <span class="input-hint">optional</span>
