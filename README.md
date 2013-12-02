@@ -83,4 +83,3 @@ For customers and commercial requests only: backload.mvc [at] gmail [dot] com.
 [Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2013, Steffen Habermehl, License (Standard version): MIT license<br />
 Professional and Enterprise (source code) version are available under a commercial license.<br/>
 Follow us on Twitter: [@Backload_org](https://twitter.com/backload_org)
-
