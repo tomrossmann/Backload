@@ -1,4 +1,4 @@
-﻿/*Pricing Option 1*/
+/*Pricing Option 1*/
 #editions {
   margin-bottom: 100px;
   margin-top: 50px; }
@@ -72,6 +72,10 @@
     border-radius: 5px;
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear; }
+    #editions .plan a.noorder {
+        background: #252528;
+        cursor: default;
+    }
     #editions .plan a.order:hover {
       background: #252528; }
   #editions .pro .plan {
@@ -87,7 +91,7 @@
       right: 0; }
     #editions .pro .plan a.order {
       margin-top: 35px; }
-  #editions .standar .plan {
+  #editions .standard .plan {
     float: right; }
   #editions .start {
     width: 100%;
@@ -129,7 +133,7 @@
   #editions .pro .plan {
     top: 0;
     width: 95%; }
-  #editions .standar .plan {
+  #editions .standard .plan {
     float: none; }
   #editions .start p {
     margin-bottom: 20px; }
@@ -139,6 +143,9 @@
     margin: 0 auto; }
 }
 
+.minus {
+    color:#c0c0c0;
+}
 .input-hint {
     display: inline-block;
     margin-top: 5px;
