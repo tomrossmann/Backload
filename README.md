@@ -28,7 +28,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
 * Declarative configuration: Features will be setup within the web.config or a linked config file.
-* Storage context: Supported locations are file system and databases (by the Entity Framework) and cloud (next milestone).
+* Storage context: Supported locations are file system, UNC shares and cloud (next milestone).
 * Object context based locations: Based on the context (e.g. UserX, UserY, ArtistX, ArtistY, HouseA, HouseB) different storage locations can automatically be routed.
 * Content type subfolders: Based on the content type files can automatically be stored in an appropriate subfolder. This feature is fully customizable.
 * Unique file names: Files can be stored with a unique name and also remapped to their original name.
