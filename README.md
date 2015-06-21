@@ -35,6 +35,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 * Cropping and resizing: This can be setup in the web.config file or in a request from the client.
 * Image type conversion: Images can be converted to a different target type.
 * Thumbnails: Static (stored in a subfolder) or dynamically (created on a request). 
+* Large files: Support for chunked file uploads (release 1.3.6) and optimized internal memory usage.
 * Security: Access control with authentication and authorization (roles based).
 + Extensibility (coming release): Dynamically hook in your own extensions. (Multiple extensions for a specific processing step are supported).
 + Eventing: Backloads processing pipeline events enable full control of the request/response data and execution flow.
