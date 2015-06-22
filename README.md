@@ -9,8 +9,8 @@ General information, editions and how to get a Pro/Enterprise license:
 
 ### What's new
 - Large files: Support for file chunking (release 1.9.3.6)
-- UNC: Native support for UNC file paths (more  [Configuration](https://github.com/blackcity/Backload/wiki/Configuration#filesystem-configuration-element) and [FAQ](https://github.com/blackcity/Backload/wiki/faq)).
 - [Example 14: Large files: How to setup file chunking](https://github.com/blackcity/Backload/wiki/Example-14)
+- UNC: Native support for UNC file paths (more  [Configuration](https://github.com/blackcity/Backload/wiki/Configuration#filesystem-configuration-element) and [FAQ](https://github.com/blackcity/Backload/wiki/faq#how-do-i-store-files-outside-of-my-web-applications-folder)).
 
 ### Roadmap
 #### Cloud storage
