@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backload__Example14", "Example14\Backload__Example14.csproj", "{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Pro|Any CPU = Debug_Pro|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release_Pro|Any CPU = Release_Pro|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Debug_Pro|Any CPU.ActiveCfg = Debug_Pro|Any CPU
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Debug_Pro|Any CPU.Build.0 = Debug_Pro|Any CPU
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Release_Pro|Any CPU.ActiveCfg = Release_Pro|Any CPU
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Release_Pro|Any CPU.Build.0 = Release_Pro|Any CPU
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E7C07B3-B70C-4B9F-A55D-1423E09AF8FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
