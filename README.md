@@ -7,6 +7,11 @@ While Backload out of the box handles the client side [jQuery File Upload Plugin
 General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
 
+### What's new
+- Large files: Support for file chunking (release 1.9.3.6)
+- UNC: Native support for UNC file paths (more  [Configuration](https://github.com/blackcity/Backload/wiki/Configuration#filesystem-configuration-element) and [FAQ](https://github.com/blackcity/Backload/wiki/faq)).
+- [Example 14: Large files: How to setup file chunking](https://github.com/blackcity/Backload/wiki/Example-14)
+
 ### Roadmap
 #### Cloud storage
 Cloud storage will mark our next milestone. We start with giving you the basic means storing data in a cloud storage in the same manner Backload provides for the local file system or databases. Then we will support popular cloud storage providers out of the box. Help is much appreciated! Don't hesitate to show us your code or help develop cloud storage extensions. 
