@@ -50,7 +50,9 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 + Eventing: Backloads processing pipeline events enable full control of the request/response data and execution flow.
 + Scalability by asynchronous internal code and asynchronous support for events and extensions.
 + Tracing: Use standard .NET tracing to find proplems during development or log errors in production.
++ CORS: Support for Cross Origin Resource Sharing (release 2.1, current dev).
 
+ 
 ### Setup
 [Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)
 
