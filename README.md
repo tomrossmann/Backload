@@ -9,7 +9,7 @@ General information, editions and how to get a Pro/Enterprise license:
 
 ### Important notes on upcoming release 2.0
 [Release notes and migration](https://github.com/blackcity/Backload/wiki/Upgrade-and-migration)<br />
-[Full demo package for release 2.0](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Demo.2.0/DemoPackage.zip?raw=true)
+[Full demo package for release 2.0](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Demo.2.0/Backload.Demo.2.0.zip?raw=true)
 
 ### What's new (1.9.3.6)?
 - Large files: Support for file chunking (release 1.9.3.6)
