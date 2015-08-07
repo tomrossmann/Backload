@@ -1,20 +1,17 @@
 ## Backload
 ===========
 **Backload** is a professional, full featured file upload controller and handler (server side) for ASP.NET MVC 4, MVC 5, Web API and standard ASP.NET Web Forms (see code examples). It has been developed as part of a commercial product for the aero craft industry. 
-While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10)). Current release is [1.9.3.5](http://www.nuget.org/packages/Backload/).
+While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10)). Current release is [2.0.0.5](http://www.nuget.org/packages/Backload/).
 
 ### Project website
 General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
 
-### Important notes on upcoming release 2.0
-[Release notes and migration](https://github.com/blackcity/Backload/wiki/Upgrade-and-migration)<br />
-[Final demo package for release 2.0](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Demo.2.0/Backload.Demo.2.0.zip?raw=true)
 
-### What's new (1.9.3.6)?
-- Large files: Support for file chunking (release 1.9.3.6)
-- [Example 14: Large files: How to setup file chunking](https://github.com/blackcity/Backload/wiki/Example-14)
-- UNC: Native support for UNC file paths (more  [Configuration](https://github.com/blackcity/Backload/wiki/Configuration#filesystem-configuration-element) and [FAQ](https://github.com/blackcity/Backload/wiki/faq#how-do-i-store-files-outside-of-my-web-applications-folder)).
+### Release 2.0: Important notes 
+[Release notes and migration](https://github.com/blackcity/Backload/wiki/Upgrade-and-migration)<br />
+[Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v.2.0.0.0/Backload.Standard.2.0.Full.zip)
+
 
 ### Roadmap
 #### Cloud storage
