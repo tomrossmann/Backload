@@ -14,11 +14,6 @@ General information, editions and how to get a Pro/Enterprise license:
 [Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v.2.0.0.0/Backload.Standard.2.0.Full.zip)
 
 <br />
-### Roadmap
-#### Cloud storage
-Cloud storage will mark our next milestone. We start with giving you the basic means storing data in a cloud storage in the same manner Backload provides for the local file system or databases. Then we will support popular cloud storage providers out of the box. Help is much appreciated! Don't hesitate to show us your code or help develop cloud storage extensions. 
-
-<br />
 ### Highlights
 **Backload** is a feature rich server side component which can be fully customized (declaratively) within the web.config file (resp. a linked config file). Complex storage structures are supported and handled by the component without a single line of code, whether the storage location is the file system or a database. If you want to upload different file types (images, pdfs, doc, etc) content type based subfolders can be configured to automatically store different file types in different sub folders (e.g. /images, /pdfs, /movies, etc).
 
@@ -69,6 +64,11 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 13: Tracing: Use tracing to identify problems and log errors](https://github.com/blackcity/Backload/wiki/Example-13)<br />
 [Example 14: Large files: How to setup file chunking](https://github.com/blackcity/Backload/wiki/Example-14)<br />
 [Code example: How to use the Backload component with the Web API and standard ASP.NET WebForms](https://github.com/blackcity/Backload/tree/master/Examples/_HowTos)
+
+<br />
+### Roadmap
+#### Cloud storage
+Cloud storage will mark our next milestone. We start with giving you the basic means storing data in a cloud storage in the same manner Backload provides for the local file system or databases. Then we will support popular cloud storage providers out of the box. Help is much appreciated! Don't hesitate to show us your code or help develop cloud storage extensions. 
 
 <br />
 ### Frequently asked questions
