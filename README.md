@@ -21,11 +21,9 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 **Backload** supports cropping and resizing of images. The parameters can be set within the web.config file or by an incoming request from the client. Multiple image manipulation features are implemented. Type conversion is also supported.
 
-**Backload** can create unique file names (GUIDs). So files cannot be overwritten or, if this is the purpose of using this feature, cannot be accessed from the web without knowledge of the new name. Mapping of the original file name to the new file name and back is also implemented. This feature can be used to send a friendly name back to the client. 
+**Backload** can create unique file names (GUIDs). So files cannot be overwritten or, if this is the purpose of using this feature, cannot be accessed from the web without knowledge of the new name. Mapping of the original file name to the new file name and back is also implemented. This feature can be used to send a friendly name back to the client. Generation of client side GUIDs is also supported (seel release 2.0 demos). 
 
-**Backload** is extensible. Extensions are normal, easy to write classes, implementing a simple interface and decorated with an ExportAttribute. Using extensions is a very cheap process regarding system resources. They are very good testable, scalable, isolate code and can be dynamically added and removed while the MVC app is running. You may want to add a new functionality (e.g. exception logging, change client side plugin, etc.) or perform tests without changing or stopping the application (See examples 08+).
-
-**Backload** has proven its scalability in production with hundreds of thousands uploads a day. Internally it is designed to work asynchronously where possible and it supports and encourages the development of asynchronous extensions.
+**Backload** has proven its scalability in production with hundreds of thousands uploads a day. Internally it is designed to work asynchronously where possible.
 
 <br />
 ### Features
@@ -53,6 +51,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 <br />
 ### Examples
+Note: Release 2.0 demo package includes 15 new examples.<br />
 [Example 01: Zero configuration](https://github.com/blackcity/Backload/wiki/Example-01)<br />
 [Example 02: Configuration basics: Using web.config](https://github.com/blackcity/Backload/wiki/Example-02)<br />
 [Example 03: Configuration basics: Using an external config file](https://github.com/blackcity/Backload/wiki/Example-03)<br />
@@ -63,7 +62,6 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 12: Eventing: Using Backloads server side events](https://github.com/blackcity/Backload/wiki/Example-12)<br />
 [Example 13: Tracing: Use tracing to identify problems and log errors](https://github.com/blackcity/Backload/wiki/Example-13)<br />
 [Example 14: Large files: How to setup file chunking](https://github.com/blackcity/Backload/wiki/Example-14)<br />
-[Code example: How to use the Backload component with the Web API and standard ASP.NET WebForms](https://github.com/blackcity/Backload/tree/master/Examples/_HowTos)
 
 <br />
 ### Roadmap
@@ -72,7 +70,7 @@ Cloud storage will mark our next milestone. We start with giving you the basic m
 
 <br />
 ### Frequently asked questions
-Before posting read the [faq](https://github.com/blackcity/Backload/wiki/faq)
+Before posting read the [FAQ](https://github.com/blackcity/Backload/wiki/faq)
 
 <br />
 ### Licenses and editions
