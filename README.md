@@ -3,22 +3,23 @@
 **Backload** is a professional, full featured file upload controller and handler (server side) for ASP.NET MVC 4, MVC 5, Web API and standard ASP.NET Web Forms (see code examples). It has been developed as part of a commercial product for the aero craft industry. 
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10)). Current release is [2.0.0.5](http://www.nuget.org/packages/Backload/).
 
+<br />
 ### Project website
 General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
 
-
+<br />
 ### Release 2.0: Important notes 
 [Release notes and migration](https://github.com/blackcity/Backload/wiki/Upgrade-and-migration)<br />
 [Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v.2.0.0.0/Backload.Standard.2.0.Full.zip)
 
-
+<br />
 ### Roadmap
 #### Cloud storage
 Cloud storage will mark our next milestone. We start with giving you the basic means storing data in a cloud storage in the same manner Backload provides for the local file system or databases. Then we will support popular cloud storage providers out of the box. Help is much appreciated! Don't hesitate to show us your code or help develop cloud storage extensions. 
 
+<br />
 ### Highlights
-
 **Backload** is a feature rich server side component which can be fully customized (declaratively) within the web.config file (resp. a linked config file). Complex storage structures are supported and handled by the component without a single line of code, whether the storage location is the file system or a database. If you want to upload different file types (images, pdfs, doc, etc) content type based subfolders can be configured to automatically store different file types in different sub folders (e.g. /images, /pdfs, /movies, etc).
 
 The zero configuration feature allows quick setups, a default MVC controller is ready to handle incoming requests. For more complex scenarios, where you have to run your own business logic, you can derive from the default controller or call the handler method from your code. 
@@ -31,6 +32,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 **Backload** has proven its scalability in production with hundreds of thousands uploads a day. Internally it is designed to work asynchronously where possible and it supports and encourages the development of asynchronous extensions.
 
+<br />
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
 * Declarative configuration: Features will be setup within the web.config or a linked config file.
@@ -49,13 +51,12 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 + Tracing: Use standard .NET tracing to find proplems during development or log errors in production.
 + CORS: Support for Cross Origin Resource Sharing (release 2.1, current dev).
 
- 
-### Setup
-[Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)
-
-### Configuration
+<br />
+### Setup and Configuration
+[Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)<br />
 [Options, settings and enumerations](https://github.com/blackcity/Backload/wiki/Configuration)
 
+<br />
 ### Examples
 [Example 01: Zero configuration](https://github.com/blackcity/Backload/wiki/Example-01)<br />
 [Example 02: Configuration basics: Using web.config](https://github.com/blackcity/Backload/wiki/Example-02)<br />
@@ -64,31 +65,29 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 [Example 05: Using server side image manipulation features](https://github.com/blackcity/Backload/wiki/Example-05)<br />
 [Example 06: Managing subfolders: Using the object context](https://github.com/blackcity/Backload/wiki/Example-06)<br />
 [Example 07: Managing subfolders: Using the upload context](https://github.com/blackcity/Backload/wiki/Example-07)<br />
-[Example 08: Extensibility: Writing a simple extension](https://github.com/blackcity/Backload/wiki/Example-08)<br />
-[Example 09: Extensibility: Handle and extend the PlUpload plugin (Moxiecode)](https://github.com/blackcity/Backload/wiki/Example-09)<br />
-[Example 10: Handling exceptions](https://github.com/blackcity/Backload/wiki/Example-10)<br />
-[Example 11: Asynchronous operations with async/await, Tasks and Threads](https://github.com/blackcity/Backload/wiki/Example-11)<br />
 [Example 12: Eventing: Using Backloads server side events](https://github.com/blackcity/Backload/wiki/Example-12)<br />
 [Example 13: Tracing: Use tracing to identify problems and log errors](https://github.com/blackcity/Backload/wiki/Example-13)<br />
 [Example 14: Large files: How to setup file chunking](https://github.com/blackcity/Backload/wiki/Example-14)<br />
 [Code example: How to use the Backload component with the Web API and standard ASP.NET WebForms](https://github.com/blackcity/Backload/tree/master/Examples/_HowTos)
 
-### Demo: JQuery File Upload Plugin (original demo) with Backload
-The original demo shipped with the JQuery File Upload Plugin working with the Backload the server side component can be found [here](https://github.com/blackcity/Backload/tree/master/Examples/Demos_by_bluimp).  
-
+<br />
 ### Frequently asked questions
 Before posting read the [faq](https://github.com/blackcity/Backload/wiki/faq)
 
+<br />
 ### Licenses and editions
 You can get a license for a Professional or Enterprise edition here: [http://backload.org/editions.html](http://backload.org/editions.html). 
 Or read the FAQ about the different [licenses](https://github.com/blackcity/Backload/wiki/faq#versions-and-licenses)
 
+<br />
 ### News, releases, plans and more
 Follow us on Twitter (just started) [@Backload_org](https://twitter.com/backload_org)
 
+<br />
 ### Direct contact
 For customers and commercial requests only: backload.mvc [at] gmail [dot] com.
 
+<br />
 ### License
 [Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2014, Steffen Habermehl, License (Standard version): MIT license<br />
 Professional and Enterprise (source code) version are available under a commercial license.<br/>
