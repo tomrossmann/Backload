@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Backload.Demo.ASPNET
 {
-    public partial class ClassicDemo : System.Web.UI.Page
+    public partial class ClassicASPXDemo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

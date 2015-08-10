@@ -399,11 +399,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Other\ASPNET\ClassicDemo.aspx" />
+    <Content Include="Other\ASPNET\ClassicASPXDemo.aspx" />
+    <Content Include="Other\HTML\ClassicHTMLDemo.html" />
     <Content Include="Other\WebApi\WebApiDemo.aspx" />
-    <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Backload\Logs\log.folder" />
     <Content Include="Backload\Client\blueimp\templates\package.json" />
     <Content Include="Backload\Client\blueimp\loadimage\package.json" />
@@ -416,10 +415,7 @@
     <None Include="Backload\Web.Backload.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Other\ASPNET\FileHandler.ashx" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Other\Handler\FileHandler.ashx" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\demos.blueimp.angularjs.js" />
     <Content Include="Scripts\demos.blueimp.basic.js" />
@@ -432,16 +428,16 @@
     <Content Include="Scripts\demos.moxie.plupload.simple.js" />
     <Content Include="Scripts\demos.moxie.plupload.ui.js" />
     <Content Include="Scripts\demos.other.classic.aspx.js" />
+    <Content Include="Scripts\demos.other.classic.html.js" />
     <Content Include="Scripts\demos.other.webapi.js" />
     <Content Include="Scripts\demos.widen.fineuploader.default.js" />
     <Content Include="Scripts\demos.widen.fineuploader.gallery.js" />
     <Content Include="Scripts\demos.widen.fineuploader.simple.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\npm.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -461,14 +457,14 @@
     </Compile>
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FilesModel.cs" />
-    <Compile Include="Other\ASPNET\ClassicDemo.aspx.cs">
-      <DependentUpon>ClassicDemo.aspx</DependentUpon>
+    <Compile Include="Other\ASPNET\ClassicASPXDemo.aspx.cs">
+      <DependentUpon>ClassicASPXDemo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Other\ASPNET\ClassicDemo.aspx.designer.cs">
-      <DependentUpon>ClassicDemo.aspx</DependentUpon>
+    <Compile Include="Other\ASPNET\ClassicASPXDemo.aspx.designer.cs">
+      <DependentUpon>ClassicASPXDemo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Other\ASPNET\FileHandler.ashx.cs">
+    <Compile Include="Other\Handler\FileHandler.ashx.cs">
       <DependentUpon>FileHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Other\WebApi\IFIleStatusResult.cs" />
@@ -487,7 +483,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\PlUploadUI.cshtml" />
     <Content Include="Views\Home\PlUploadSimple.cshtml" />

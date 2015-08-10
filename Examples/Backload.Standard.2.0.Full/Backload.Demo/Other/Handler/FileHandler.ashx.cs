@@ -1,16 +1,16 @@
-using Backload.Contracts.Context;
+﻿using Backload.Contracts.Context;
 using Backload.Contracts.FileHandler;
 using Backload.Helper;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Backload.Demo.aspnet
+namespace Backload.Demo.Handler
 {
-    public class FileHandler : HttpTaskAsyncHandler 
+    public class FileHandler : HttpTaskAsyncHandler
     {
         /// <summary>
-        /// File handler demo for classic Asp.Net. 
-        /// To access it in an Javascript ajax request use: <code>var url = "/aspnet/FileHandler.ashx";</code>.
+        /// File handler demo for classic Asp.Net or HTML. 
+        /// To access it in an Javascript ajax request use: <code>var url = "/Handler/FileHandler.ashx";</code>.
         /// </summary>
         /// <remarks>
         /// NOTE. Edit the web.config file to allow the DELETE method in the system.webServer.handlers section

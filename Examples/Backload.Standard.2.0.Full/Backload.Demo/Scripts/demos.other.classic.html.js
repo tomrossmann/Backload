@@ -14,13 +14,15 @@
 $(function () {
     'use strict';
 
-    // In this example we use a custom controller
+    // In this example we use a custom Generic Handler
+    // We send an objectCOntext parameter which can be a user id. The server side component is configured 
+    // to accept requests only if this parameter is send with the request (see Web.Backload.config)
     var url = '/Other/Handler/FileHandler.ashx?objectContext=C5F260DD3787';
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         url: url,
-        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(pdf)$/i              // Allowed file types
+        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)$/i              // Allowed file types
     })
 
 

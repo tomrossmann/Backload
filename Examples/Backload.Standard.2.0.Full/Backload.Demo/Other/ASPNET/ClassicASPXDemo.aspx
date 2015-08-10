@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebApiDemo.aspx.cs" Inherits="Backload.Demo.WebApi.WebApiDemo" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClassicASPXDemo.aspx.cs" Inherits="Backload.Demo.ASPNET.ClassicASPXDemo" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebApi demo</title>
+    <title>Classic ASP.NET demo</title>
 
     <!--  Bootstrap styles -->
     <link href="/Content/bootstrap.min.css" rel="stylesheet" />
@@ -23,13 +23,16 @@
 <body>
     <div class="container">
         <h1>Other demos</h1>
-        <h2 class="lead">WebApi demo</h2>
+        <h2 class="lead">Classic ASP.NET demo</h2>
         <br>
 
         <div class="container">
             <blockquote>
                 <p>
-                    This example shows a custom Web API controller handling file requests from an ASP.NET page (Demo folder: "/Other/WebApi/").
+                    This example shows a custom file handler in a classic ASP.NET page. Note: Don't forget to add the handler to the 
+                    <code>system.webServer.handlers</code> section in the web.config file (Demo folder: "/Other/ASPNET/"). In order to remove MVC dependency
+                    in classic HTML or ASP.NET WebForm environments, you can safely remove the "~/Backload/Controller" folder and
+                    the "~/Backload/Helper/ResultCreator.cs" file.
                 </p>
             </blockquote>
             <br>
@@ -178,6 +181,6 @@
     <%= System.Web.Optimization.Scripts.Render("~/backload/blueimp/bootstrap/BasicPlusUI") %>
 
     <!-- The demo application script -->
-    <script src="/Scripts/demos.other.webapi.js"></script>
+    <script src="/Scripts/demos.other.classic.aspx.js"></script>
 </body>
 </html>
