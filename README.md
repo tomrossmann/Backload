@@ -13,8 +13,8 @@ General information, editions and how to get a Pro/Enterprise license:
 [Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v2.0.0.0/Backload.Standard.2.0.Full.zip)
 
 <br />
-### Announcment
-Currently, we are developing the cloud storage feature and we need your help! Tell us the features you really need, how your application will use the cloud or what cloud provider you prefer. Your feedback will directly influence the development. 
+### Cloud storage survey
+Currently, we are developing the cloud storage feature and we need your help! Tell us the features you really need, how your application will use cloud storage, what cloud provider you prefer, etc. Your [feedback](#direct-contact) will influence the development directly. 
 <!--For example, Are you developing against a central cloud storage  central cloud storage for all users or -->
 
 <br />
@@ -87,7 +87,7 @@ Follow us on Twitter (just started) [@Backload_org](https://twitter.com/backload
 
 <br />
 ### Direct contact
-For customers and commercial requests only: backload.mvc [at] gmail [dot] com.
+For customers and commercial requests only: backload.org [at] gmail [dot] com.
 
 <br />
 ### License
