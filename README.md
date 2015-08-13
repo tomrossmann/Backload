@@ -13,6 +13,11 @@ General information, editions and how to get a Pro/Enterprise license:
 [Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v2.0.0.0/Backload.Standard.2.0.Full.zip)
 
 <br />
+Announcment
+Currently, we are developing the cloud storage feature and we need your help! Tell us the features you really need, how your application will use the cloud or what cloud provider you prefer. Your feedback will directly influence the development. 
+<!--For example, Are you developing against a central cloud storage  central cloud storage for all users or -->
+
+<br />
 ### Highlights
 **Backload** is a feature rich server side component which can be fully customized (declaratively) within the web.config file (resp. a linked config file). Complex storage structures are supported and handled by the component without a single line of code, whether the storage location is the file system or a database. If you want to upload different file types (images, pdfs, doc, etc) content type based subfolders can be configured to automatically store different file types in different sub folders (e.g. /images, /pdfs, /movies, etc).
 
@@ -65,7 +70,7 @@ Note: Release 2.0 demo package includes 15 new examples.<br />
 <br />
 ### Roadmap
 #### Cloud storage
-Cloud storage will mark our next milestone. We start with giving you the basic means storing data in a cloud storage in the same manner Backload provides for the local file system or databases. Then we will support popular cloud storage providers out of the box. Help is much appreciated! Don't hesitate to show us your code or help develop cloud storage extensions. 
+Cloud storage will mark our next milestone. We start with giving you the basic means storing data in a cloud storage in the same manner Backload provides for the local file system or databases. Then we will support popular cloud storage providers out of the box. Help is much appreciated! Don't hesitate to show us your code. 
 
 <br />
 ### Frequently asked questions
