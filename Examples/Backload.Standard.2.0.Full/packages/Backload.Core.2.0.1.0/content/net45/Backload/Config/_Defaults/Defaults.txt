@@ -26,7 +26,7 @@
      
      <!--
      backload:        // Basic settings for the Backload component library. TIP: You do not need to include any of these setting in your web.config or external config file, if these default settings fit your needs. 
-      storageContext:   // Files may be stored in the file system or in a database (by the Entity Framework) [Default: "Filesystem"].
+      storageContext:   // Files may be stored in the file system or in a cloud storage (upcoming) [Default: "Filesystem"].
       enableIntegratedHandler: // By default the internal file upload handler is running and ready to receive incoming files or requests. This enables us zero configuration. If you want to set up your own controller in order to do some business logic, set this to "false". [Default: "true"]
       webFilesRoot:     // Leave this an empty string, if filesRoot is relative to the web root (starts with '~/', see filesRoot). Usually used with UNC pathes or absolute local pathes (see filesRoot) and virtual directories in IIS. WebFilesRoot can be an absolute web url to the files root (e. g. "http://myfiles.filestore.com/files/" or the name of a virtual directory in IIS [Default: ""]
       uniqueFileNames:  // Generates unique file names based on guids [Default: "false"]
@@ -62,21 +62,15 @@
       
       
       <!--
-      Sets the parameters for the dedicated storage location Filesystem or Database (EntityFramework):
+      Sets the parameters for the dedicated storage location Filesystem or cloud (upcoming):
       fileSystem:
         filesRoot:        // Root upload folder. If the value starts with '~/' (e.g. ~/files) the path is relative to the web root, otherwise set an absolute local path (e.g. d:/files) [Default: "~/Files"].
         usersRoot:        // Special subfolder within the filesRoot to store user related files like photos etc. Set it to usersRoot="" if you do not need this subfolder [Default: ""]
         objectsRoot:      // Subfolder within the filesRoot (e.g. "uploads"). Set it to objectsRoot="" if you do not need a subfolder [Default: ""].
         copiesRoot:       // Root of a folder where Backload stores a copy of an uploaded file, if set to a none empty string, else no copies were stored. If the value is empty ("") not copies are stored. If the value starts with '~/' (e.g. ~/copies) the path is relative to the web root. if the value not starts with '~/' and it isn't an absolute local path, the value will be treated as a subfolder to filesRoot ('copies' -> ~/files/copies). Otherwise set an absolute local path (e.g. d:/backup) [Default: ""].
         chunkPathPrefix:  // Temporary folder prefix if file chunks are uploaded into the upload folder before they are merged [Default: "_____"].
-      database:
-        assemblyName:     // Name of the assembly where the DBContext class is defined. You can leave this an empty string, if it is defined in the executing (caller of the file upload handler library) assembly [Default: ""]
-        dbContext:        // Full qualified name of the DBContext derived class [Default: ""]
-        entitySetName:    // Name of the root entity where the files will be stored directly or where the navigation begins (with navigation properties [Default: "Files"]
-        primaryKeyName:   // Name of the primary key of the root entity (separate multiple keys by comma [Default: "ID"]
       -->
       <fileSystem filesRoot="~/Files" usersRoot="" objectsRoot="" copiesRoot="" chunkPathPrefix="_____" />
-      <database assemblyName="" dbContext="" entitySetName="" primaryKeyName="ID" />
       
       
       
@@ -103,7 +97,7 @@
       
       <!-- 
       images and thumbnails:
-      path              // Location of the thumbnail within the folder where the main file is stored (thumbnails only). If you set this to an empty string ("") no thumbnails will be stored [Default: "_thumbs"]
+      path              // Location of the thumbnail within the folder where the main file is stored (thumbnails only). Set to an empty string (path="") to avoid physical storage. [Default: "_thumbs"]
       width:            // Width or max width (depends on resizeMode) of the resulting image [images range: 20-5000, Default: "1024"; thumbnails range: 20-500, Default: "80"]
       height:           // Height or max height (depends on resizeMode) of the resulting image [images range: 20-5000, Default: "768"; thumbnails range: 20-500, Default: "60"]
       dpi:              // Resolution of the resulting image (dots per inch) [Range: 72-600, Default: "96"]
@@ -151,18 +145,6 @@
       
       
       <!--
-      Enables or disables the extensibility feature globally. If you do not need it, leave it false, because the extensibility framework must not be loaded. Extensions are disabled by default (enabled="false")
-       enabled:            // Enables/disables extensions [Default="false"].
-       incomingRequest:    // If the extensibility feature is enabled (enabled="true") this attribute enables/disables IIncomingRequest extensions [Default="true"].
-       authorizeRequest:   // If the extensibility feature is enabled (enabled="true") this attribute enables/disables IAuthorizeRequest extensions [Default="true"].
-       getFilesRequest:    // If the extensibility feature is enabled (enabled="true") this attribute enables/disables core IGetFilesRequest extensions [Default="true"].
-       storeFileRequest:   // If the extensibility feature is enabled (enabled="true") this attribute enables/disables core IStoreFileRequest extensions [Default="true"].
-       deleteFilesRequest: // If the extensibility feature is enabled (enabled="true") this attribute enables/disables core IDeleteFilesRequest extensions [Default="true"].
-       outgoingResponse:   // If the extensibility feature is enabled (enabled="true") this attribute enables/disables IOutgoingResponse extensions [Default="true"].
-       pipelineException:  // If the extensibility feature is enabled (enabled="true") this attribute enables/disables IProcessPipelineException extensions [Default="true"].
-      -->
-      <contentTypes thumbnailPath="~/Backload/ContentTypes" thumbnailSize="64" useThumbnailCanvas="true">
-      <!--
       New contentType entry (MS Office, OpenOffice, PDF, Textfile are included by default. No need to inlude these anymore):
       Use <clear /> to clear all preexisting entries, use <remove name="[entrynmae]" /> to remove a specific entry (Example: <remove name="_AdobePDFFile" /> to remove the predefined PDF type).
       Predifined type names: _AdobePDFFile, _MSExcel2003, _MSExcel2012, _MSPowerpoint2003, _MSPowerpoint2012, _MSWord2003, _MSWord2012, _OpenOfficeWriter, _TextFile. 
@@ -182,4 +164,6 @@
         <add name="SampleAllImageFiles" extFragment="" typeFragment="image/" thumbnail="" subFolder="images" /> // Add special content type handling for all image types and store them in a image subfolder. This folder will be automatically created if it doesn't exist. The attribute thumbnail is set to an empty string, so that an image preview will be returned (otherwise a static image)
       -->
       </contentTypes>
+      <contentTypes thumbnailPath="~/Backload/ContentTypes" thumbnailSize="64" useThumbnailCanvas="true">
+
     </backload>

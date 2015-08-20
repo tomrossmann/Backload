@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Backload.Core</id>
-        <version>2.0.0.7</version>
+        <version>2.0.1.0</version>
         <title>Backload core component</title>
         <authors>Steffen Habermehl</authors>
         <owners>Steffen Habermehl</owners>
@@ -30,7 +30,10 @@ Whats new:
 - Optimized memory usage
 - Chunked file uploads for all supported client side plugins
 - Most recent version of the supported client side plugins
-- New options in the configuration</releaseNotes>
+- New options in the configuration
+
+Fixes:
+#54 Unique file name feature</releaseNotes>
         <copyright>Steffen Habermehl 2015</copyright>
         <tags>Fileupload, jQuery,ASP.NET, PlUpload, FineUploader, MVC, WebApi, WebForms, Controller, upload</tags>
     </metadata>

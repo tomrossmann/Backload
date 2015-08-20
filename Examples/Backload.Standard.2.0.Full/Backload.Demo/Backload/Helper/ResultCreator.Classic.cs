@@ -31,7 +31,7 @@ namespace Backload.Helper
                     if ((status.ClientStatus != null) && (result.Exception == null))
                         response.Write(serializer.Serialize(status.ClientStatus));
                 }
-                else
+                else if ((result.RequestType == RequestType.File) || (result.RequestType == RequestType.Thumbnail))
                 {
                     // file data (byte array) response
                     IFileDataResult data = (IFileDataResult)result;

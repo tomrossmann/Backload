@@ -17,7 +17,7 @@ namespace Backload.Controllers
     {
         /// <summary>
         /// The Backload file handler. 
-        /// To access it in an Javascript ajax request use: <code>var url = "/Backload/FileHandler/";</code>.
+        /// To access it in a JavaScript ajax request use: <code>var url = "/Backload/FileHandler/";</code>.
         /// </summary>
         [AcceptVerbs(HttpVerbs.Get|HttpVerbs.Post|HttpVerbs.Put|HttpVerbs.Delete|HttpVerbs.Options)]
         public async Task<ActionResult> FileHandler()

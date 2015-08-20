@@ -79,7 +79,7 @@
             <xs:documentation>Setting for the handling of thumbnails.</xs:documentation>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="path" type="xs:string" default="_thumbs" use="optional"><xs:annotation><xs:documentation>Location of the thumbnail subfolder within the folder where the main file is stored (thumbnails only) [Default: "_thumbs"]</xs:documentation></xs:annotation></xs:attribute>
+            <xs:attribute name="path" type="xs:string" default="_thumbs" use="optional"><xs:annotation><xs:documentation>Location of the thumbnail subfolder within the folder where the main file is stored (thumbnails only). Set to an empty string (path="") to avoid physical storage. [Default: "_thumbs"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="width" type="xs:unsignedShort" default="80" use="optional"><xs:annotation><xs:documentation>Width or max width (depends on resizeMode) of the resulting thumbnail [Range: 20-500, Default: "80"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="height" type="xs:unsignedShort" default="60" use="optional"><xs:annotation><xs:documentation>Height or max height (depends on resizeMode) of the resulting thumbnail [Range: 20-500, Default: "60"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="dpi" type="xs:unsignedShort" default="96" use="optional"><xs:annotation><xs:documentation>Resolution of the resulting thumbnail (dots per inch) [Range: 72-600, Default: "96"]</xs:documentation></xs:annotation></xs:attribute>
