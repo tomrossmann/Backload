@@ -29,6 +29,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 
 **Backload** has proven its scalability in production with hundreds of thousands uploads a day. Internally it is designed to work asynchronously where possible.
 
+Upload files to Windows Azure storage services from your Azure VM or web role and access the files from anywhere.
+
 <br />
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
@@ -47,6 +49,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 + Scalability by asynchronous internal code and asynchronous support for events and extensions.
 + Tracing: Use standard .NET tracing to find proplems during development or log errors in production.
 + CORS: Support for Cross Origin Resource Sharing (release 2.1, current dev).
++ Cloud storage: [Upload files](wiki/Azure-File-Storage) to Windows Azure cloud services and access the files from anywhere.
 
 <br />
 ### Setup and Configuration
