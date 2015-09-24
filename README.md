@@ -49,7 +49,7 @@ Upload files to Windows Azure storage services from your Azure VM or web role an
 + Scalability by asynchronous internal code and asynchronous support for events and extensions.
 + Tracing: Use standard .NET tracing to find proplems during development or log errors in production.
 + CORS: Support for Cross Origin Resource Sharing (release 2.1, current dev).
-+ Cloud storage: [Upload files](wiki/Azure-File-Storage) to Windows Azure cloud services and access the files from anywhere.
++ Cloud storage: [Upload files](https://github.com/blackcity/Backload/wiki/Azure-File-Storage) to Windows Azure cloud services and access the files from anywhere.
 
 <br />
 ### Setup and Configuration
