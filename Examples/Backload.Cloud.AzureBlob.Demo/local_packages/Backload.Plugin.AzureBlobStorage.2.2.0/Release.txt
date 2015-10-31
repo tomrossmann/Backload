@@ -1,0 +1,19 @@
+﻿
+    Minimal configuration (Web.Backload.config):
+
+
+    <!-- To enable cloud storage set storageContext="CloudStorage" -->
+    <backload storageContext="CloudStorage"  xsi:noNamespaceSchemaLocation="Config\Web.Backload.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:name="urn:backload-schema">
+  
+      <!-- Cloud settings. Set service provider to Azure Blob storage -->
+      <cloudStorage serviceProvider="AzureBlobStorage">
+        <azureBlobStorage uploadContainer="uploads" />                <!-- Name of the upload container -->
+      </cloudStorage>
+  
+    </backload>
+
+
+
+IMPORTANT NOTE: 
+===============
+THIS IS A PRE-RELEASE VERSION. FOR EVALUATION PURPOSES ONLY (TIME LIMITED UNTIL DEC 2015). DO NOT USE THIS RELEASE IN PRODUCTION!
