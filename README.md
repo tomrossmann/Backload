@@ -13,9 +13,12 @@ General information, editions and how to get a Pro/Enterprise license:
 [Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v2.0.0.0/Backload.Standard.2.0.Full.zip)
 
 <br />
-### Cloud storage survey
-Currently, we are developing the cloud storage feature and we need your help! Tell us the features you really need, how your application will use cloud storage, what cloud provider you prefer, etc. Your [feedback](#direct-contact) will influence the development directly. 
-<!--For example, Are you developing against a central cloud storage  central cloud storage for all users or -->
+### Pre-Release 2.2: Cloud demo (NEW) 
+Azure Blob Storage: [Full demo solution (Backload pre-release 2.2)](https://github.com/blackcity/Backload/releases/download/v2.2.0.0-pre/Backload.Cloud.AzureBlob.Demo.zip)
+
+<br />
+### Cloud storage
+Currently, we are developing the cloud storage feature and we need your help! Tell us the features you really need, how your application will use cloud storage, what cloud provider you prefer, etc. Your [feedback](#direct-contact) will influence the development directly.
 
 <br />
 ### Highlights
