@@ -86,6 +86,9 @@
 
         azureBlobStorage:   // Microsoft Azure Blob storage settings
           connectionString  // Azure Storage Service connection string name, usually located in the .cscfg file or Web.config. If this is an empty string, the local storage emulator will be used [Default: "StorageConnectionString"]
+            [not set]       // Backload looks for the connectionstring "StorageConnectionString" in Azure service definition file (.cscfg) or Web.config
+            [empty, ""]     // Internally resolved to "UseDevelopmentStorage=true". Uses the storage emulator
+            {string}		// Backload looks for a custom name in the Azure service definition file (.cscfg) or in Web.config
           uploadContainer   // Name of the files upload container. Example: uploadContainer="files". Must start with a lowercase letter. Automatically created if it doesn't exist [Default: "files"]</xs:documentation></xs:annotation></xs:attribute>
           accessType:       // Public access type to the uploaded files [Default: "token"]
             private         // No public access.
