@@ -8,9 +8,9 @@ General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
 
 <br />
-### Release 2.0: Important notes 
-[Release notes and migration](https://github.com/blackcity/Backload/wiki/Upgrade-and-migration)<br />
-[Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v2.0.0.0/Backload.Standard.2.0.Full.zip)
+### Release 2.1 (NEW): 
+[Release 2.1 final package](https://github.com/blackcity/Backload/releases/download/v2.1.0.0/Backload.Standard.2.1.Full.zip)<br />
+[Release notes and migration](https://github.com/blackcity/Backload/wiki/Upgrade-and-migration)
 
 <br />
 ### Pre-Release 2.2: Cloud demo (NEW) 
