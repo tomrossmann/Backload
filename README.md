@@ -13,9 +13,12 @@ General information, editions and how to get a Pro/Enterprise license:
 [Release 2.0 final package 2.0](https://github.com/blackcity/Backload/releases/download/v2.0.0.0/Backload.Standard.2.0.Full.zip)
 
 <br />
-### Cloud storage survey
-Currently, we are developing the cloud storage feature and we need your help! Tell us the features you really need, how your application will use cloud storage, what cloud provider you prefer, etc. Your [feedback](#direct-contact) will influence the development directly. 
-<!--For example, Are you developing against a central cloud storage  central cloud storage for all users or -->
+### Pre-Release 2.2: Cloud demo (NEW) 
+Azure Blob Storage: [Full demo solution (Backload pre-release 2.2)](https://github.com/blackcity/Backload/releases/download/v2.2.0.0-pre/Backload.Cloud.AzureBlob.Demo.zip)
+
+<br />
+### Cloud storage
+Currently, we are developing the cloud storage feature and we need your help! Tell us the features you really need, how your application will use cloud storage, what cloud provider you prefer, etc. Your [feedback](#direct-contact) will influence the development directly.
 
 <br />
 ### Highlights
@@ -28,6 +31,8 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 **Backload** can create unique file names (GUIDs). So files cannot be overwritten or, if this is the purpose of using this feature, cannot be accessed from the web without knowledge of the new name. Mapping of the original file name to the new file name and back is also implemented. This feature can be used to send a friendly name back to the client. Generation of client side GUIDs is also supported (seel release 2.0 demos). 
 
 **Backload** has proven its scalability in production with hundreds of thousands uploads a day. Internally it is designed to work asynchronously where possible.
+
+Upload files to **Windows Azure** cloud storage services from your Azure VM or web role and access the files from anywhere.
 
 <br />
 ### Features
@@ -47,6 +52,7 @@ The zero configuration feature allows quick setups, a default MVC controller is 
 + Scalability by asynchronous internal code and asynchronous support for events and extensions.
 + Tracing: Use standard .NET tracing to find proplems during development or log errors in production.
 + CORS: Support for Cross Origin Resource Sharing (release 2.1, current dev).
++ Cloud storage: [Upload files](https://github.com/blackcity/Backload/wiki/Azure-File-Storage) to Windows Azure cloud services and access the files from anywhere.
 
 <br />
 ### Setup and Configuration
