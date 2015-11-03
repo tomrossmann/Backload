@@ -19,8 +19,7 @@
 	in breach of any of the terms of clause 2 to this license; Licensee otherwise entered into any arrangement which caused Licensor 
 	to be unable to enforce his rights under this License.
  
-4. 	Payment: The Standard Edition is free of charge. Professional Edition 49EUR, Enterprise Edition 149EUR
-
+4. 	Payment: Standard Edition (free of charge), Professional Edition (49EUR), Enterprise Edition (149EUR)
 5. 	Updates and Fixes: Updates and fixes will be provided online by the NuGet package repository Gallery (NuGet.org). 
 
 6. 	Support: Software is provided under an AS-IS basis and without any support, updates or maintenance. Nothing in this Agreement 
