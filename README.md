@@ -14,7 +14,7 @@ General information, editions and how to get a Pro/Enterprise license:
 
 <br />
 ### Pre-Release 2.2: Cloud demo (NEW) 
-Azure Blob Storage: [Full demo solution (Backload pre-release 2.2)](https://github.com/blackcity/Backload/releases/download/v2.2.0.0-pre/Backload.Cloud.AzureBlob.Demo.zip)<br />
+Azure Blob Storage: _Pre-release time limitation elapsed. Release candidate coming soon._<br />
 Post processing demo: [Upload to Zip archive](https://github.com/blackcity/Backload/blob/master/Examples/Other/Backload.Demo.PostProcessing.zip)
 
 <br />
