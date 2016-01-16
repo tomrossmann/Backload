@@ -10,7 +10,7 @@ namespace Backload.Helper
     {
 
         /// <summary>
-        /// Writes the result directly into the response stream, e.g. for a classic ASP.NET or HTML response
+        /// Writes the result directly into the response stream, e.g. for a classic ASP.NET response
         /// </summary>
         /// <param name="response">A standard HttpResponse object</param>
         /// <param name="result">An IBackloadResult object</param>
