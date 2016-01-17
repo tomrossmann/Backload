@@ -1,5 +1,10 @@
 ﻿This release:
-- Fixed bug #68: Not possible to set the height of an image programmatically (e.g. event handler)
+
+Bug fixes:
+- #69 Memory optimizations when processing very large images
+- #68 Set image height programmatically results in unexpected behaviour.
+- #57 Thumbnail not generated on server for non-image type file 
+- Cache could not be disabled
 
 
 What's new in release 2.1?
@@ -9,12 +14,7 @@ Improvements:
 - new resize method (maxratio)
 - Watermark/background image support (experimental)
 - Improved chunked file handling
-
-Bug fixes:
-- #69 Memory optimizations when processing very large images
-- #68 Set image height programmatically results in unexpected behaviour.
-- #57 Thumbnail not generated on server for non-image type file 
-- Cache could not be disabled
+- Resuced memory footprint when saving large files
 
 
 

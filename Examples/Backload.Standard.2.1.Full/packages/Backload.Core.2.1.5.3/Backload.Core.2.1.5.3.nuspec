@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Backload.Core</id>
-        <version>2.1.5.2</version>
+        <version>2.1.5.3</version>
         <title>Backload. A professional full featured ASP.NET file handler (MVC, Web API, WebForms)</title>
         <authors>Steffen Habermehl</authors>
         <owners>Steffen Habermehl</owners>
