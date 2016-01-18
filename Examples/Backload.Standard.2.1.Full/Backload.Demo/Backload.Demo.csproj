@@ -365,7 +365,6 @@
     <Content Include="Global.asax" />
     <Content Include="Other\ASPNET\ClassicASPXDemo.aspx" />
     <Content Include="Other\HTML\ClassicHTMLDemo.html" />
-    <Content Include="Other\WebApi\WebApiDemo.aspx" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Backload\Logs\log.folder" />
     <Content Include="Backload\Client\blueimp\templates\package.json" />
@@ -422,15 +421,7 @@
     <Compile Include="Other\Handler\FileHandler.ashx.cs">
       <DependentUpon>FileHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Other\WebApi\IFIleStatusResult.cs" />
-    <Compile Include="Other\WebApi\WebApiController.cs" />
-    <Compile Include="Other\WebApi\WebApiDemo.aspx.cs">
-      <DependentUpon>WebApiDemo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Other\WebApi\WebApiDemo.aspx.designer.cs">
-      <DependentUpon>WebApiDemo.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Other\WebApi\FileHandlerController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -452,6 +443,7 @@
     <Content Include="Views\Home\Basic.cshtml" />
     <Content Include="Views\Home\AngularJS.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\CustomWebApi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

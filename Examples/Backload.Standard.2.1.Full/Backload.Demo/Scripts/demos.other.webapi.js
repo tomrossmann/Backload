@@ -14,13 +14,14 @@
 $(function () {
     'use strict';
 
-    // In this example we use a custom controller
+    // In this example we use a custom WebApi controller (~/Other/WebApi/FileHandlerController.cs)
     var url = '/api/FileHandler?objectContext=C5F260DD3787';
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         url: url,
-        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(pdf)$/i              // Allowed file types
+        maxChunkSize: 10000000,                                             // Optional: file chunking with 10MB chunks
+        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(pdf)$/i                 // Allowed file types
     })
 
 

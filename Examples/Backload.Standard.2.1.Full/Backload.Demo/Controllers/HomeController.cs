@@ -116,8 +116,8 @@ namespace Backload.Demo.Controllers
             return View();
         }
 
-        // Custom controller with database storage demo
-        public ActionResult CustomCloud()
+        // Custom WebApi controller demo (Controller location: ~/Other/WebApi/FileHandlerController.cs)
+        public ActionResult CustomWebApi()
         {
             return View();
         }
