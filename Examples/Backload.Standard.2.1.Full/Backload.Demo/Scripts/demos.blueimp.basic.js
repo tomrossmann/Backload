@@ -11,7 +11,7 @@ $(function () {
     $('#fileupload').fileupload({
         url: url,
         dataType: 'json',
-        maxChunkSize: 1000000                                          // Optional: file chunking with 10MB chunks
+        maxChunkSize: 10000000                                          // Optional: file chunking with 10MB chunks
     })
     .bind('fileuploadsubmit', function (e, data) {
         // Optional: We add a random uuid form parameter. On chunk uploads the uuid is used to store the chunks.

@@ -14,7 +14,7 @@ Improvements:
 - new resize method (maxratio)
 - Watermark/background image support (experimental)
 - Improved chunked file handling
-- Resuced memory footprint when saving large files
+- Reduced memory footprint when saving large files
 
 
 
