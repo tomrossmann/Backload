@@ -14,8 +14,12 @@
 $(function () {
     'use strict';
 
-    // In this example files are stored in a database
-    var url = '/CustomDatabase/DataHandler';
+    // Name of a web application (usually in full IIS mode). Can be found in Properties/Web/Server/Project-Url. Example: http://localhost/Demo (Name of web application is "Demo")
+    var web_app = '/';
+
+    // We use a custom controller (~/Controllers/CustomDatabaseController.cs):
+    var url = web_app + 'CustomDatabase/DataHandler';
+
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
@@ -24,7 +28,7 @@ $(function () {
     })
 
 
-    // Load existing files:
+    // Optional: Load existing files:
     $('#fileupload').addClass('fileupload-processing');
     $.ajax({
         // Uncomment the following to send cross-domain cookies:

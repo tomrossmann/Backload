@@ -14,16 +14,21 @@
 $(function () {
     'use strict';
 
-    // In this example we use a custom Generic Handler
-    // We send an objectCOntext parameter which can be a user id. The server side component is configured 
-    // to accept requests only if this parameter is send with the request (see Web.Backload.config)
-    var url = '/Other/Handler/FileHandler.ashx?objectContext=C5F260DD3787';
+    // Name of a web application (usually in full IIS mode). Can be found in Properties/Web/Server/Project-Url. Example: http://localhost/Demo (Name of web application is "Demo")
+    var web_app = '/';
+
+    // We use a generic http handler (ashx, ~/Other/Handler/FileHandler.ashx)::
+    // In this example we set an objectContect (id) in the url query (or as form parameter). You can use a user id as 
+    // objectContext give users only access to their own uploads. ObjectContext can also be set server side.
+    var url = web_app + 'Other/Handler/FileHandler.ashx?objectContext=C5F260DD3787';
+
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         url: url,
         acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)$/i              // Allowed file types
     })
+
 
 
     // Load existing files:

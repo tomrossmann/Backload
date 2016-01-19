@@ -14,8 +14,14 @@
 $(function () {
     'use strict';
 
-    // In this example we use a custom controller
-    var url = '/Other/Handler/FileHandler.ashx?objectContext=C5F260DD3787';
+    // Name of a web application (usually in full IIS mode). Can be found in Properties/Web/Server/Project-Url. Example: http://localhost/Demo (Name of web application is "Demo")
+    var web_app = '/';
+
+    // We use a generic http handler (ashx, ~/Other/Handler/FileHandler.ashx)::
+    // In this example we set an objectContect (id) in the url query (or as form parameter). You can use a user id as 
+    // objectContext give users only access to their own uploads. ObjectContext can also be set server side.
+    var url = web_app + 'Other/Handler/FileHandler.ashx?objectContext=C5F260DD3787';
+
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
@@ -24,7 +30,8 @@ $(function () {
     })
 
 
-    // Load existing files:
+
+    // Optional: Load existing files:
     $('#fileupload').addClass('fileupload-processing');
     $.ajax({
         // Uncomment the following to send cross-domain cookies:

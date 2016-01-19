@@ -14,4 +14,7 @@ body {
   padding-top: 10px;
 }
 
-
+blockquote {
+    font-size: 9pt;
+    line-height:1.5;
+}

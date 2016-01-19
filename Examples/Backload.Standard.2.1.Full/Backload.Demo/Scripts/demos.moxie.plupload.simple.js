@@ -1,15 +1,21 @@
 $(function () {
-    // We use the upload handler integrated into Backload:
-    var url = '/Backload/FileHandler';
 
+    // Name of a web application (usually in full IIS mode). Can be found in Properties/Web/Server/Project-Url. Example: http://localhost/Demo (Name of web application is "Demo")
+    var web_app = '/';
+
+    // We use the upload handler integrated into Backload:
+    var url = web_app + 'Backload/FileHandler';
+
+
+    // Initialize the plugin
     var uploader = new plupload.Uploader({
         runtimes: 'html5,html4',
-        browse_button: 'pickfiles', // you can pass in id...
-        container: document.getElementById('container'), // ... or DOM Element itself
+        browse_button: 'pickfiles',
+        container: document.getElementById('container'),                    // you can pass in id or DOM Element itself
         url: url,
 
         filters: {
-            max_file_size: '10mb',
+            max_file_size: '10mb',                                          // Ptional: Maximum file size 10mb
             mime_types: [
                 { title: "Image files", extensions: "jpg,gif,png,pdf" }
             ]

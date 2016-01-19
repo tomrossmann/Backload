@@ -96,6 +96,30 @@ namespace Backload.Demo.Controllers
 
 
 
+        #region Other demos with integrated controller
+
+        // Integrated controller with basic file chunking demo
+        public ActionResult OtherChunkingBasic()
+        {
+            return View();
+        }
+
+        // Integrated controller with resume chunked files demo
+        public ActionResult OtherChunkingResume()
+        {
+            return View();
+        }
+
+        // Integrated controller with file overwrite protection demo
+        public ActionResult OtherChunkingAdvanced()
+        {
+            return View();
+        }
+
+        #endregion
+
+
+
         #region Custom controller
 
         // Custom controller with events demo

@@ -1,9 +1,14 @@
 $(function () {
-    // In this example we set an objectContect (id) as a url query parameter (form parameter also allowed, but in GET requests only query)
-    // You can use a user id as objectContext give users only access to their own uploads.
-    // You need to set the plugin parameter only if you do not set it in the server side config (default: JQueryFileUpload)
-    var url = "/Backload/FileHandler?plugin=PlUpload&objectContext=3E8A03244079";
+    // Name of a web application (usually in full IIS mode). Can be found in Properties/Web/Server/Project-Url. Example: http://localhost/Demo (Name of web application is "Demo")
+    var web_app = '/';
 
+    // In this example we set an objectContect (id) as a url query parameter (form parameter also allowed, but in GET requests only query)
+    // You can use a user id as objectContext give users only access to their own uploads. ObjectContext can also be set server side (See Custom Data Provider Demo, 2.2+).
+    // You need to set the plugin parameter only if you do not set it in the server side config (default: JQueryFileUpload)
+    var url = web_app + "Backload/FileHandler?plugin=PlUpload&objectContext=3E8A03244079";
+
+
+    // Initialize the plugin
     $("#uploader").plupload({
         // General settings
         runtimes: 'html5,html4',

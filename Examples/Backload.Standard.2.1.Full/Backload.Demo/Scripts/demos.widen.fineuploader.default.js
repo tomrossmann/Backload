@@ -3,32 +3,40 @@
 $(function () {
     'use strict';
 
+    // Name of a web application (usually in full IIS mode). Can be found in Properties/Web/Server/Project-Url. Example: http://localhost/Demo (Name of web application is "Demo")
+    var web_app = '/';
 
+    // We use the upload handler integrated into Backload:
+    var url = web_app + 'Backload/FileHandler';
+    var userId = '030357B624D9';
+
+
+    // Initialize the plugin:
     var uploader = new qq.FineUploader({
         element: document.getElementById("fine-uploader"),
         template: 'qq-template',
         request: {
-            endpoint: '/Backload/FileHandler',
+            endpoint: url,
             params: {                                                                       // Send a plugin param or set Fine Uploader in 
                 plugin: "FineUploader",                                                     // Web.Backload.config as the default client plugin                                                    
-                objectContext: "030357B624D9"
+                objectContext: userId                                                       // ObjectContext (e.g. user id) for GET/POST requests 
             }
         },
 
         deleteFile: {
             enabled: true,
-            endpoint: '/Backload/FileHandler',
+            endpoint: url,
             params: {                                                                       // Send a plugin param or set Fine Uploader in 
                 plugin: "FineUploader",                                                     // Web.Backload.config as the default client plugin                                                    
-                objectContext: "030357B624D9"
+                objectContext: userId                                                       // ObjectContext (e.g. user id) for DELETE requests 
             }
         },
 
         session: {                                                                          // Initial GET request to load existing files
-            endpoint: '/Backload/FileHandler',
+            endpoint: url,
             params: {                                                                       // Send a plugin param or set Fine Uploader in 
                 plugin: "FineUploader",                                                     // Web.Backload.config as the default client plugin                                                      
-                objectContext: "030357B624D9"
+                objectContext: userId                                                       // ObjectContext (e.g. user id) for initial GET request 
             }
         },
 
