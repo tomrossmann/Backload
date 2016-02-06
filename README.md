@@ -98,6 +98,6 @@ For customers and commercial requests only: backload.org [at] gmail [dot] com.
 
 <br />
 ### License
-[Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2014, Steffen Habermehl, License (Standard version): MIT license<br />
+[Backload. (Standard version)](https://github.com/blackcity/Backload): Copyright 2016, Steffen Habermehl, License (Standard version): MIT license<br />
 Professional and Enterprise (source code) version are available under a commercial license.<br/>
 Follow us on Twitter: [@Backload_org](https://twitter.com/backload_org)
