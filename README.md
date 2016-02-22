@@ -4,7 +4,7 @@ While Backload out of the box handles the client side [jQuery File Upload Plugin
 
 <br />
 ## 3 DAYS ONLY: Get Pro Edition for free
-We need references. Write a brief description on how you use the component, your satisfaction, a brief business info on your business letterhead (one page only) until Wednesday, February 24. If you meet the requirements, you get a free copy of the current Pro Edition. More info: getbackload@backload.org.
+We need references. Write a brief description on how you use the component, your satisfaction, a brief business info on your business letterhead (one page only) until Wednesday, February 24. If you meet the requirements, you get a free copy of the current Pro Edition. (Pro users get and upgrade for the Enterprise Edition). More info: getbackload@backload.org.
 
 <br />
 ### Project website
