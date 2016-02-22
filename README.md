@@ -3,6 +3,10 @@
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10)). Current release is [2.0.0.5](http://www.nuget.org/packages/Backload/).
 
 <br />
+## 3 DAYS ONLY: Get Pro Edition for free
+We need references. Write a brief description on how you use the component, your satisfaction, a brief business info on your business letterhead (one page only) until Wednesday, February 24. If you meet the requirements, you get a free copy of the current Pro Edition. More info: getbackload@backload.org.
+
+<br />
 ### Project website
 General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
