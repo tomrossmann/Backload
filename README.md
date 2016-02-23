@@ -1,6 +1,6 @@
 ## Backload
-**Backload** is a professional, full featured server side file handler for ASP.NET MVC 4, MVC 5, Web API, standard ASP.NET Web Forms or even plain HTML pages (with a Generic Handler, see [demo package 2.0](https://github.com/blackcity/Backload/releases/download/v.2.0.0.0/Backload.Standard.2.0.Full.zip)). It has been developed as part of a commercial product for the aero craft industry. 
-While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin (see [Example 09](https://github.com/blackcity/Backload/wiki/Example-10) or [Example 10](https://github.com/blackcity/Backload/wiki/Example-10)). Current release is [2.0.0.5](http://www.nuget.org/packages/Backload/).
+**Backload** is a professional, full featured server side file handler for ASP.NET MVC 4, MVC 5, Web API, standard ASP.NET Web Forms or even plain HTML pages. It has been developed as part of a commercial product for the aero craft industry. 
+While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin.
 
 <br />
 ## 3 DAYS ONLY: Get Pro Edition for free
@@ -43,7 +43,7 @@ Upload files to **Windows Azure** cloud storage services from your Azure VM or w
 ### Features
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
 * Declarative configuration: Features will be setup within the web.config or a linked config file.
-* Storage context: Supported locations are file system, UNC shares and cloud (next milestone).
+* Storage context: Supported locations are file system, UNC shares, database and cloud (next milestone).
 * Object context based locations: Based on the context (e.g. UserX, UserY, ArtistX, ArtistY, HouseA, HouseB) different storage locations can automatically be routed.
 * Content type subfolders: Based on the content type files can automatically be stored in an appropriate subfolder. This feature is fully customizable.
 * Unique file names: Files can be stored with a unique name and also remapped to their original name.
