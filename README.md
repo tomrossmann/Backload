@@ -12,14 +12,13 @@ General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
 
 <br />
-### Release 2.1 (NEW): 
+### Release 2.1: 
 [Release 2.1 final package](https://github.com/blackcity/Backload/releases/download/v2.1.5.0/Backload.Standard.2.1.Full.zip)<br />
-[Release notes and migration](https://github.com/blackcity/Backload/wiki/Upgrade-and-migration)
 
-<br />
-### Pre-Release 2.2: Cloud demo (NEW) 
-Azure Blob Storage: _Pre-release time limitation elapsed. Release candidate coming soon._<br />
-Post processing demo: [Upload to Zip archive](https://github.com/blackcity/Backload/blob/master/Examples/Other/Backload.Demo.PostProcessing.zip)
+### Release 2.2 (New):
+[Release 2.2 Database package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Demo.2/Backload.Database.Demo.zip?raw=true)<br />
+Supporting Entity Framework, Sql Server FILESTREAMS, Sql Server FileTables, external file data storage, more.
+
 
 <br />
 ### Cloud storage
