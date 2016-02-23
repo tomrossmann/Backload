@@ -19,7 +19,10 @@ General information, editions and how to get a Pro/Enterprise license:
 [Release 2.2 Database package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.Database.Demo.zip?raw=true)<br />
 Supporting Entity Framework, Sql Server FILESTREAMS, Sql Server FileTables, external file data storage, more.<br />
 [Release 2.2 FileSystem package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.FileSystem.Demo.zip?raw=true)<br />
-20 demos for filesystem storage, including file chunk demos, classic html/aspx demos, server side events, Web Api controller, post processing and more.
+20 demos for filesystem storage, including file chunking demos, classic html/aspx demos, server side events, Web Api controller, post processing and more.<br />
+[Release 2.2 Azure Blob Storage package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.AzureBlobStorage.Demo.zip?raw=true)<br />
+20 demos for the Microsoft Azure Blob Storage Service, including file chunking demos, classic html/aspx demos, server side events, Web Api controller, post processing and more.
+
 
 <br />
 ### Cloud storage
