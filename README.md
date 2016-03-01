@@ -3,8 +3,8 @@
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin.
 
 <br />
-## 3 DAYS ONLY: Get Pro Edition for free
-We need references. Write a brief description on how you use the component, your satisfaction, a brief business info on your business letterhead (one page only) until Wednesday, February 24. If you meet the requirements, you get a free copy of the current Pro Edition. (Pro users get and upgrade for the Enterprise Edition). More info: getbackload@backload.org.
+## FEW DAYS ONLY: Get Pro Edition for free
+We need references. Write a brief description on how you use the component, your satisfaction, a brief business info on your business letterhead (one page only). If you meet the requirements, you get a free copy of the current Pro Edition. (Pro users get and upgrade for the Enterprise Edition). More info: getbackload@backload.org.
 
 <br />
 ### Project website
