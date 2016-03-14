@@ -93,7 +93,7 @@ Before posting read the [FAQ](https://github.com/blackcity/Backload/wiki/faq)
 
 <br />
 ### Licenses and editions
-You can get a license for a Professional or Enterprise edition here: [http://backload.org/editions.html](http://backload.org/editions.html). 
+You can get a license for a Professional or Enterprise edition here: [http://backload.org/](http://backload.org/). 
 Or read the FAQ about the different [licenses](https://github.com/blackcity/Backload/wiki/faq#versions-and-licenses)
 
 <br />
