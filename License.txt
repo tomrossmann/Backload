@@ -1,4 +1,4 @@
-﻿License Agreement (Standard Edition)
+﻿License Agreement
 1. 	This Agreement sets the terms, rights, restrictions and obligations on using the BACKLOAD SERVER SIDE COMPONENT (The Software) 
 	created and owned by Licensor and granted to the users of The Software (hereinafter: Licensee), as detailed herein.
  
