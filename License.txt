@@ -1,4 +1,4 @@
-﻿License Agreement
+License Agreement
 1. 	This Agreement sets the terms, rights, restrictions and obligations on using the BACKLOAD SERVER SIDE COMPONENT (The Software) 
 	created and owned by Licensor and granted to the users of The Software (hereinafter: Licensee), as detailed herein.
  
@@ -19,8 +19,7 @@
 	in breach of any of the terms of clause 2 to this license; Licensee otherwise entered into any arrangement which caused Licensor 
 	to be unable to enforce his rights under this License.
  
-4. 	Payment: The Standard Edition is free of charge. 
-
+4. 	Payment: Standard Edition (free of charge), Professional Edition (49EUR), Enterprise Edition (149EUR)
 5. 	Updates and Fixes: Updates and fixes will be provided online by the NuGet package repository Gallery (NuGet.org). 
 
 6. 	Support: Software is provided under an AS-IS basis and without any support, updates or maintenance. Nothing in this Agreement 
@@ -41,7 +40,7 @@
 	computer or services.  Moreover, Licensor shall never be liable for any defect in source code written by Licensee when relying on 
 	The Software or using The Software’s source code.
  
-8. 	Warranty:  
+8. 	Warranty:
 	8.1. Intellectual Property: Licensor hereby warrants that The Software does not violate or infringe any 3rd party claims in regards to 
         intellectual property, patents and/or trademarks and that to the best of its knowledge no legal action has been taken against it for any 
         infringement or violation of any 3rd party intellectual property rights.
@@ -59,12 +58,15 @@
 	as The Software is intangible goods, Licensee shall not be, ever, entitled to any refund, rebate, compensation or restitution for any 
 	reason whatsoever, even if The Software contains material flaws.
  
-10. Indemnification: Licensee hereby warrants to hold Licensor harmless and indemnify Licensor for any lawsuit brought against it in regards 
-    to Licensee’s use of The Software in means that violate, breach or otherwise circumvent this license, Licensor's intellectual property 
+10. 	Indemnification: Licensee hereby warrants to hold Licensor harmless and indemnify Licensor for any lawsuit brought against it in regards 
+    	to Licensee’s use of The Software in means that violate, breach or otherwise circumvent this license, Licensor's intellectual property 
 	rights or Licensor's title in The Software. Licensor shall promptly notify Licensee in case of such legal action and request Licensee’s 
 	consent prior to any settlement in relation to such lawsuit or claim.
- 
-11. Governing Law, Jurisdiction: Licensee hereby agrees not to initiate class-action lawsuits against Licensor in relation to this license 
+
+11. 	References: Licensee grants the licensor the right to list the company or the organization of the licensee as a reference on the website of the 
+	licensore or in any other form.
+
+12. 	Governing Law, Jurisdiction: Licensee hereby agrees not to initiate class-action lawsuits against Licensor in relation to this license 
 	and to compensate Licensor for any legal fees, cost or attorney fees should any claim brought by Licensee against Licensor be denied, 
 	in part or in full.
  
