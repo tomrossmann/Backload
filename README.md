@@ -1,21 +1,23 @@
 ## Backload
-**Backload** is a professional, full featured server side file handler for ASP.NET MVC 4, MVC 5, Web API, standard ASP.NET Web Forms or even plain HTML pages. It has been developed as part of a commercial product for the aero craft industry. 
+**Backload** is a professional, full featured server side file handler for ASP.NET MVC, Web API, standard ASP.NET Web Forms or even plain HTML pages. It has been developed as part of a commercial product for the aero craft industry. 
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin.
 
 <br />
-## FEW DAYS ONLY: Get Pro Edition for free
-We need references. Write a brief description on how you use the component, your satisfaction, a brief business info on your business letterhead (one page only). If you meet the requirements, you get a free copy of the current Pro Edition. (Pro users get and upgrade for the Enterprise Edition). More info: getbackload@backload.org.
+### ASP.NET Core 1.0 (ASP.NET 5) and MVC 6 support
+Release 2.3.0 will support the new Framework and project types. [More ...](https://github.com/blackcity/Backload/wiki/ASP.NET-Core-1.0-and-MVC6)
 
 <br />
 ### Project website
 General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
 
+<!--
 <br />
 ### Release 2.1: 
 [Release 2.1 final package](https://github.com/blackcity/Backload/releases/download/v2.1.5.0/Backload.Standard.2.1.Full.zip)<br />
-
-### Release 2.2 (New):
+-->
+<br />
+### Current release 2.2:
 [Release 2.2 Database package (updated)](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.Database.Demo.zip?raw=true)<br />
 24 database storage examples, including support for Entity Framework, Sql Server FILESTREAMS, Sql Server FileTables, external file data storage, client side plugins, file chunking, classic html/aspx, Web Api and more.<br />
 [Release 2.2 FileSystem package (updated)](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.FileSystem.Demo.zip?raw=true)<br />
