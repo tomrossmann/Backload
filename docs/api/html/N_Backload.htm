@@ -37,7 +37,7 @@
             IFileHandler handler = Backload.FileHandler.Create();
             handler.Init(HttpContext.Request);
 
-            <span class="highlight-comment">// Optional: Register event handlers to sever side events</span>
+            <span class="highlight-comment">// Optional: Register event handlers to server side events</span>
             handler.Events.StoreFileRequestStarted += Events_StoreFileRequestStarted;
 
             <span class="highlight-comment">// Call the execution pipeline and get the result</span>
