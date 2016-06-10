@@ -4,7 +4,7 @@ While Backload out of the box handles the client side [jQuery File Upload Plugin
 
 <br />
 ### ASP.NET Core 1.0 RC2 (ASP.NET 5, MVC 6) support
-Release 2.3.0 to support the new .NET Core (CLI) based project types. [More ...](https://github.com/blackcity/Backload/wiki/ASP.NET-Core-1.0-support)
+Release 2.3.0 adds support for the new .NET Core (CLI) based project types. [More ...](https://github.com/blackcity/Backload/wiki/ASP.NET-Core-1.0-support)
 
 <br />
 ### Project website
