@@ -139,19 +139,6 @@
         _chunkedUpload: function (options, testOnly) {
             options.uploadedBytes = options.uploadedBytes || 0;
 
-            // Sets uploaded bytes on chunk resume
-            if (!testOnly) {
-                var data = options.context.data('data');
-                if (data) {
-                    data.chunked = true;
-                    if (!data.action) data.action = "send";
-                    evtname = 'chunk' + data.action;
-                    if ((!options.uploadedBytes) || (options.uploadedBytes == 0)) {
-                        options.uploadedBytes = (data.uploadedBytes ? data.uploadedBytes : 0);
-                    }
-                }
-            }
-
             var that = this,
                 file = options.files[0],
                 fs = file.size,
@@ -162,7 +149,22 @@
                 promise = dfd.promise(),
                 jqXHR,
                 upload,
-                evtname;
+                evtname = 'chunksend';
+
+            // Sets uploaded bytes on chunk resume
+            if (!testOnly) {
+                var data = options.context.data('data');
+                if (data) {
+                    data.chunked = (mcs < fs);
+                    if (!data.action) data.action = "send";
+                    evtname = 'chunk' + data.action;
+                    if ((!options.uploadedBytes) || (options.uploadedBytes == 0)) {
+                        options.uploadedBytes = (data.uploadedBytes ? data.uploadedBytes : 0);
+                        ub = options.uploadedBytes;
+                    }
+                }
+            }
+
             if (!(this._isXHRUpload(options) && slice && (ub || mcs < fs)) ||
                     options.data) {
                 return false;
