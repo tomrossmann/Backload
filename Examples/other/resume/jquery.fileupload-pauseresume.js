@@ -57,16 +57,27 @@
     // var $thisWidget;
     $.widget('blueimp.fileupload', $.blueimp.fileupload, {
 
+        options: {
+            // By default, a pause button is displayed only on chunked file uploads.
+            // If this option is set to true the pause button is displayed on all uploads. 
+            // Default: false
+            pauseAll: false
+        },
+
+
         // Start/Resume button clicked
         _startHandler: function (e) {
             e.preventDefault();
 
             var $startbutton = $(e.currentTarget),
                 $template = $startbutton.closest('.template-upload'),
-                data = $template.data('data')
+                data = $template.data('data'),
+                $form = (data) ? data.form : $template.closest('form.fileupload'),
+                widget = $form.data('blueimp-fileupload') || $form.data('fileupload'),
+                pauseAll = widget.options.pauseAll;
 
             if (data) {
-                if (data.chunked) {
+                if (data.chunked || pauseAll) {
                     if (!data.action) data.action = "send";
 
                     if (data.action == "pause") {
@@ -81,7 +92,7 @@
                 // this._super(e);
 
                 // Set pause/resume buttons and state
-                if (data.chunked) {
+                if (data.chunked || pauseAll) {
 
                     $startbutton.prop('disabled', false).addClass('hidden');
                     var $startsymbol = $startbutton.children('i');
@@ -102,11 +113,14 @@
 
             var $pausebutton = $(e.currentTarget),
                 $template = $pausebutton.closest('.template-upload'),
-                data = $template.data('data');
+                data = $template.data('data'),
+                $form = (data) ? data.form : $template.closest('form.fileupload'),
+                widget = $form.data('blueimp-fileupload') || $form.data('fileupload'),
+                pauseAll = widget.options.pauseAll;
 
             if (data) {
                 // Set pause/resume buttons and state
-                if (data.chunked) {
+                if (data.chunked || pauseAll) {
                     $pausebutton.addClass('hidden');
                     var $resumebutton = $template.find('button.start');
                     if ($resumebutton.length) $resumebutton.removeClass('hidden');
@@ -148,8 +162,7 @@
                 dfd = $.Deferred(),
                 promise = dfd.promise(),
                 jqXHR,
-                upload,
-                evtname = 'chunksend';
+                upload
 
             // Sets uploaded bytes on chunk resume
             if (!testOnly) {
@@ -157,7 +170,6 @@
                 if (data) {
                     data.chunked = (mcs < fs);
                     if (!data.action) data.action = "send";
-                    evtname = 'chunk' + data.action;
                     if ((!options.uploadedBytes) || (options.uploadedBytes == 0)) {
                         options.uploadedBytes = (data.uploadedBytes ? data.uploadedBytes : 0);
                         ub = options.uploadedBytes;
@@ -185,7 +197,8 @@
                 // Clone the options object for each chunk upload:
                 var o = $.extend({}, options),
                     currentLoaded = o._progress.loaded,
-                    data;
+                    data = o.context.data('data'),
+                    resume = true;
 
                 if (console) console.log("Upload state: " + o._progress.loaded);
                 o.blob = slice.call(
@@ -204,7 +217,13 @@
                 that._initXHRData(o);
                 // Add progress listeners for this chunk upload:
                 that._initProgressListener(o);
-                jqXHR = ((that._trigger(evtname, null, o) !== false && $.ajax(o)) ||
+                // resumed chunk upload
+                if (data && data.action == "resume") {
+                    resume = that._trigger('chunkresume', null, o)
+                    data.action = "send";
+                    o.action = "send";
+                }
+                jqXHR = (resume && (that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
                         that._getXHRPromise(false, o.context))
                     .done(function (result, textStatus, jqXHR) {
                         ub = that._getUploadedBytes(jqXHR) ||
@@ -230,6 +249,7 @@
                         o.jqXHR = jqXHR;
                         that._trigger('chunkdone', null, o);
                         that._trigger('chunkalways', null, o);
+                        if (data.action && (data.action == "pause")) return;
                         if (ub < fs) {
                             // File upload not yet complete,
                             // continue with the next chunk:
@@ -246,9 +266,10 @@
                         var data = o.context.data('data');
                         if (!data.action) data.action = "send";
                         if (data.action == "pause") {
+                            o.action = "pause";
                             o.textStatus = "pause";
                             o.errorThrown = undefined;
-                            that._trigger('chunkpaused', null, o);
+                            that._trigger('chunkpause', null, o);
                         } else {
                             o.textStatus = textStatus;
                             o.errorThrown = errorThrown;
@@ -277,43 +298,47 @@
             this._on(this.options.filesContainer, {
                 'click .pause': this._pauseHandler
             });
-        },
-
-
-        _addConvenienceMethods: function (e, data) {
-            this._super(e, data);
-
-            data.pause = function () {
-                if (data.chunked) {
-                    if (data.context && data.context.length > 0) {
-                        var $pausebutton = data.context.find('button.pause');
-                        if ($pausebutton.length > 0) $pausebutton.click();
-                    } else {
-                        if (!data.action) data.action = "send";
-                        if (data.chunked) data.action = "pause";
-
-                        // Trigger abort
-                        data.abort();
-                    }
-                }
-            },
-
-            data.resume = function () {
-                if (data.chunked) {
-                    if (data.context && data.context.length > 0) {
-                        var $resumebutton = data.context.find('button.start');
-                        if ($resumebutton.length > 0) $resumebutton.click();
-                    } else {
-
-                        if (!data.action) data.action = "send";
-                        if (data.action == "pause") data.action = "resume";
-
-                        // Trigger upload
-                        if (data.submit) data.submit();
-                    }
-                }
-            }
         }
+
+
+        //_addConvenienceMethods: function (e, data) {
+        //    this._super(e, data);
+
+        //    var pauseAll = $.blueimp.fileupload.prototype.options.pauseAll;
+
+        //    data.pause = function () {
+        //        if (data.chunked || pauseAll) {
+        //            if (data.context && data.context.length > 0) {
+        //                var $pausebutton = data.context.find('button.pause');
+        //                if ($pausebutton.length > 0) $pausebutton.click();
+        //            } else {
+        //                if (!data.action) data.action = "send";
+        //                if (data.chunked) data.action = "pause";
+
+        //                // Trigger abort
+        //                data.abort();
+        //            }
+        //        }
+        //    },
+
+        //    data.resume = function () {
+        //        var pauseAll = $.blueimp.fileupload.prototype.options.pauseAll;
+
+        //        if (data.chunked || pauseAll) {
+        //            if (data.context && data.context.length > 0) {
+        //                var $resumebutton = data.context.find('button.start');
+        //                if ($resumebutton.length > 0) $resumebutton.click();
+        //            } else {
+
+        //                if (!data.action) data.action = "send";
+        //                if (data.action == "pause") data.action = "resume";
+
+        //                // Trigger upload
+        //                if (data.submit) data.submit();
+        //            }
+        //        }
+        //    }
+        //}
 
 
         //// Widget creation
