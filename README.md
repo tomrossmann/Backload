@@ -66,7 +66,8 @@ Upload files to **Windows Azure** cloud storage services from your Azure VM or w
 + Cloud storage: [Upload files](https://github.com/blackcity/Backload/wiki/Azure-File-Storage) to Windows Azure cloud services and access the files from anywhere.
 
 <br />
-### Setup and Configuration
+### Documentation
+[General](https://github.com/blackcity/Backload/wiki)<br />
 [Setup instructions](https://github.com/blackcity/Backload/wiki/Setup)<br />
 [Options, settings and enumerations](https://github.com/blackcity/Backload/wiki/Configuration)
 
