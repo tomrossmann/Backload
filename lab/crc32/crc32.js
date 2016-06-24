@@ -16,8 +16,7 @@ var crc32Lookup = new Int32Array(256);
 
     }
 })();
-
-
+//}
 //    [
 //     0, 0x77073096, 0xEE0E612C, 0x990951BA,
 //     0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
@@ -99,12 +98,14 @@ function crc32(data) {
 
 // Main test method
 function runTest() {
-    alert("start");
+    alert("Start test");
+
     var len = 50000000, // 50MB
         data = new Uint8Array(len),
         data2,
         blob,
-        crc;
+        crc,
+		t0 = performance.now();
 
     // Fill array with random values from 0-255 
     // IE: 45sec, Edge: 30sec, Chrome 4sec
@@ -124,8 +125,9 @@ function runTest() {
 
         // Calculate CRC (IE: 25sec, Edge: 25sec, Chrome 4sec)
         var crc = crc32(data);
-        alert("finished");
+        var t1 = performance.now();
+		alert("Computing CRC32 for a random 50MB file took " + (t1 - t0) + " milliseconds.");
+
     };
     reader.readAsArrayBuffer(blob);
 }
-
