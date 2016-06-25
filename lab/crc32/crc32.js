@@ -97,21 +97,20 @@ function crc32(data) {
 }
 
 // Main test method
-function runTest() {
-    alert("Start test");
-
+function runTest(result) {
     var len = 50000000, // 50MB
         data = new Uint8Array(len),
         data2,
         blob,
-        crc,
-		t0 = performance.now();
+        crc;
+
 
     // Fill array with random values from 0-255 
-    // IE: 45sec, Edge: 30sec, Chrome 4sec
+    result.timeStart = performance.now();
     for (var i = 0; i < len; i++) {
         data[i] = Math.floor(Math.random() * 256);
     }
+    result.timeCreate = performance.now() - result.timeStart;
 
     // Simulate file data (blob)
     blob = new Blob([data], { type: 'application/octet-binary' });
@@ -120,14 +119,29 @@ function runTest() {
     // Using a FileReader to read the blob into an ArrayBuffer
     var reader = new FileReader();
     reader.onload = function (e) {
-        var result = e.target.result;
-        var data = new Uint8Array(result, 0, result.byteLength);
+        var r = e.target.result;
+        var data = new Uint8Array(r, 0, r.byteLength);
 
-        // Calculate CRC (IE: 25sec, Edge: 25sec, Chrome 4sec)
-        var crc = crc32(data);
-        var t1 = performance.now();
-		alert("Computing CRC32 for a random 50MB file took " + (t1 - t0) + " milliseconds.");
+        // Calculate CRC
+        result.timeCrc = performance.now();
+        result.crc = crc32(data);
+        var end = performance.now()
 
+        result.timeCrc = end - result.timeCrc;
+        result.timeTotal = end - result.timeStart;
+
+
+        // Set total values if multiple iterations
+        result.totalCreate += result.timeCreate;
+        result.totalCrc += result.timeCrc;
+        result.totalTime += result.timeTotal;
+
+        // Print result and next iteration
+        result.iter += 1;
+        result.printResult();
+
+        if (result.iter < result.totalIter)
+            runTest(result);
     };
     reader.readAsArrayBuffer(blob);
 }
