@@ -120,8 +120,7 @@ function runTest(result) {
     // Using a FileReader to read the blob into an ArrayBuffer
     var reader = new FileReader();
     reader.onload = function (e) {
-        var r = e.target.result;
-        var data = new Uint8Array(r, 0, r.byteLength);
+        var data = new Uint8Array(e.target.result, 0, e.target.result.byteLength);
 
         // Calculate CRC
         result.timeCrc = performance.now();
@@ -140,8 +139,20 @@ function runTest(result) {
         result.iter += 1;
         result.printResult();
 
+		reader = null;
+        data = null;
+        r = null;
         if (result.iter < result.totalIter)
             runTest(result);
     };
+    reader.onerror = function (e) {
+        result.errors += 1;
+
+        reader = null;
+        if (result.iter < result.totalIter)
+            runTest(result);
+    };
+    
+
     reader.readAsArrayBuffer(blob);
 }
