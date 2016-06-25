@@ -2,12 +2,86 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>CRC32 test</title>
 </head>
 <body>
-    <script src="crc32.js"></script>
-    <script>
-        runTest();
-    </script>
+    <p>This speed test creates a 50MB random file and calculates a CRC32 value.</p>
+    <p>Start test with 1 iteration: <button id="start1" onclick="run(1);">Start</button></p>
+    <p>Start test with 10 iteration: <button id="start10" onclick="run(10);">Start</button></p>
+    <p>Start test with 100 iteration: <button id="start100" onclick="run(100);">Start</button></p>
+    <p>&nbsp;</p>
+    <h3>Result:</h3>
+    <table>
+        <tr>
+            <td>Iteration:</td>
+            <td><strong><span id="test_iteration"></span></strong></td>
+        </tr>
+       <tr>
+            <td>Average time for creating the random file (ms):</td>
+            <td><strong><span id="avg_create"></span></strong></td>
+        </tr>
+        <tr>
+            <td>Average time for calculating a CRC32 value (ms):</td>
+            <td><strong><span id="avg_crc"></span></strong></td>
+        </tr>
+        <tr>
+            <td>Average time for the whole process to complete (ms):</td>
+            <td><strong><span id="avg_time"></span></strong></td>
+        </tr>
+    </table>
+    <span></span>
+    <script src="Scripts/crc32test.js"></script>
+	<script>
+        function run(iter) {
+            reset();
+
+            var result = {
+                iter: 0,
+                totalIter: iter,
+                timeStart: 0,
+                timeCreate: 0,
+                timeCrc: 0,
+                totalCreate: 0,
+                totalCrc: 0,
+                totalTime: 0,
+                timeFinished: 0,
+                crc: 0,
+                printResult: function () {
+                    var avgCreate = (this.totalCreate / this.iter).toFixed(2),
+                        avgCrc = (this.totalCrc / this.iter).toFixed(2),
+                        avgTotal = (this.totalTime / this.iter).toFixed(2);
+                    $('test_iteration').textContent = this.iter + " of " + this.totalIter;
+                    $('avg_create').textContent = avgCreate + ' (' + (parseFloat(avgCreate) / 1000).toFixed(2) + 's)';
+                    $('avg_crc').textContent = avgCrc + ' (' + (parseFloat(avgCrc) / 1000).toFixed(2) + 's)';
+                    $('avg_time').textContent = avgTotal + ' (' + (parseFloat(avgTotal) / 1000).toFixed(2) + 's)';
+                    if (this.iter >= this.totalIter) {
+                        $('start1').disabled = false;
+                        $('start10').disabled = false;
+                        $('start100').disabled = false;
+                    }
+                }
+            }
+
+            // run test
+            runTest(result);
+        }
+
+
+        // Helper to get the element
+        var $ = function (id) {
+            return document.getElementById(id);
+        }
+
+        // Reset
+        function reset() {
+            $('start1').disabled = true;
+            $('start10').disabled = true;
+            $('start100').disabled = true;
+            $('test_iteration').textContent = 'running ...';
+            $('avg_create').textContent = '';
+            $('avg_crc').textContent = '';
+            $('avg_time').textContent = '';
+        }
+	</script>
 </body>
 </html>
