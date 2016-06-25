@@ -105,6 +105,7 @@ function runTest(result) {
         crc;
 
 
+
     // Fill array with random values from 0-255 
     result.timeStart = performance.now();
     for (var i = 0; i < len; i++) {
@@ -127,11 +128,10 @@ function runTest(result) {
         result.crc = crc32(data);
         var end = performance.now()
 
+
+        // Calculate compute time for the current and all iterations
         result.timeCrc = end - result.timeCrc;
         result.timeTotal = end - result.timeStart;
-
-
-        // Set total values if multiple iterations
         result.totalCreate += result.timeCreate;
         result.totalCrc += result.timeCrc;
         result.totalTime += result.timeTotal;
