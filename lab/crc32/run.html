@@ -33,6 +33,10 @@
             <td><strong><span id="stats"></span></strong></td>
         </tr>
         <tr>
+            <td>Read file errors (retry):</td>
+            <td><strong><span id="errors"></span></strong></td>
+        </tr>
+        <tr>
             <td>Current CRC32 value:</td>
             <td><strong><span id="current_crc"></span></strong></td>
         </tr>
@@ -44,6 +48,7 @@
             reset();
 
             var result = {
+                errors: 0,
                 iter: 0,
                 totalIter: iter,
                 timeStart: 0,
@@ -80,8 +85,9 @@
                     $('avg_crc').textContent = avgCrc + ' (' + (parseFloat(avgCrc) / 1000).toFixed(2) + 's)';
                     $('avg_time').textContent = avgTotal + ' (' + (parseFloat(avgTotal) / 1000).toFixed(2) + 's)';
                     $('stats').textContent = 'Slowest loop: ' + this.stats.slowest.toFixed(2) + ' (' + this.stats.slowestIter + '), Fastest loop: '  + this.stats.fastest.toFixed(2) + ' (' + this.stats.fastestIter + ')';
+                    $('errors').textContent = this.errors;
                     $('current_crc').textContent = this.crc.toString(16);
-					
+
                     if (this.iter >= this.totalIter) {
                         $('start1').disabled = false;
                         $('start10').disabled = false;
@@ -111,6 +117,7 @@
             $('avg_time').textContent = '';
             $('stats').textContent = '';
             $('current_crc').textContent = '';
+            $('errors').textContent = '';
         }
 	</script>
 </body>
