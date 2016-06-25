@@ -49,6 +49,7 @@
                 timeStart: 0,
                 timeCreate: 0,
                 timeCrc: 0,
+                timeTotal: 0,
                 totalCreate: 0,
                 totalCrc: 0,
                 totalTime: 0,
@@ -63,15 +64,14 @@
                 printResult: function () {
                     var avgCreate = (this.totalCreate / this.iter).toFixed(2),
                         avgCrc = (this.totalCrc / this.iter).toFixed(2),
-                        avgTotal = (this.totalTime / this.iter).toFixed(2),
-						nAvgTotal = (this.totalTime / this.iter);
+                        avgTotal = (this.totalTime / this.iter).toFixed(2);
 					
-					if (nAvgTotal > this.stats.slowest) {
-						this.stats.slowest = nAvgTotal;
+					if (this.timeTotal > this.stats.slowest) {
+					    this.stats.slowest = this.timeTotal;
 						this.stats.slowestIter = this.iter;
 					}
-					if (nAvgTotal < this.stats.fastest) {
-						this.stats.fastest = nAvgTotal;
+					if (this.timeTotal < this.stats.fastest) {
+					    this.stats.fastest = this.timeTotal;
 						this.stats.fastestIter = this.iter;
 					}
 					
