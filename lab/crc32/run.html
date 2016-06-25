@@ -7,8 +7,8 @@
 <body>
     <p>This speed test creates a 50MB random file and calculates a CRC32 value.</p>
     <p>Start test with 1 iteration: <button id="start1" onclick="run(1);">Start</button></p>
-    <p>Start test with 10 iteration: <button id="start10" onclick="run(10);">Start</button></p>
-    <p>Start test with 100 iteration: <button id="start100" onclick="run(100);">Start</button></p>
+    <p>Start test with 10 iterations: <button id="start10" onclick="run(10);">Start</button></p>
+    <p>Start test with 100 iterations: <button id="start100" onclick="run(100);">Start</button></p>
     <p>&nbsp;</p>
     <h3>Result:</h3>
     <table>
@@ -28,6 +28,14 @@
             <td>Average time for the whole process to complete (ms):</td>
             <td><strong><span id="avg_time"></span></strong></td>
         </tr>
+        <tr>
+            <td>Slowest, fastest loop:</td>
+            <td><strong><span id="stats"></span></strong></td>
+        </tr>
+        <tr>
+            <td>Current CRC32 value:</td>
+            <td><strong><span id="current_crc"></span></strong></td>
+        </tr>
     </table>
     <span></span>
     <script src="crc32.js"></script>
@@ -44,16 +52,36 @@
                 totalCreate: 0,
                 totalCrc: 0,
                 totalTime: 0,
-                timeFinished: 0,
                 crc: 0,
+				stats: { 
+					slowest: 0, 
+					slowestIter: 0, 
+					fastest: 0x0fffffff, 
+					fastestIter: 0
+				},
+				
                 printResult: function () {
                     var avgCreate = (this.totalCreate / this.iter).toFixed(2),
                         avgCrc = (this.totalCrc / this.iter).toFixed(2),
-                        avgTotal = (this.totalTime / this.iter).toFixed(2);
+                        avgTotal = (this.totalTime / this.iter).toFixed(2),
+						nAvgTotal = (this.totalTime / this.iter);
+					
+					if (nAvgTotal > this.stats.slowest) {
+						this.stats.slowest = nAvgTotal;
+						this.stats.slowestIter = this.iter;
+					}
+					if (nAvgTotal < this.stats.fastest) {
+						this.stats.fastest = nAvgTotal;
+						this.stats.fastestIter = this.iter;
+					}
+					
                     $('test_iteration').textContent = this.iter + " of " + this.totalIter;
                     $('avg_create').textContent = avgCreate + ' (' + (parseFloat(avgCreate) / 1000).toFixed(2) + 's)';
                     $('avg_crc').textContent = avgCrc + ' (' + (parseFloat(avgCrc) / 1000).toFixed(2) + 's)';
                     $('avg_time').textContent = avgTotal + ' (' + (parseFloat(avgTotal) / 1000).toFixed(2) + 's)';
+                    $('stats').textContent = 'Slowest loop: ' + this.stats.slowest.toFixed(2) + ' (' + this.stats.slowestIter + '), Fastest loop: '  + this.stats.fastest.toFixed(2) + ' (' + this.stats.fastestIter + ')';
+                    $('current_crc').textContent = this.crc.toString(16);
+					
                     if (this.iter >= this.totalIter) {
                         $('start1').disabled = false;
                         $('start10').disabled = false;
@@ -81,6 +109,8 @@
             $('avg_create').textContent = '';
             $('avg_crc').textContent = '';
             $('avg_time').textContent = '';
+            $('stats').textContent = '';
+            $('current_crc').textContent = '';
         }
 	</script>
 </body>
