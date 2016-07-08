@@ -129,7 +129,7 @@
                 }
                 // Abort request
                 data.abort();
-                data.jqXHR = undefined;
+                delete data.jqXHR;
             } 
         },
 
