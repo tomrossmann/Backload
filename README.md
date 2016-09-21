@@ -3,8 +3,8 @@
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin.
 
 <br />
-### ASP.NET Core 1.0 RC2 (ASP.NET 5, MVC 6) support
-Updated: Support status for the new ASP.NET Core (CLI) based project types. [More ...](https://github.com/blackcity/Backload/wiki/ASP.NET-Core-1.0-support)
+### ASP.NET Core 1.0 support
+Updated: Support status for the new ASP.NET Core based project types. [More ...](https://github.com/blackcity/Backload/wiki/ASP.NET-Core-1.0-support)
 
 <br />
 ### Project website
@@ -17,12 +17,13 @@ General information, editions and how to get a Pro/Enterprise license:
 [Release 2.1 final package](https://github.com/blackcity/Backload/releases/download/v2.1.5.0/Backload.Standard.2.1.Full.zip)<br />
 -->
 <br />
-### Current release 2.2:
-[Release 2.2 Database package (updated)](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.Database.Demo.zip?raw=true)<br />
+### Current release 2.2.5:
+[Release 2.2.5 ASP.NET Core package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.AspNetCore.Demo.zip?raw=true)<br />
+[Release 2.2.5 Database package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.Database.Demo.zip?raw=true)<br />
 24 database storage examples, including support for Entity Framework, Sql Server FILESTREAMS, Sql Server FileTables, external file data storage, client side plugins, file chunking, classic html/aspx, Web Api and more.<br />
-[Release 2.2 FileSystem package (updated)](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.FileSystem.Demo.zip?raw=true)<br />
+[Release 2.2.5 FileSystem package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.FileSystem.Demo.zip?raw=true)<br />
 20 filesystem storage examples, including file chunking demos, classic html/aspx demos, server side events, Web Api controller, post processing and more.<br />
-[Release 2.2 Azure Blob Storage package (updated)](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.AzureBlobStorage.Demo.zip?raw=true)<br />
+[Release 2.2.5 Azure Blob Storage package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.AzureBlobStorage.Demo.zip?raw=true)<br />
 20 Microsoft Azure Blob Storage examples, including file chunking demos, classic html/aspx demos, server side events, Web Api controller, post processing and more.
 
 
