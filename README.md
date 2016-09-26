@@ -19,7 +19,7 @@ General information, editions and how to get a Pro/Enterprise license:
 <br />
 ### Current release 2.2.5:
 [Release 2.2.5 ASP.NET Core package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.AspNetCore.Demo.zip?raw=true)<br />
-20 filesystem storage examples, including file chunking demos, classic html/aspx demos, server side events, Web Api controller, post processing and more for the ASP.NET Core framework.<br />
+20 filesystem storage examples, including file chunking demos, classic html/aspx demos, server side events, Web Api controller, post processing and more for the ASP.NET Core framework (Windows/Linux/Mac).<br />
 [Release 2.2.5 Database package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.Database.Demo.zip?raw=true)<br />
 24 database storage examples, including support for Entity Framework, Sql Server FILESTREAMS, Sql Server FileTables, external file data storage, client side plugins, file chunking, classic html/aspx, Web Api and more.<br />
 [Release 2.2.5 FileSystem package](https://github.com/blackcity/Backload/blob/master/Examples/Backload.Standard.2.2/Backload.FileSystem.Demo.zip?raw=true)<br />
@@ -48,6 +48,7 @@ Upload files to **Windows Azure** cloud storage services from your Azure VM or w
 
 <br />
 ### Features
+* Running on Windows, Linux and Mac OS X (MacOs)
 * Zero configuration: The defaults set up a fully functional server side file upload controller and handler.
 * Declarative configuration: Features will be setup within the web.config or a linked config file.
 * Storage context: Supported locations are file system, UNC shares, database and cloud (next milestone).
