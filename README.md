@@ -3,8 +3,8 @@
 While Backload out of the box handles the client side [jQuery File Upload Plugin](https://github.com/blueimp/jQuery-File-Upload) from blueimp, [PlUpload](https://github.com/moxiecode/plupload) from Moxiecode and [Fine Uploader](http://fineuploader.com/) from Widen Enterprises, it can be easily customized to work with any client side plugin.
 
 <br />
-### ASP.NET Core 1.0 support
-Updated: Support status for the new ASP.NET Core based project types. [More ...](https://github.com/blackcity/Backload/wiki/ASP.NET-Core-1.0-support)
+### ASP.NET Core support
+Updated: Support status for the new ASP.NET Core based project types. [More ...](https://github.com/blackcity/Backload/wiki/ASP.NET-Core-support)
 
 <br />
 ### Project website
