@@ -11,11 +11,6 @@ Updated: Support status for the new ASP.NET Core based project types. [More ...]
 General information, editions and how to get a Pro/Enterprise license:
 [http://backload.org](http://backload.org). 
 
-<!--
-<br />
-### Release 2.1: 
-[Release 2.1 final package](https://github.com/blackcity/Backload/releases/download/v2.1.5.0/Backload.Standard.2.1.Full.zip)<br />
--->
 <br />
 ### Current release 2.2.7/2.2.8:
 [Release 2.2.8 ASP.NET Core package (cross-platform)](https://github.com/blackcity/Backload/raw/master/Examples/Backload.Standard.2.2/Backload.ASPNETCore.Developer.zip?raw=true)<br />
